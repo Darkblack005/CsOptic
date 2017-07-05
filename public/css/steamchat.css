@@ -1,0 +1,244 @@
+#chatbox {
+    max-height:400px;
+    max-width:320px;
+    min-height:400px;
+    min-width:320px;
+    margin-top:30px;
+    padding:20px;
+    border-radius:3px;
+    border-style: solid;
+    border-width: 2px;
+}
+
+p > hr {
+    height: 1px;
+    color: rgba(78,93,108,0.1);
+    background-color: rgba(78,93,108,0.3);
+    margin-top: 11px;
+    margin-bottom: 11px;
+    border: none;
+}
+
+#navbar-main * {
+    line-height: 57px !important;
+    font-size: 14px;
+}
+
+.table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td {
+    line-height: 52px;
+    vertical-align: middle;
+    padding: 7px;
+}
+
+.table-striped>tbody>tr:nth-of-type(odd) {
+    background-color: rgba(78,93,108,0.2);
+}
+
+p > img, a > img {
+    display: inline !important;
+    padding: 3px;
+}
+
+#profilepic {
+    width: 50px; height: 50px;
+    border-radius: 50%;
+}
+
+#username {
+    margin-left: 5px;
+}
+
+#info {
+    margin-top: 20px;
+}
+
+.list-unstyled {
+    display: list-item;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+    padding-top: 70px;
+    font-family: 'Exo', sans-serif;
+}
+
+.footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  background-color: rgba(78,93,108,0.1);
+  text-align: center;
+}
+
+.footer * {
+    vertical-align: middle;
+    display: inline;
+}
+
+.fa-twitter {
+    color: #4099FF;
+}
+
+.fa-facebook {
+    color: #3B5998;
+}
+
+.fa-youtube-play {
+    color: #e52d27;
+}
+
+.fa-rss {
+    color: #FF6600;
+}
+
+.fa-vine {
+    color: #00a478;
+}
+
+.fa-flickr {
+    color: #ff0084;
+}
+
+.fa-twitch {
+    color: #6441A5;
+}
+
+.fa-linkedin {
+    color: #007bb6;
+}
+
+.fa {
+    opacity: 0.5;
+    transition: 0.25s;
+    -webkit-transition: 0.25s;
+}
+
+.fa:hover{
+    opacity: 1;
+    transition: 0.25s;
+    -webkit-transition: 0.25s;
+}
+
+.well-sm {
+    padding: 8px;
+    border-radius: 0;
+}
+.price, strong, b {
+    font-weight: 600;
+}
+.csgo-items {
+    width: 100%;
+    height: 300px;
+    overflow: auto;
+    display: block;
+}
+.csgo-items.high {
+    height: 420px;
+}
+.csgo-items .well {
+    border-radius: 0;
+    margin: 0;
+}
+.csgo-item {
+    width: 16.6666667%;
+    min-height: 80px;
+    background: rgba(0, 0, 0, .05);
+    float: left;
+    position: relative;
+    border-bottom: 1px solid rgba(0, 0, 0, .05);
+    border-right: 1px solid rgba(0, 0, 0, .05);
+}
+.csgo-item[disabled] {
+    pointer-events: none;
+    opacity: .75;
+}
+.csgo-item[disabled]:before {
+    content: '';
+    position: absolute;
+    left: 0; right: 0;
+    top: 0; bottom: 0;
+    background: rgba(0, 0, 0, .1);
+    z-index: 2;
+}
+.csgo-item:hover {
+    cursor: pointer;
+}
+.csgo-item:hover .csgo-item--bg {
+    background-size: 75%;
+}
+.csgo-item:hover .csgo-item--title {
+    visibility: visible;
+    z-index: 999;
+}
+.csgo-item--key {
+    background: rgba(223, 240, 216, .5);
+}
+.csgo-item--knife {
+    background: rgba(242, 222, 222, .5);
+}
+.csgo-item--rare_skin {
+    background: rgba(252, 248, 227, .5);
+}
+.csgo-item--weapon {
+    background: rgba(217, 237, 247, .5);
+}
+.csgo-item--bg {
+    position: absolute;
+    left: 0; top: 0; right: 0; bottom: 0;
+    background-position: center center;
+    background-size: 70%;
+    background-repeat: no-repeat;
+}
+.csgo-item--st {
+    position: absolute;
+    top: 5px; left: 5px;
+    color: orange;
+    font-weight: 700;
+    padding: 1px 3px;
+    z-index: 2;
+}
+.csgo-item--wear {
+    position: absolute;
+    top: 5px; right: 5px;
+    background: rgba(0, 0, 0, .1);
+    padding: 1px 3px;
+    z-index: 2;
+}
+.csgo-item--price {
+    position: absolute;
+    bottom: 5px; left: 10px; right: 0;
+    text-align: left;
+    font-size: 16px;
+    font-weight: 400;
+    z-index: 2;
+}
+.csgo-item--title {
+    visibility: hidden;
+    width: 100%;
+    bottom: 100%;
+    background: rgba(0, 0, 0, .8);
+    color: #fff;
+    font-size: 13px;
+    text-align: center;
+    padding: 1px 3px;
+    position: absolute;
+    z-index: 1;
+    pointer-events: none;
+}
+.csgo-item--title:after {
+    content: " ";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, .8) transparent transparent transparent;
+}
+.csgo-items .alert {
+    border-radius: 0;
+}
