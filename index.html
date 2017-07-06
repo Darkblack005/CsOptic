@@ -60,10 +60,16 @@
 								<tbody>
 									<tr v-for="(flip, index) in coinflips">
 										<td>{{index+1}}</td>
-										<td>Column content</td>
-										<td>Column content</td>
-										<td>Column content</td>
-										<td>
+										<td v-if="flip.name2.length > 0">{{ flip.name1 }} vs. {{ flip.name2 }}</td>
+										<td v-else>{{ flip.name1 }}</td>
+										<td>${{ flip.amount }}</td>
+										<td>{{ flip.status }}</td>
+										<td v-if="flip.name2.length > 0">
+											<form action="">
+												<button class="btn btn-default">Watch</button>
+											</form>
+										</td>
+										<td v-else>
 											<form action="">
 												<button class="btn btn-primary">Join</button>
 											</form>
@@ -79,7 +85,7 @@
 							</div>
 
 							<div id="textarea">
-								<form action="">
+								<form id="chatboxsendbutton" action="">
 									<input id="m" style="width: 200px; height: 38px;" autocomplete="off" />
 									<button class="btn btn-info">Send</button>
 								</form>
@@ -134,9 +140,8 @@
                                 <div class="csgo-item csgo-item--rare"
                                     :class="`csgo-item--${item.item_type.name}`"
                                     v-for="item in userInventory"
-                                    v-if=" ! item.hidden && userInventorySelected.indexOf(item.assetid) === -1"
+                                    v-if=" ! item.hidden && userInventorySelected.indexOf(item.assetid) === -1 && item.price > rates.ignore"
                                     v-on:click="addItem('user', item.assetid, item.price)"
-                                    :disabled="item.price <= rates.ignore"
                                 >
                                     <div class="csgo-item--title">{{ item.data.market_hash_name }}</div>
                                     <div class="csgo-item--st" v-if="item.data.market_hash_name.indexOf('StatTrak') !== -1">ST</div>

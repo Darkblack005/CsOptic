@@ -93,6 +93,12 @@ io.on('connection', function(socket){
     socket.emit('pricelist', Trade.getPriceList())
   })
 
+  socket.on('get rates', () => {
+    socket.emit('rates', {
+            ignore: Trade.getIgnorePrice()
+        })
+    })
+
   socket.on('chat message', function(msg){
     if(msg.name) {
       io.emit('chat message', msg);

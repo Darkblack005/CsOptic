@@ -64,10 +64,11 @@ html {
 body {
     padding-top: 70px;
     font-family: 'Exo', sans-serif;
+    margin-bottom: 89px;
 }
 
 .footer {
-  position: relative;
+  position: absolute;
   bottom: 0;
   width: 100%;
   background-color: rgba(78,93,108,0.1);
@@ -178,7 +179,7 @@ body {
     background: rgba(223, 240, 216, .5);
 }
 .csgo-item--knife {
-    background: rgba(242, 222, 222, .5);
+    background: rgba(134,80,172, 0.5);
 }
 .csgo-item--rare_skin {
     background: rgba(252, 248, 227, .5);

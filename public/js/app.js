@@ -3,26 +3,11 @@ $(function() {
         el: '#app',
         data: {
             coinflips: [
-                { message: 'Foo' },
-                { message: 'Foo' },
-                { message: 'Foo' },
-                { message: 'Foo' },
-                { message: 'Foo' },
-                { message: 'Foo' },
-                { message: 'Foo' },
-                { message: 'Foo' },
-                { message: 'Foo' },
-                { message: 'Foo' },
-                { message: 'Foo' },
-                { message: 'Foo' },
-                { message: 'Foo' },
-                { message: 'Bar' }
+                { name1: 'Foo', name2: '', amount: '100.00', status: 'Awaiting Second Player' },
+                { name1: 'Foo', name2: 'Bar', amount: '100.00', status: 'CT Win' }
             ],
             priceList: {},
-            rates: {
-                user: {},
-                bot: {}
-            },
+            rates: {},
             disableReload: true,
             disableTrade: true,
             // bot
@@ -238,8 +223,9 @@ $(function() {
     var socket = io();
 
     socket.emit('get pricelist');
+    socket.emit('get rates');
 
-	$('form').submit(function(){
+	$('#chatboxsendbutton').submit(function(){
         if(app.user.displayName) {
             var msg = {
                 name: app.user.displayName,
@@ -313,6 +299,10 @@ $(function() {
 
     socket.on('pricelist', function(prices) {
         app.priceList = Object.assign({}, app.priceList, prices);
+    });
+
+    socket.on('rates', function(rates) {
+        app.rates = Object.assign({}, app.rates, rates);
     });
 
     function sortInventory(inventory, desc) {

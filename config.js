@@ -13,4 +13,7 @@ module.exports = {
     website: 'http://localhost',    // Website URL, follow the example (do not add / at the end)
     websitePort: 80,    // Website PORT, don't change it unless you're using a reverse proxy
     tradeMessage: 'Trade offer from CsOptic | If you did not request this offer or the offer looks invalid please decline.', // Quite obvious
+    rates: {
+        ignoreItemsBelow: 0.05, // Ignore items below this price (price * rate < ignoreItemsBelow) - shows (Too Low) for user
+    }
 }
