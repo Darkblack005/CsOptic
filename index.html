@@ -26,7 +26,7 @@
 				<div class="container">
 					<div class="navbar-collapse collapse" id="navbar-main">
 						<ul class="nav navbar-nav">
-							<a href="http://csoptic.com/" class="navbar-brand"><img src="img/phlogo.png" width="50" height="50"> CsOptic</a>
+							<a href="http://csoptic.com/" class="navbar-brand"><img src="img/phlogo.png" width="50" height="50">CsOptic</a>
 							<li><button type="button" class="btn btn-default" data-toggle="modal" data-target="#flipModal">New Flip</button></li>
 							<li><button type="button" class="btn btn-default" data-toggle="modal" data-target="#flipModal">Deposit</button></li>
 							<li><button type="button" class="btn btn-default" data-toggle="modal" data-target="#flipModal">Withdraw</button></li>
@@ -35,7 +35,7 @@
 
 						<ul class="nav navbar-nav navbar-right">
 							<li v-if=" ! user"><a href="/auth/steam" target="_blank"><img src="https://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_large_noborder.png"></a></li>
-							<li v-else><a href="/logout" target="_blank"><img id="profilepic" class="img-responsive img-avatar" :src="user.photos[1].value" alt="Avatar"><strong id="username">{{ user.displayName }}</strong></a></li>
+							<li v-else><a href="/logout" target="_blank" title="Click to Logout"><img id="profilepic" class="img-responsive img-avatar" :src="user.photos[1].value" alt="Avatar"><strong id="username">{{ user.displayName }}</strong></a></li>
 						</ul>
 					</div>
 				</div>
@@ -71,7 +71,7 @@
 										</td>
 										<td v-else>
 											<form action="">
-												<button class="btn btn-primary">Join</button>
+												<button class="btn btn-primary" style="width:77px;">Join</button>
 											</form>
 										</td>
 									</tr>
@@ -86,8 +86,8 @@
 
 							<div id="textarea">
 								<form id="chatboxsendbutton" action="">
-									<input id="m" style="width: 200px; height: 38px;" autocomplete="off" />
-									<button class="btn btn-info">Send</button>
+									<input id="m" style="width: 253px; height: 38px;" autocomplete="off" />
+									<button class="btn btn-info" style="height:38px;margin-top:-.5%;margin-left:-1%">Send</button>
 								</form>
 							</div>
 							<div id="info">
