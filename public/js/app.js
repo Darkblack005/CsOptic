@@ -224,6 +224,7 @@ $(function() {
 
     socket.emit('get pricelist');
     socket.emit('get rates');
+    socket.emit('get coinflips');
 
 	$('#chatboxsendbutton').submit(function(){
         if(app.user.displayName) {
@@ -303,6 +304,10 @@ $(function() {
 
     socket.on('rates', function(rates) {
         app.rates = Object.assign({}, app.rates, rates);
+    });
+
+    socket.on('current flips', function(coinflips) {
+        app.coinflips = Object.assign({}, app.coinflips, coinflips);
     });
 
     function sortInventory(inventory, desc) {

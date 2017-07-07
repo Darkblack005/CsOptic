@@ -95,9 +95,13 @@ io.on('connection', function(socket){
 
   socket.on('get rates', () => {
     socket.emit('rates', {
-            ignore: Trade.getIgnorePrice()
-        })
+      ignore: Trade.getIgnorePrice()
     })
+  })
+
+  socket.on('get coinflips', () => {
+    socket.emit('pricelist', Trade.getPriceList())
+  })
 
   socket.on('chat message', function(msg){
     if(msg.name) {
