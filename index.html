@@ -35,7 +35,7 @@
 
 						<ul class="nav navbar-nav navbar-right">
 							<li v-if=" ! user"><a href="/auth/steam"><img src="https://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_large_noborder.png"></a></li>
-							<li v-else><a href="/logout" title="Click to Logout"><img id="profilepic" class="img-responsive img-avatar" :src="user.photos[1].value" alt="Avatar"><strong id="username">{{ user.displayName }}</strong></a></li>
+							<li v-else><a href="/logout" title="Click to Logout" style="margin-right:55px;"><img id="profilepic" class="img-responsive img-avatar" :src="user.photos[1].value" alt="Avatar"><strong id="username">{{ user.displayName }}</strong></a></li>
 						</ul>
 					</div>
 				</div>
