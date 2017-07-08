@@ -11,8 +11,10 @@ const SteamStrategy = require('passport-steam').Strategy;
 
 const config = require('./config');
 const TradeBot = require('./lib/index')
+const FlipManager = require('./lib/flipmanager')
 
 const Trade = new TradeBot({ io })
+const Flips = new FlipManager({ io })
 
 passport.serializeUser(function(user, done) {
   done(null, user)
@@ -111,5 +113,5 @@ io.on('connection', function(socket){
 });
 
 http.listen(config.websitePort, function(){
-  console.log('listening on *:' + config.websitePort);
+  console.log('Server listening on *:' + config.websitePort);
 });
