@@ -39,6 +39,13 @@ p > hr {
     border: none;
 }
 
+.chatpic {
+    display: inline-block;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+}
+
 #navbar-main * {
     line-height: 57px !important;
     font-size: 14px;
