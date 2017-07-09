@@ -10,13 +10,13 @@
     border-width: 2px;
 	border-top-right-radius: 15px;
 	border-top-left-radius: 15px;
-	border-color: rgb(32, 44, 56);
-	background-color: rgb(42, 58, 73);
+	border-color: rgba(78,93,108,0.75);
+	background-color: rgba(78,93,108,0.25);
 }
 
 #chatboxsendbutton input {
-	background-color: rgb(42, 58, 73);
-	border-color: rgb(32, 44, 56);
+	background-color: rgba(78,93,108,0.25);
+	border-color: rgba(78,93,108,0.75);
 	border-width: 2px;
 	border-bottom-left-radius: 15px;
 	color: white;
@@ -25,14 +25,9 @@
 }
 
 #chatboxsendbutton button {
-	background-color: rgb(142, 80, 21);
 	border-color: rgb(32, 44, 56);
 	border-width: 2px;
 	border-bottom-right-radius: 15px;
-}
-
-#chatboxsendbutton button:hover {
-	background-color: rgb(216, 122, 32);
 }
 
 p > hr {
@@ -81,10 +76,10 @@ p > img, a > img {
     margin-top: 20px;
 	border-style: solid;
 	border-width: 2px;
-	border-color: rgb(32, 44, 56);
 	padding-left: 15px;
 	border-radius: 15px;
-	background-color: rgb(42, 58, 73);
+	border-color: rgba(78,93,108,0.75);
+	background-color: rgba(78,93,108,0.25);
 }
 
 .list-unstyled {
