@@ -1,13 +1,38 @@
 #chatbox {
     max-height:400px;
-    max-width:320px;
+    max-width:321px;
     min-height:400px;
-    min-width:320px;
+    min-width:321px;
     margin-top:30px;
     padding:20px;
     border-radius:3px;
     border-style: solid;
     border-width: 2px;
+	border-top-right-radius: 15px;
+	border-top-left-radius: 15px;
+	border-color: rgb(32, 44, 56);
+	background-color: rgb(42, 58, 73);
+}
+
+#chatboxsendbutton input {
+	background-color: rgb(42, 58, 73);
+	border-color: rgb(32, 44, 56);
+	border-width: 2px;
+	border-bottom-left-radius: 15px;
+	color: white;
+	outline: none;
+	padding-left: 8px;
+}
+
+#chatboxsendbutton button {
+	background-color: rgb(142, 80, 21);
+	border-color: rgb(32, 44, 56);
+	border-width: 2px;
+	border-bottom-right-radius: 15px;
+}
+
+#chatboxsendbutton button:hover {
+	background-color: rgb(216, 122, 32);
 }
 
 p > hr {
@@ -34,6 +59,10 @@ p > hr {
     background-color: rgba(78,93,108,0.2);
 }
 
+.table-striped>tbody>tr:nth-of-type(odd):hover {
+	background-color: rgb(110, 131, 153);
+}
+
 p > img, a > img {
     display: inline !important;
     padding: 3px;
@@ -50,6 +79,12 @@ p > img, a > img {
 
 #info {
     margin-top: 20px;
+	border-style: solid;
+	border-width: 2px;
+	border-color: rgb(32, 44, 56);
+	padding-left: 15px;
+	border-radius: 15px;
+	background-color: rgb(42, 58, 73);
 }
 
 .list-unstyled {
