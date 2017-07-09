@@ -45,6 +45,10 @@ p > hr {
     width: 48px;
     height: 48px;
 	
+=======
+    width: 40px;
+    height: 40px;
+>>>>>>> ff3a6ab205752f03380f0bf6ebc5dbee60e84728
 }
 
 #navbar-main * {
@@ -167,7 +171,7 @@ body {
     border-radius: 0;
 }
 .price, strong, b {
-    font-weight: 600;
+    font-weight: 525;
 }
 .csgo-items {
     width: 100%;
