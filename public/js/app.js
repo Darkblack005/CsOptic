@@ -230,6 +230,7 @@ $(function() {
         if(app.user.displayName) {
             var msg = {
                 name: app.user.displayName,
+                pic: app.user.photos[1].value,
                 message: $('#m').val()
             }
 
@@ -246,7 +247,7 @@ $(function() {
 	});
 
     socket.on('chat message', function(msg){
-		$('#mCSB_1_container').append($('<p>').html('<hr>'));
+        $('#mCSB_1_container').append($('<p>').html("<hr><img src=" + msg.pic + " class='chatpic'>"));
 		$('#mCSB_1_container').append($('<p>').text(msg.name + ': ' + msg.message));
 		$('.content').mCustomScrollbar('scrollTo','last');
 	});
