@@ -25,7 +25,7 @@
 }
 
 #chatboxsendbutton button {
-	border-color: rgb(32, 44, 56);
+	border-color: rgba(78,93,108,0.75);
 	border-width: 2px;
 	border-bottom-right-radius: 15px;
 }
