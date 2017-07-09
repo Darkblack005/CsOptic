@@ -228,20 +228,24 @@ $(function() {
 
 	$('#chatboxsendbutton').submit(function(){
         if(app.user.displayName) {
-            var msg = {
-                name: app.user.displayName,
-                pic: app.user.photos[1].value,
-                message: $('#m').val()
+            if($('#m').val().length > 0) {
+                var msg = {
+                    name: app.user.displayName,
+                    pic: app.user.photos[1].value,
+                    message: $('#m').val()
+                }
+
+                socket.emit('chat message', msg);
+                $('#m').val('');
             }
 
-            socket.emit('chat message', msg);
-            $('#m').val('');
             return false;
         } else {
             $('#mCSB_1_container').append($('<p>').html('<hr>'));
             $('#mCSB_1_container').append($('<p>').html('<strong>Log in with Steam to use the chat.</strong>'));
             $('#m').val('');
             $('.content').mCustomScrollbar('scrollTo','last');
+            
             return false;
         }
 	});

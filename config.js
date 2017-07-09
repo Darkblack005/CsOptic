@@ -8,7 +8,7 @@ module.exports = {
     dbPassword: '', // MongoDB password
 
     site: {
-        header: 'csoptic.com', // Name/header/title of website. Prefix for  <title></title> (For more: /index.html line: 9) 
+        header: 'CsOptic.com', // Name/header/title of website. Prefix for  <title></title> (For more: /index.html line: 9) 
         steamGroup: '#',
         copyrights: 'Copyright © CsOptic.com 2017',  // Copyright text
     },

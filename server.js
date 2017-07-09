@@ -102,11 +102,11 @@ io.on('connection', function(socket){
   })
 
   socket.on('get coinflips', () => {
-    socket.emit('pricelist', Trade.getPriceList())
+    socket.emit('current flips', FlipManager.getCurrentFlips())
   })
 
   socket.on('chat message', function(msg){
-    if(msg.name && msg.pic) {
+    if(msg.name && msg.pic && msg.message.length > 0) {
       io.emit('chat message', msg);
     }
   });
