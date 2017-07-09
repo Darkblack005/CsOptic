@@ -247,8 +247,7 @@ $(function() {
 	});
 
     socket.on('chat message', function(msg){
-        $('#mCSB_1_container').append($('<p>').html("<hr><img src=" + msg.pic + " class='chatpic'>"));
-		$('#mCSB_1_container').append($('<p>').text(msg.name + ': ' + msg.message));
+        $('#mCSB_1_container').append($('<p>').html("<hr><img src=" + msg.pic + " class='chatpic'><strong> " + msg.name + '</strong>: ' + msg.message));
 		$('.content').mCustomScrollbar('scrollTo','last');
 	});
 

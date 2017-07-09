@@ -42,8 +42,8 @@ p > hr {
 .chatpic {
     display: inline-block;
     border-radius: 50%;
-    width: 48px;
-    height: 48px;
+    width: 40px;
+    height: 40px;
 }
 
 #navbar-main * {
@@ -166,7 +166,7 @@ body {
     border-radius: 0;
 }
 .price, strong, b {
-    font-weight: 600;
+    font-weight: 525;
 }
 .csgo-items {
     width: 100%;
