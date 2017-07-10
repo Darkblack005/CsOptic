@@ -137,22 +137,17 @@ io.on('connection', function(socket){
                       if (typeof config.bots[offerData.bot_id] === 'undefined') {
                           offerData.bot_id = Object.keys(config.bots)[0]
                       }
+
                       const Bot = Trade.getBot(offerData.bot_id)
                       const offer = Bot.manager.createOffer(offerData.tradelink)
+                      
                       offer.addTheirItems(offerData.user.map(assetid => ({
                           assetid,
                           appid: 730,
                           contextid: 2,
                           amount: 1,
                       })))
-                      if (offerData.bot.length) {
-                          offer.addMyItems(offerData.bot.map(assetid => ({
-                              assetid,
-                              appid: 730,
-                              contextid: 2,
-                              amount: 1,
-                          })))
-                      }
+
                       offer.setMessage(config.tradeMessage)
                       offer.getUserDetails((detailsError, me, them) => {
                           if (detailsError) {
