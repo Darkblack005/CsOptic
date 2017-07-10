@@ -155,11 +155,14 @@ io.on('connection', function(socket){
                                   error: detailsError,
                                   status: false,
                               })
+                              console.log('Details error: ' + detailsError)
                           } else if (me.escrowDays + them.escrowDays > 0) {
                               socket.emit('offer status', {
                                   error: 'You must have 2FA enabled, we do not accept trades that go into Escrow.',
                                   status: false,
                               })
+                              console.log('Bot ' + bot_id + '  Escrow Days: ' + me.escrowDays)
+                              console.log('Their Escrow Days: ' + them.escrowDays)
                           } else {
                               offer.send((errSend, status) => {
                                   if (errSend) {
@@ -167,6 +170,7 @@ io.on('connection', function(socket){
                                           error: errSend,
                                           status: false,
                                       })
+                                      console.log('ErrSend err')
                                   } else {
                                       console.log('[!!!!!] Sent a trade: ', data)
                                       if (status === 'pending') {
@@ -174,6 +178,7 @@ io.on('connection', function(socket){
                                               error: null,
                                               status: 2,
                                           })
+                                          console.log('Sent a trade error')
                                           Trade.botConfirmation(data.bot_id, offer.id, (errConfirm) => {
                                               if (!errConfirm) {
                                                   socket.emit('offer status', {
@@ -181,11 +186,13 @@ io.on('connection', function(socket){
                                                       status: 3,
                                                       offer: offer.id,
                                                   })
+                                                  console.log('Should work?')
                                               } else {
                                                   socket.emit('offer status', {
                                                       error: errConfirm,
                                                       status: false,
                                                   })
+                                                  console.log('Bot confirm error')
                                               }
                                           })
                                       } else {
@@ -194,6 +201,7 @@ io.on('connection', function(socket){
                                               status: 3,
                                               offer: offer.id,
                                           })
+                                          console.log('Should work?')
                                       }
                                   }
                               })

@@ -6,28 +6,28 @@ module.exports = {
 
     dbUser: '',    // MongoDB login
     dbPassword: '', // MongoDB password
-
+/*
     bots: {
         bot_1: {
             siteName: 'Bot 1',  // Will be displayed under the "All bots" tab e.g. "Keys Only"
-            accountName: '',    // bot_1 username
-            password: '',       // bot_1  password
-            twoFactorCode: '',  // shared_secret value
-            identitySecret: '', // identity_secret value
-            steamID64: '',  // SteamID64 of bot account can be found here: "https://steamid.io/"
-            personaName: 'CsOptic Bot #1',   // Nickname for bot account, will change on restart
+            accountName: 'magn26',    // bot_1 username
+            password: '11112321q',       // bot_1  password
+            twoFactorCode: 'R+rKeqhbdgJmCdOa64JL+9LxPzU=',  // shared_secret value
+            identitySecret: 'Db5EkqUtEsmScmT8mK+D98f6po8=', // identity_secret value
+            steamID64: '76561198159926602',  // SteamID64 of bot account can be found here: "https://steamid.io/"
+            personaName: 'CsOptic',   // Nickname for bot account, will change on restart
         },
-        bot_2: {
+        bot_1: {
             siteName: 'Bot 2',  // Will be displayed under the "All bots" tab e.g. "Keys Only"
-            accountName: '',    // bot_1 username
-            password: '',       // bot_1  password
-            twoFactorCode: '',  // shared_secret value
-            identitySecret: '', // identity_secret value
-            steamID64: '',  // SteamID64 of bot account can be found here: "https://steamid.io/"
-            personaName: 'CsOptic Bot #2',   // Nickname for bot account, will change on restart
+            accountName: 'Somebodyelse234',    // bot_1 username
+            password: 'Hal83057ndb82bs5',       // bot_1  password
+            twoFactorCode: 'FGNmmAWM2vm0LeRToX6ryrc0t8o=',  // shared_secret value
+            identitySecret: 'DCA6unoWiRdMGqL6XbRrLgjl1BE=', // identity_secret value
+            steamID64: '76561198401956045',  // SteamID64 of bot account can be found here: "https://steamid.io/"
+            personaName: 'CsOptic2',   // Nickname for bot account, will change on restart
         },
     },
-
+*/
     site: {
         header: 'CsOptic.com', // Name/header/title of website. Prefix for  <title></title> (For more: /index.html line: 9) 
         steamGroup: '#',

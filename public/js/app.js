@@ -143,11 +143,6 @@ $(function() {
                     ) {
                         this.invalidTradelink = true;
                     } else {
-                        ga('send', 'updateTradelink', {
-                            eventCategory: 'Trade',
-                            eventAction: 'click',
-                            eventLabel: this.user.tradelink
-                        });
                         this.invalidTradelink = false;
                         localStorage.setItem(this.user.id, this.user.tradelink);
                         $('#tradelink').modal('hide');
@@ -186,6 +181,7 @@ $(function() {
                             steamID64: this.user.id,
                             tradelink: localStorage[this.user.id]
                         });
+                        console.log('Offer sent')
                     }
                 }
             },
