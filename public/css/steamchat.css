@@ -169,7 +169,7 @@ body {
     font-weight: 525;
 }
 .csgo-items {
-    width: 100%;
+    width: 300px;
     height: 300px;
     overflow: auto;
     display: block;
@@ -183,7 +183,8 @@ body {
 }
 .csgo-item {
     width: 16.6666667%;
-    min-height: 80px;
+    min-height: 92px;
+    min-width: 92px;
     background: rgba(0, 0, 0, .05);
     float: left;
     position: relative;

@@ -54,15 +54,7 @@ $(function() {
                     price = assetid;
                     assetid = id;
                 }
-                if(who == 'bot') {
-                    if(this.selectedBot !== id) {
-                        this.activeBot(id);
-                    }
-                    var botInventorySelected = this.botInventorySelected;
-                    botInventorySelected.push(assetid);
-                    this.botInventorySelected = botInventorySelected;
-                    this.botInventorySelectedValue += parseFloat(price);
-                } else {
+                if(who == 'user') {
                     var userInventorySelected = this.userInventorySelected;
                     userInventorySelected.push(assetid);
                     this.userInventorySelected = userInventorySelected;
@@ -75,12 +67,11 @@ $(function() {
                     price = assetid;
                     assetid = id;
                 }
-                if(who == 'bot') {
-                    this.botInventorySelected.splice($.inArray(assetid, this.botInventorySelected),1);
-                    this.botInventorySelectedValue -= price;
-                } else {
+                // Clean this later
+                if(who == 'user') {
                     this.userInventorySelected.splice($.inArray(assetid, this.userInventorySelected),1);
                     this.userInventorySelectedValue -= price;
+
                     if(this.userInventorySelectedValue <= 0) {
                         this.userInventorySelectedValue = 0;
                     }
@@ -178,35 +169,49 @@ $(function() {
                 if(this.user && typeof this.user.steamID64 !== 'undefined') {
                     socket.emit('get user inv', this.user.steamID64);
                 }
-                ga('send', 'reloadInventories', {
-                    eventCategory: 'Trade',
-                    eventAction: 'click',
-                    eventLabel: this.user.steamID64 || false
-                });
             },
-            sendOffer: function() {
+            createFlip: function() {
                 if( ! localStorage[this.user.id]) {
+                    $('#flipModal').modal('hide');
                     $('#tradelink').modal('show');
                 } else {
-                    ga('send', 'sendOffer', {
-                        eventCategory: 'Trade',
-                        eventAction: 'click',
-                        eventLabel: this.user.id
-                    });
                     this.offerStatus = {};
                     this.checkTradeable();
                     if( ! this.disableTrade) {
                         this.disableTrade = true;
+                        $('#flipModal').modal('hide');
                         $('#tradeoffer').modal('show');
-                        socket.emit('get offer', {
+                        socket.emit('flip offer', {
                             user: this.userInventorySelected,
-                            bot: this.botInventorySelected,
-                            bot_id: this.selectedBot,
                             steamID64: this.user.id,
                             tradelink: localStorage[this.user.id]
                         });
                     }
                 }
+            },
+            joinFlip: function() {
+                if( ! localStorage[this.user.id]) {
+                    $('#tradelink').modal('show');
+                } else {
+                    $('#joinModal').modal('show'); // Create join modal
+
+                    this.offerStatus = {};
+                    this.checkTradeable();
+
+                    if( ! this.disableTrade) {
+                        this.disableTrade = true;
+                        $('#flipModal').modal('hide');
+                        $('#tradeoffer').modal('show');
+                        socket.emit('flip offer', {
+                            user: this.userInventorySelected,
+                            steamID64: this.user.id,
+                            tradelink: localStorage[this.user.id]
+                        });
+                    }
+                }
+            },
+            cancelFlip: function() {
+                userInventorySelected = []
             }
         }
     });

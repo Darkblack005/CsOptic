@@ -14,7 +14,7 @@ const TradeBot = require('./lib/index')
 const FlipManager = require('./lib/flipmanager')
 
 const Trade = new TradeBot({ io })
-const Flips = new FlipManager({ io })
+const Flip = new FlipManager({ io })
 
 passport.serializeUser(function(user, done) {
   done(null, user)
@@ -102,7 +102,7 @@ io.on('connection', function(socket){
   })
 
   socket.on('get coinflips', () => {
-    socket.emit('current flips', FlipManager.getCurrentFlips())
+    socket.emit('current flips', Flip.getCurrentFlips())
   })
 
   socket.on('chat message', function(msg){
@@ -110,8 +110,106 @@ io.on('connection', function(socket){
       io.emit('chat message', msg);
     }
   });
+
+  socket.on('flip offer', (data) => {
+          socket.emit('offer status', {
+              error: null,
+              status: 4,
+          })
+          const link = data.tradelink
+          const offerData = data
+          if (
+              link.indexOf('steamcommunity.com/tradeoffer/new/') === -1 ||
+              link.indexOf('?partner=') === -1 ||
+              link.indexOf('&token=') === -1
+          ) {
+              socket.emit('offer status', {
+                  error: 'Invalid trade link!',
+                  status: false,
+              })
+          } else {
+              Trade.validateOffer(offerData, (err, success) => {
+                  socket.emit('offer status', {
+                      error: err,
+                      status: (success) ? 1 : false,
+                  })
+                  if (!err && success) {
+                      if (typeof config.bots[offerData.bot_id] === 'undefined') {
+                          offerData.bot_id = Object.keys(config.bots)[0]
+                      }
+                      const Bot = Trade.getBot(offerData.bot_id)
+                      const offer = Bot.manager.createOffer(offerData.tradelink)
+                      offer.addTheirItems(offerData.user.map(assetid => ({
+                          assetid,
+                          appid: 730,
+                          contextid: 2,
+                          amount: 1,
+                      })))
+                      if (offerData.bot.length) {
+                          offer.addMyItems(offerData.bot.map(assetid => ({
+                              assetid,
+                              appid: 730,
+                              contextid: 2,
+                              amount: 1,
+                          })))
+                      }
+                      offer.setMessage(config.tradeMessage)
+                      offer.getUserDetails((detailsError, me, them) => {
+                          if (detailsError) {
+                              socket.emit('offer status', {
+                                  error: detailsError,
+                                  status: false,
+                              })
+                          } else if (me.escrowDays + them.escrowDays > 0) {
+                              socket.emit('offer status', {
+                                  error: 'You must have 2FA enabled, we do not accept trades that go into Escrow.',
+                                  status: false,
+                              })
+                          } else {
+                              offer.send((errSend, status) => {
+                                  if (errSend) {
+                                      socket.emit('offer status', {
+                                          error: errSend,
+                                          status: false,
+                                      })
+                                  } else {
+                                      console.log('[!!!!!] Sent a trade: ', data)
+                                      if (status === 'pending') {
+                                          socket.emit('offer status', {
+                                              error: null,
+                                              status: 2,
+                                          })
+                                          Trade.botConfirmation(data.bot_id, offer.id, (errConfirm) => {
+                                              if (!errConfirm) {
+                                                  socket.emit('offer status', {
+                                                      error: null,
+                                                      status: 3,
+                                                      offer: offer.id,
+                                                  })
+                                              } else {
+                                                  socket.emit('offer status', {
+                                                      error: errConfirm,
+                                                      status: false,
+                                                  })
+                                              }
+                                          })
+                                      } else {
+                                          socket.emit('offer status', {
+                                              error: null,
+                                              status: 3,
+                                              offer: offer.id,
+                                          })
+                                      }
+                                  }
+                              })
+                          }
+                      })
+                  }
+              })
+          }
+      })
 });
 
 http.listen(config.websitePort, function(){
-  console.log('Server listening on *:' + config.websitePort);
+  console.log('[!] Server listening on *:' + config.websitePort);
 });

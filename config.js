@@ -19,6 +19,6 @@ module.exports = {
     tradeMessage: 'Trade offer from CsOptic | If you did not request this offer or the offer looks invalid please decline.', // Quite obvious
     
     rates: {
-        ignoreItemsBelow: 0.05, // Ignore items below this price (price * rate < ignoreItemsBelow) - shows (Too Low) for user
+        ignoreItemsBelow: 0.01, // Ignore items below this price (price * rate < ignoreItemsBelow) - shows (Too Low) for user
     }
 }

@@ -28,9 +28,8 @@
 						<ul class="nav navbar-nav">
 							<a href="http://csoptic.com/" class="navbar-brand"><img src="img/phlogo.png" width="50" height="50">CsOptic</a>
 							<li style="margin-top:1px;"><button type="button" class="btn btn-default" data-toggle="modal" data-target="#flipModal">New Flip</button></li>
-							<li style="margin-top:1px;"><button type="button" class="btn btn-default" data-toggle="modal">Deposit</button></li>
-							<li style="margin-top:1px;"><button type="button" class="btn btn-default" data-toggle="modal">Withdraw</button></li>
 							<li style="margin-top:1px;"><button type="button" class="btn btn-default" data-toggle="modal">How it Works</button></li>
+							<li style="margin-top:1px;"><button type="button" class="btn btn-default" data-toggle="modal" data-target="#tradeLinkModal">Trade Link</button></li>
 						</ul>
 
 						<ul class="nav navbar-nav navbar-right">
@@ -59,7 +58,7 @@
 								</thead>
 								<tbody>
 									<tr v-for="(flip, index) in coinflips">
-										<td>{{index+1}}</td>
+										<td>{{ index+1 }}</td>
 										<td v-if="flip.name2.length > 0">{{ flip.name1 }} vs. {{ flip.name2 }}</td>
 										<td v-else>{{ flip.name1 }}</td>
 										<td>${{ flip.amount }}</td>
@@ -102,89 +101,153 @@
 			</div>
 		</div>
 
-		<div id="flipModal" class="modal">
+		<div id="flipModal" class="modal fade">
 			<div class="modal-dialog">
 				<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="false">&times;</button>
-					<h4 class="modal-title">New Flip</h4>
-				</div>
-				<div class="modal-body">
-					<p>This dialog will soon grab items from your deposits onto the bot instead of trading you for them each coinflip.</p>
-					<hr>
-                        <div class="form-inline text-right">
-                            <a href="#" class="btn btn-default disabled pull-left">Your inventory</a>
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Search For Items" v-on:keyup="searchInventory('user', $event.target.value)">
-                                <div class="input-group">
-                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Sort by
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu dropdown-menu-right">
-                                        <li>
-                                        	<a v-on:click="setInventorySort('user', true)">Highest price</a>
-                                        </li>
-                                        <li>
-                                        	<a v-on:click="setInventorySort('user', false)">Lowest price</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-						<hr>
-                        <div class="csgo-items high">
-                            <div class="well text-center">
-                                <strong>&#9660; Select items below to place them in the offer. &#9660;</strong>
-                            </div>
-                            <div v-if=" ! userInventory.error && userInventory.length">
-                                <div class="csgo-item csgo-item--rare"
-                                    :class="`csgo-item--${item.item_type.name}`"
-                                    v-for="item in userInventory"
-                                    v-if=" ! item.hidden && userInventorySelected.indexOf(item.assetid) === -1 && item.price > rates.ignore"
-                                    v-on:click="addItem('user', item.assetid, item.price)"
-                                >
-                                    <div class="csgo-item--title">{{ item.data.market_hash_name }}</div>
-                                    <div class="csgo-item--st" v-if="item.data.market_hash_name.indexOf('StatTrak') !== -1">ST</div>
-                                    <div class="csgo-item--wear" v-if="item.item_wear">{{ item.item_wear }}</div>
-                                    <div class="csgo-item--price" >${{ item.price }}</div>
-                                    <div class="csgo-item--bg" :style="`background-image:url(https://steamcommunity-a.akamaihd.net/economy/image/${item.data.image});`"></div>
-                                </div>
-                            </div>
-                            <div v-else-if="userInventory.error">
-                                <div v-if="userInventory.error.statusCode == 403">
-                                    <div class="alert alert-danger" style="margin:0">
-                                        <strong>Your profile or inventory settings are set to private. We can't acquire the items of your CS:GO inventory.</strong>
-                                        <div><a href="http://steamcommunity.com/id/me/edit/settings" target="_blank">Change your Steam privacy settings here.</a> After that's done you can <a href="#">try reloading inventories</a>.</div>
-                                    </div>
-                                    <div class="alert alert-warning">
-                                        <strong>If you're certain your privacy settings are public please contact the administrator or try again later.</strong>
-                                        <div>Sometimes Steam has issues with its stability of the inventory servers. Make sure that Steam is not broken <a href="http://steamstat.us" target="_blank"><strong>here</strong></a>.</div>
-                                    </div>
-                                </div>
-                                <div v-else>
-                                    <div class="alert alert-danger">
-                                        <strong v-if="userInventory.error.error">{{ userInventory.error.error }}</strong>
-                                        <strong v-else>Something went wrong.. please try again!</strong>
-                                        <span v-if="userInventory.error.statusCode">({{ userInventory.error.statusCode }})</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div v-else-if=" ! user.steamID64">
-                                <div class="alert alert-info">Please authenticate to see your inventory.</div>
-                            </div>
-                            <div v-else>
-                                <div class="alert alert-info"><img src="img/load.gif" alt="">Please wait..</div>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-					<button type="button" class="btn btn-primary">Create</button>
-				</div>
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="false">&times;</button>
+						<h4 class="modal-title">New Flip</h4>
+					</div>
+				<div class="modal-body container-fixed">
+					<div class="row">
+						<div class="col-xs-12">
+							<div class="alert alert-info text-center">
+								Click the items you want to add to the coinflip.
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-6">
+								<div class="well text-center">
+									Your inventory
+								</div>
+								<div class="csgo-items high">
+									<div v-if=" ! userInventory.error && userInventory.length">
+										<div class="csgo-item csgo-item--rare"
+											:class="`csgo-item--${item.item_type.name}`"
+											v-for="item in userInventory"
+											v-if=" ! item.hidden && userInventorySelected.indexOf(item.assetid) === -1 && item.price > rates.ignore"
+											v-on:click="addItem('user', item.assetid, item.price)"
+										>
+											<div class="csgo-item--title">{{ item.data.market_hash_name }}</div>
+											<div class="csgo-item--st" v-if="item.data.market_hash_name.indexOf('StatTrak') !== -1">ST</div>
+											<div class="csgo-item--wear" v-if="item.item_wear">{{ item.item_wear }}</div>
+											<div class="csgo-item--price" >${{ item.price }}</div>
+											<div class="csgo-item--bg" :style="`background-image:url(https://steamcommunity-a.akamaihd.net/economy/image/${item.data.image});`"></div>
+										</div>
+									</div>
+									<div v-else-if="userInventory.error">
+										<div v-if="userInventory.error.statusCode == 403">
+											<div class="alert alert-danger" style="margin:0">
+												<strong>Your profile or inventory settings are set to private. We can't acquire the items of your CS:GO inventory.</strong>
+												<div><a href="http://steamcommunity.com/id/me/edit/settings" target="_blank">Change your Steam privacy settings here.</a> After that's done you can <a href="#">try reloading inventories</a>.</div>
+											</div>
+											<div class="alert alert-warning">
+												<strong>If you're certain your privacy settings are public please contact the administrator or try again later.</strong>
+												<div>Sometimes Steam has issues with its stability of the inventory servers. Make sure that Steam is not broken <a href="http://steamstat.us" target="_blank"><strong>here</strong></a>.</div>
+											</div>
+										</div>
+										<div v-else>
+											<div class="alert alert-danger">
+												<strong v-if="userInventory.error.error">{{ userInventory.error.error }}</strong>
+												<strong v-else>Something went wrong.. please try again!</strong>
+												<span v-if="userInventory.error.statusCode">({{ userInventory.error.statusCode }})</span>
+											</div>
+										</div>
+									</div>
+									<div v-else-if=" ! user.steamID64">
+										<div class="alert alert-info">Please authenticate to create a new coinflip.</div>
+									</div>
+									<div v-else>
+										<div class="alert alert-info"><img src="img/load.gif" alt="">Please wait..</div>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+						</div>
+						<div class="col-xs-6">
+								<div div class="well text-center">
+									Selected items
+								</div>
+								<div class="csgo-items high">
+									<div v-if=" ! userInventory.error && userInventorySelected.length > 0">
+										<div class="csgo-item csgo-item--rare"
+											:class="`csgo-item--${item.item_type.name}`"
+											v-for="item in userInventory"
+											v-if="userInventorySelected.indexOf(item.assetid) !== -1"
+											v-on:click="removeItem('user', item.assetid, item.price)"
+										>
+											<div class="csgo-item--title">{{ item.data.market_hash_name }}</div>
+											<div class="csgo-item--st" v-if="item.data.market_hash_name.indexOf('StatTrak') !== -1">ST</div>
+											<div class="csgo-item--wear" v-if="item.item_wear">{{ item.item_wear }}</div>
+											<div class="csgo-item--price" >${{ item.price }}</div>
+											<div class="csgo-item--bg" :style="`background-image:url(https://steamcommunity-a.akamaihd.net/economy/image/${item.data.image});`"></div>
+										</div>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+						</div>
+						<div class="modal-footer">
+							<span class="price">
+								<span class="well well-sm">${{ userInventorySelectedValue.toFixed(2) }}</span>
+							</span>
+							<button type="button" class="btn btn-default" data-dismiss="modal" v-on:click="cancelFlip">Cancel</button>
+							<button type="button" class="btn btn-primary" v-on:click="createFlip">Create</button>
+						</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
+
+        <div class="modal fade" id="tradeLinkModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <h3>Trade link</h3>
+                        <div class="alert alert-danger" v-if="invalidTradelink">
+                            <strong>Invalid tradelink!</strong>
+                        </div>
+                        <h4><a href="http://steamcommunity.com/id/me/tradeoffers/privacy#trade_offer_access_url" target="_blank">Where do I find this?</a></h4>
+                        <input type="text" class="form-control" v-model="user.tradelink">
+                        <hr style="opacity:0; margin: 7.5px 0;">
+                        <a class="btn btn-primary btn-lg" v-on:click="updateTradelink">Update</a>
+                        <hr>
+                        <p>By adding your Steam Trade url you make it possible for our bots to send you a trade offer without the need of adding you as a friend on steam.</p>
+                        <p>This is totally safe and no items can be traded before you have inspected and accepted the offer from your steam page.</p>
+                    </div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="tradeoffer">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <h3>Trade status</h3>
+                        <div class="alert alert-info" v-if=" ! offerStatus.error && offerStatus.status != 3">
+                            <strong v-if="offerStatus.status == 4"><img src="/public/img/load.gif" alt=""> Validating requested trade..</strong>
+                            <strong v-if="offerStatus.status == 1"><img src="/public/img/load.gif" alt=""> Preparing to send offer..</strong>
+                            <strong v-if="offerStatus.status == 2"><img src="/public/img/load.gif" alt=""> Confirming sent offer..</strong>
+                        </div>
+                        <div v-else-if=" ! offerStatus.error && offerStatus.status == 3">
+                            <div class="alert alert-success">
+                                <strong>Requested trade has been sent successfully!
+                                    <a :href="`http://steamcommunity.com/tradeoffer/${offerStatus.offer}`" target="_blank">Click here to open the trade offer.</a>
+                                </strong>
+                            </div>
+                            <div class="alert alert-warning">This trade offer will expire in <strong>10 minutes</strong>.</div>
+                        </div>
+                        <div v-else>
+                            <strong v-if="offerStatus.error.code === 429">We are being rate-limited and could not send the offer. Please try again later.</strong>
+                            <strong v-else>{{ offerStatus.error }}</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 	</div>
 
