@@ -58,7 +58,7 @@
 								</thead>
 								<tbody>
 									<tr v-for="(flip, index) in coinflips">
-										<td>{{ index+1 }}</td>
+										<td>{{ index }}</td>
 										<td v-if="flip.name2.length > 0">{{ flip.name1 }} vs. {{ flip.name2 }}</td>
 										<td v-else>{{ flip.name1 }}</td>
 										<td>${{ flip.amount }}</td>

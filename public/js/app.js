@@ -30,7 +30,12 @@ $(function() {
             },
             // trade
             offerStatus: {},
-            invalidTradelink: false
+            invalidTradelink: false,
+
+            // Real provable fairness. Other sites don't use a client created seed to generate the hash, making it not actually fair.
+            // Generate random 16 character hex code for client seed
+            // Look at randomizeClientSeed()
+            clientSeed: ''
         },
         methods: {
             setInventorySort: function(who, value) {
@@ -207,7 +212,10 @@ $(function() {
                 }
             },
             cancelFlip: function() {
-                userInventorySelected = []
+                this.userInventorySelected = []
+            },
+            randomizeClientSeed: function() {
+                this.clientSeed = Math.floor(Math.random()*(Math.pow(16,16))).toString(16)
             }
         }
     });
@@ -259,6 +267,7 @@ $(function() {
     socket.on('site', function(data) {
         app.site = data;
         window.document.title = data.header + ' | CS:GO Gambling Evolved';
+        app.randomizeClientSeed();
     });
 
     socket.on('offer status', function(data) {
