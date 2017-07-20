@@ -28,7 +28,7 @@
 						<ul class="nav navbar-nav">
 							<a href="http://csoptic.com/" class="navbar-brand"><img src="img/CsOptic.png" width="50" height="50" style="margin-right:20px;">CsOptic</a>
 							<li style="margin-top:1px;"><button type="button" class="btn btn-default" data-toggle="modal" data-target="#flipModal">New Flip</button></li>
-							<li style="margin-top:1px;"><button type="button" class="btn btn-default" data-toggle="modal">How it Works</button></li>
+							<li style="margin-top:1px;"><button type="button" class="btn btn-default" data-toggle="modal" data-target="#howitworksmodal">How it Works</button></li>
 							<li style="margin-top:1px;"><button type="button" class="btn btn-default" data-toggle="modal" data-target="#tradeLinkModal">Trade Link</button></li>
 						</ul>
 
@@ -65,7 +65,7 @@
 										<td>{{ flip.status }}</td>
 										<td v-if="flip.name2.length > 0">
 											<form action="">
-												<button class="btn btn-default">Watch</button>
+												<button class="btn btn-default" style="outline:none;">Watch</button>
 											</form>
 										</td>
 										<td v-else>
@@ -221,6 +221,22 @@
                 </div>
             </div>
         </div>
+		
+		 <div class="modal fade" id="howitworksmodal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title">How it Works</h4>
+					</div>
+                    <div class="modal-body">
+						<p>CsOptic uses an intuitive, provably fair system that allows users to wager items
+                    </div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+                </div>
+            </div>
+        </div>
 
         <div class="modal fade" id="tradeoffer">
             <div class="modal-dialog">
@@ -254,14 +270,9 @@
     <div class="footer">
       <div class="container">
 		  <span>
-              <a href='#'><i class="fa fa-twitch fa-3x fa-fw"></i></a>
               <a href='#'><i class="fa fa-facebook fa-3x fa-fw"></i></a>
               <a href='https://twitter.com/cs_optic' target="_blank"><i class="fa fa-twitter fa-3x fa-fw"></i></a>
-              <a href='#'><i class="fa fa-youtube-play fa-3x fa-fw"></i></a>
-              <a href='#'><i class="fa fa-rss fa-3x fa-fw"></i></a>
-              <a href='#'><i class="fa fa-vine fa-3x fa-fw"></i></a>
-              <a href='#'><i class="fa fa-flickr fa-3x fa-fw"></i></a>
-              <a href='#'><i class="fa fa-linkedin fa-3x fa-fw"></i></a>
+			  <a href='#'><i class="fa fa-instagram fa-3x fa-fw" style="color:rgb(238, 66, 244);"></i></a>
             </span>
       </div>
     </div>

@@ -7,7 +7,7 @@ module.exports = {
     dbUser: '',    // MongoDB login
     dbPassword: '', // MongoDB password
 
-    bots: {
+    /*bots: {
         bot_1: {
             siteName: 'Bot 1',  // Will be displayed under the "All bots" tab e.g. "Keys Only"
             accountName: 'magn26',    // bot_1 username
@@ -27,7 +27,7 @@ module.exports = {
             personaName: 'CsOptic2',   // Nickname for bot account, will change on restart
         },
     },
-
+*/
     site: {
         header: 'CsOptic.com', // Name/header/title of website. Prefix for  <title></title> (For more: /index.html line: 9) 
         steamGroup: '#',
