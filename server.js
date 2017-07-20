@@ -181,12 +181,16 @@ io.on('connection', function(socket){
                                           console.log('Sent a trade error')
                                           Trade.botConfirmation(data.bot_id, offer.id, (errConfirm) => {
                                               if (!errConfirm) {
-                                                  socket.emit('offer status', {
-                                                      error: null,
-                                                      status: 3,
-                                                      offer: offer.id,
-                                                  })
-                                                  console.log('Should work?')
+                                                    socket.emit('offer status', {
+                                                    error: null,
+                                                    status: 3,
+                                                    offer: offer.id,
+                                              })
+
+                                                console.log('Should work?')
+
+                                                Flip.createNewFlip(offerData)
+
                                               } else {
                                                   socket.emit('offer status', {
                                                       error: errConfirm,
