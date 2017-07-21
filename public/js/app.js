@@ -150,7 +150,7 @@ $(function() {
                     } else {
                         this.invalidTradelink = false;
                         localStorage.setItem(this.user.id, this.user.tradelink);
-                        $('#tradelink').modal('hide');
+                        $('#tradeLinkModal').modal('hide');
                     }
                 } else {
                     this.invalidTradelink = true;
