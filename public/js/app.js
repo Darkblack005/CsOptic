@@ -1,4 +1,4 @@
-$(function() {
+$(function () {
     var app = new Vue({
         el: '#app',
         data: {
@@ -38,28 +38,28 @@ $(function() {
             clientSeed: ''
         },
         methods: {
-            setInventorySort: function(who, value) {
-                if(who == 'bot') {
+            setInventorySort: function (who, value) {
+                if (who == 'bot') {
                     this.botInventory = this.sortInventory(this.botInventory, value);
                 } else {
                     this.userInventory = this.sortInventory(this.userInventory, value);
                 }
             },
-            sortInventory: function(inventory, desc) {
-                return inventory.sort(function(a, b) {
-                    if(desc) {
+            sortInventory: function (inventory, desc) {
+                return inventory.sort(function (a, b) {
+                    if (desc) {
                         return b.price - a.price;
                     } else {
                         return a.price - b.price;
                     }
                 });
             },
-            addItem: function(who, id, assetid, price) {
-                if(typeof price === 'undefined') {
+            addItem: function (who, id, assetid, price) {
+                if (typeof price === 'undefined') {
                     price = assetid;
                     assetid = id;
                 }
-                if(who == 'user') {
+                if (who == 'user') {
                     var userInventorySelected = this.userInventorySelected;
                     userInventorySelected.push(assetid);
                     this.userInventorySelected = userInventorySelected;
@@ -67,38 +67,38 @@ $(function() {
                 }
                 this.checkTradeable();
             },
-            removeItem: function(who, id, assetid, price) {
-                if(typeof price === 'undefined') {
+            removeItem: function (who, id, assetid, price) {
+                if (typeof price === 'undefined') {
                     price = assetid;
                     assetid = id;
                 }
                 // Clean this later
-                if(who == 'user') {
-                    this.userInventorySelected.splice($.inArray(assetid, this.userInventorySelected),1);
+                if (who == 'user') {
+                    this.userInventorySelected.splice($.inArray(assetid, this.userInventorySelected), 1);
                     this.userInventorySelectedValue -= price;
 
-                    if(this.userInventorySelectedValue <= 0) {
+                    if (this.userInventorySelectedValue <= 0) {
                         this.userInventorySelectedValue = 0;
                     }
                 }
                 this.checkTradeable();
             },
-            checkTradeable: function() {
+            checkTradeable: function () {
                 var user = parseFloat(this.userInventorySelectedValue.toFixed(2));
                 var bot = parseFloat(this.botInventorySelectedValue.toFixed(2));
-                if(user != 0 && user >= bot) {
+                if (user != 0 && user >= bot) {
                     this.disableTrade = false;
                 } else {
                     this.disableTrade = true;
                 }
             },
-            activeBot: function(id) {
-                if(this.selectedBot !== id) {
-                    if(id == 'All Bots') {
+            activeBot: function (id) {
+                if (this.selectedBot !== id) {
+                    if (id == 'All Bots') {
                         var botInventory = [];
-                        for(var i in this.botInventories) {
+                        for (var i in this.botInventories) {
                             var bot = this.botInventories[i];
-                            for(var y in bot.items) {
+                            for (var y in bot.items) {
                                 var item = bot.items[y];
                                 item.bot = i;
                                 item.price = this.priceList[item.data.market_hash_name];
@@ -114,34 +114,34 @@ $(function() {
                     this.selectedBot = id;
                 }
             },
-            searchInventory: function(who, value) {
+            searchInventory: function (who, value) {
                 var inventory = [];
                 var search = [];
-                if(who == 'bot') {
+                if (who == 'bot') {
                     search = this.botInventory;
                 } else {
                     search = this.userInventory;
                 }
-                for(var i in search) {
+                for (var i in search) {
                     var item = search[i];
-                    if(item.data.market_hash_name.toLowerCase().indexOf(value.toLowerCase()) === -1) {
+                    if (item.data.market_hash_name.toLowerCase().indexOf(value.toLowerCase()) === -1) {
                         item.hidden = 1;
                     } else {
                         item.hidden = 0;
                     }
                     inventory.push(item);
                 }
-                if(who == 'bot') {
+                if (who == 'bot') {
                     this.botInventory = sortInventory(inventory, true);
                 } else {
                     this.userInventory = sortInventory(inventory, true);
                 }
             },
-            updateTradelink: function() {
+            updateTradelink: function () {
                 var link = this.user.tradelink;
-                if(typeof link !== 'undefined') {
+                if (typeof link !== 'undefined') {
                     link = link.trim();
-                    if(
+                    if (
                         link.indexOf('steamcommunity.com/tradeoffer/new/') === -1 ||
                         link.indexOf('?partner=') === -1 ||
                         link.indexOf('&token=') === -1
@@ -157,7 +157,7 @@ $(function() {
                 }
 
             },
-            reloadInventories: function() {
+            reloadInventories: function () {
                 this.disableReload = true;
                 this.botInventory = [];
                 this.botInventorySelected = [];
@@ -166,18 +166,18 @@ $(function() {
                 this.userInventorySelected = [];
                 this.userInventorySelectedValue = 0;
                 socket.emit('get bots inv');
-                if(this.user && typeof this.user.steamID64 !== 'undefined') {
+                if (this.user && typeof this.user.steamID64 !== 'undefined') {
                     socket.emit('get user inv', this.user.steamID64);
                 }
             },
-            createFlip: function() {
-                if( ! localStorage[this.user.id]) {
+            createFlip: function () {
+                if (!localStorage[this.user.id]) {
                     $('#flipModal').modal('hide');
                     $('#tradelink').modal('show');
                 } else {
                     this.offerStatus = {};
                     this.checkTradeable();
-                    if( ! this.disableTrade) {
+                    if (!this.disableTrade) {
                         this.disableTrade = true;
                         $('#flipModal').modal('hide');
                         $('#tradeoffer').modal('show');
@@ -190,8 +190,8 @@ $(function() {
                     }
                 }
             },
-            joinFlip: function() {
-                if( ! localStorage[this.user.id]) {
+            joinFlip: function () {
+                if (!localStorage[this.user.id]) {
                     $('#tradelink').modal('show');
                 } else {
                     $('#joinModal').modal('show'); // Create join modal
@@ -199,7 +199,7 @@ $(function() {
                     this.offerStatus = {};
                     this.checkTradeable();
 
-                    if( ! this.disableTrade) {
+                    if (!this.disableTrade) {
                         this.disableTrade = true;
                         $('#flipModal').modal('hide');
                         $('#tradeoffer').modal('show');
@@ -211,22 +211,22 @@ $(function() {
                     }
                 }
             },
-            cancelFlip: function() {
+            cancelFlip: function () {
                 this.userInventorySelected = []
             },
-            randomizeClientSeed: function() {
-                this.clientSeed = Math.floor(Math.random()*(Math.pow(16,16))).toString(16)
+            randomizeClientSeed: function () {
+                this.clientSeed = Math.floor(Math.random() * (Math.pow(16, 16))).toString(16)
             }
         }
     });
 
-	$(window).on("load",function(){
-				
-		/* call mCustomScrollbar function before jquery ui resizable() */
-				
-		$(".content").mCustomScrollbar({
-		});
-	});
+    $(window).on("load", function () {
+
+        /* call mCustomScrollbar function before jquery ui resizable() */
+
+        $(".content").mCustomScrollbar({
+        });
+    });
 
     // Sockets
     var socket = io();
@@ -235,9 +235,9 @@ $(function() {
     socket.emit('get rates');
     socket.emit('get coinflips');
 
-	$('#chatboxsendbutton').submit(function(){
-        if(app.user.displayName) {
-            if($('#m').val().length > 0) {
+    $('#chatboxsendbutton').submit(function () {
+        if (app.user.displayName) {
+            if ($('#m').val().length > 0) {
                 var msg = {
                     name: app.user.displayName,
                     pic: app.user.photos[1].value,
@@ -253,29 +253,29 @@ $(function() {
             $('#mCSB_1_container').append($('<p>').html('<hr>'));
             $('#mCSB_1_container').append($('<p>').html('<strong>Log in with Steam to use the chat.</strong>'));
             $('#m').val('');
-            $('.content').mCustomScrollbar('scrollTo','last');
-            
+            $('.content').mCustomScrollbar('scrollTo', 'last');
+
             return false;
         }
-	});
+    });
 
-    socket.on('chat message', function(msg){
+    socket.on('chat message', function (msg) {
         $('#mCSB_1_container').append($('<p>').html("<hr><img src=" + msg.pic + " class='chatpic'><strong> " + msg.name + '</strong>: ' + msg.message));
-		$('.content').mCustomScrollbar('scrollTo','last');
-	});
+        $('.content').mCustomScrollbar('scrollTo', 'last');
+    });
 
-    socket.on('site', function(data) {
+    socket.on('site', function (data) {
         app.site = data;
         window.document.title = data.header + ' | CS:GO Gambling Evolved';
         app.randomizeClientSeed();
     });
 
-    socket.on('offer status', function(data) {
+    socket.on('offer status', function (data) {
         app.offerStatus = data;
-        if(data.status === 3 || data.status === false) {
+        if (data.status === 3 || data.status === false) {
             app.disableTrade = false;
         }
-        if(data.status === 3) {
+        if (data.status === 3) {
             app.botInventorySelected = [];
             app.botInventorySelectedValue = 0;
             app.userInventorySelected = [];
@@ -283,25 +283,25 @@ $(function() {
         }
     });
 
-    socket.on('user', function(user) {
+    socket.on('user', function (user) {
         user.steamID64 = user.id;
         app.user = user;
 
-        if(app.user.steamID64) {
+        if (app.user.steamID64) {
             socket.emit('get user inv', app.user.steamID64);
         }
     });
 
-    socket.on('user inv', function(data) {
+    socket.on('user inv', function (data) {
         app.disableReload = false;
-        if( ! data.error) {
+        if (!data.error) {
             var userInventory = [];
-            for(var i in data.items) {
+            for (var i in data.items) {
                 var item = data.items[i];
                 item.price = (app.priceList[item.data.market_hash_name]).toFixed(2);
                 userInventory.push(item);
             }
-            if( ! userInventory.length) {
+            if (!userInventory.length) {
                 userInventory = { error: { error: 'No tradeable items found.' } };
             } else {
                 userInventory = sortInventory(userInventory, true);
@@ -312,20 +312,20 @@ $(function() {
         }
     });
 
-    socket.on('pricelist', function(prices) {
+    socket.on('pricelist', function (prices) {
         app.priceList = Object.assign({}, app.priceList, prices);
     });
 
-    socket.on('rates', function(rates) {
+    socket.on('rates', function (rates) {
         app.rates = Object.assign({}, app.rates, rates);
     });
 
-    socket.on('current flips', function(coinflips) {
+    socket.on('current flips', function (coinflips) {
         app.coinflips = Object.assign({}, app.coinflips, coinflips);
     });
 
     function sortInventory(inventory, desc) {
-        return inventory.sort(function(a, b) {
+        return inventory.sort(function (a, b) {
             return (desc) ? b.price - a.price : a.price - b.price;
         });
     }
