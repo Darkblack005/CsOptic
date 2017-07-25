@@ -118,8 +118,10 @@ io.on('connection', function (socket) {
             error: null,
             status: 4,
         })
+
         const link = data.tradelink
         const offerData = data
+
         if (
             link.indexOf('steamcommunity.com/tradeoffer/new/') === -1 ||
             link.indexOf('?partner=') === -1 ||
@@ -139,6 +141,13 @@ io.on('connection', function (socket) {
                     if (typeof config.bots[offerData.bot_id] === 'undefined') {
                         offerData.bot_id = Object.keys(config.bots)[0]
                     }
+
+                    Flip.createNewServerSeed(data.steamID64, (hash) => {
+                        socket.emit('hash', {
+                            status: 1,
+                            computedServerHash: hash
+                        })
+                    })
 
                     const Bot = Trade.getBot(offerData.bot_id)
                     const offer = Bot.manager.createOffer(offerData.tradelink)
@@ -184,8 +193,13 @@ io.on('connection', function (socket) {
                                                     status: 3,
                                                     offer: offer.id,
                                                 })
-                                                console.log('Calling create new flip')
-                                                Flip.createNewFlip(data)
+
+                                                Flip.createNewFlip(data, (hash) => {
+                                                    socket.emit('hash', {
+                                                        status: 2,
+                                                        computedHash: hash
+                                                    })
+                                                })
 
                                             } else {
                                                 socket.emit('offer status', {
@@ -200,8 +214,13 @@ io.on('connection', function (socket) {
                                             status: 3,
                                             offer: offer.id,
                                         })
-                                        console.log('Calling create new flip')
-                                        Flip.createNewFlip(data)
+
+                                        Flip.createNewFlip(data, (hash) => {
+                                            socket.emit('hash', {
+                                                status: 2,
+                                                computedHash: hash
+                                            })
+                                        })
                                     }
                                 }
                             })

@@ -10,12 +10,8 @@ $(function () {
             rates: {},
             disableReload: true,
             disableTrade: true,
-            // bot
-            selectedBot: 'All bots',
-            botInventories: {},
-            botInventory: [],
-            botInventorySelected: [],
-            botInventorySelectedValue: 0,
+            hash: {},
+
             // user
             userInventory: [],
             userInventorySelected: [],
@@ -35,15 +31,12 @@ $(function () {
             // Real provable fairness. Other sites don't use a client created seed to generate the hash, making it not actually fair.
             // Generate random 16 character hex code for client seed
             // Look at randomizeClientSeed()
-            clientSeed: ''
+            clientSeed: '',
+            serverHash: ''
         },
         methods: {
-            setInventorySort: function (who, value) {
-                if (who == 'bot') {
-                    this.botInventory = this.sortInventory(this.botInventory, value);
-                } else {
-                    this.userInventory = this.sortInventory(this.userInventory, value);
-                }
+            setInventorySort: function (value) {
+                this.userInventory = this.sortInventory(this.userInventory, value);
             },
             sortInventory: function (inventory, desc) {
                 return inventory.sort(function (a, b) {
@@ -84,35 +77,7 @@ $(function () {
                 this.checkTradeable();
             },
             checkTradeable: function () {
-                var user = parseFloat(this.userInventorySelectedValue.toFixed(2));
-                var bot = parseFloat(this.botInventorySelectedValue.toFixed(2));
-                if (user != 0 && user >= bot) {
-                    this.disableTrade = false;
-                } else {
-                    this.disableTrade = true;
-                }
-            },
-            activeBot: function (id) {
-                if (this.selectedBot !== id) {
-                    if (id == 'All Bots') {
-                        var botInventory = [];
-                        for (var i in this.botInventories) {
-                            var bot = this.botInventories[i];
-                            for (var y in bot.items) {
-                                var item = bot.items[y];
-                                item.bot = i;
-                                item.price = this.priceList[item.data.market_hash_name];
-                                botInventory.push(item);
-                            }
-                        }
-                        this.botInventory = sortInventory(botInventory, true);
-                    } else {
-                        this.botInventory = this.sortInventory(this.botInventories[id].items, true);
-                    }
-                    this.botInventorySelected = [];
-                    this.botInventorySelectedValue = 0;
-                    this.selectedBot = id;
-                }
+                this.disableTrade = false
             },
             searchInventory: function (who, value) {
                 var inventory = [];
@@ -159,13 +124,9 @@ $(function () {
             },
             reloadInventories: function () {
                 this.disableReload = true;
-                this.botInventory = [];
-                this.botInventorySelected = [];
-                this.botInventorySelectedValue = 0;
                 this.userInventory = [];
                 this.userInventorySelected = [];
                 this.userInventorySelectedValue = 0;
-                socket.emit('get bots inv');
                 if (this.user && typeof this.user.steamID64 !== 'undefined') {
                     socket.emit('get user inv', this.user.steamID64);
                 }
@@ -181,10 +142,12 @@ $(function () {
                         this.disableTrade = true;
                         $('#flipModal').modal('hide');
                         $('#tradeoffer').modal('show');
+                        this.randomizeClientSeed();
                         socket.emit('flip offer', {
                             user: this.userInventorySelected,
                             steamID64: this.user.id,
-                            tradelink: localStorage[this.user.id]
+                            tradelink: localStorage[this.user.id],
+                            clientSeed: this.clientSeed
                         });
                         console.log('Offer sent')
                     }
@@ -267,7 +230,16 @@ $(function () {
     socket.on('site', function (data) {
         app.site = data;
         window.document.title = data.header + ' | CS:GO Gambling Evolved';
-        app.randomizeClientSeed();
+    });
+
+    socket.on('hash', function (data) {
+        if(data.status === 1) {
+            app.serverHash = data.computedServerHash
+        }
+
+        if(data.status === 2) {
+
+        }
     });
 
     socket.on('offer status', function (data) {

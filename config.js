@@ -16,7 +16,7 @@ module.exports = {
             identitySecret: 'Db5EkqUtEsmScmT8mK+D98f6po8=', // identity_secret value
             steamID64: '76561198159926602',  // SteamID64 of bot account can be found here: "https://steamid.io/"
             personaName: 'CsOptic',   // Nickname for bot account, will change on restart
-        }/*,
+        },
         bot_2: {
             siteName: 'Bot 2',  // Will be displayed under the "All bots" tab e.g. "Keys Only"
             accountName: 'Somebodyelse234',    // bot_1 username
@@ -25,7 +25,7 @@ module.exports = {
             identitySecret: 'DCA6unoWiRdMGqL6XbRrLgjl1BE=', // identity_secret value
             steamID64: '76561198401956045',  // SteamID64 of bot account can be found here: "https://steamid.io/"
             personaName: 'CsOptic2',   // Nickname for bot account, will change on restart
-        },*/
+        },
     },
 
     site: {
