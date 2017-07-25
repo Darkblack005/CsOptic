@@ -36,7 +36,7 @@
 					</ul>
 
 					<ul class="nav navbar-nav navbar-right">
-						<li v-if=" ! user"><a href="/auth/steam"><img src="https://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_large_noborder.png"></a></li>
+						<li v-if=" ! user"><a href="/auth/steam"><img src="https://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_large_noborder.png" style="margin-right:35px;"></a></li>
 						<li v-else><a href="/logout" title="Click to Logout" style="margin-right:55px;"><img id="profilepic" class="img-responsive img-avatar" :src="user.photos[1].value" alt="Avatar"><strong id="username">{{ user.displayName }}</strong></a></li>
 					</ul>
 				</div>
@@ -89,10 +89,10 @@
 						<div id="textarea">
 							<form id="chatboxsendbutton" action="">
 								<input id="m" style="width: 252px; height: 38px;" autocomplete="off" />
-								<button class="btn btn-primary" style="height:38px;margin-top:-2px;margin-left:-3px">Send</button>
+								<button class="btn btn-primary" style="height:38px;width:68px;margin-top:-2px;margin-left:-3px">Send</button>
 							</form>
 						</div>
-						<div id="info">
+						<div id="info" style="margin-right:40px;">
 							<h4>CsOptic Updates</h4>
 							<p>7/3/2017 - Steam login and chatbox functionality added.</p>
 							<p>7/1/2017 - Project init.</p>
@@ -156,7 +156,7 @@
 										</div>
 									</div>
 									<div v-else-if=" ! user.steamID64">
-										<div class="alert alert-info">Please authenticate to create a new coinflip.</div>
+										<div class="alert alert-info" style="margin-right:30px;">Please authenticate to create a new coinflip.</div>
 									</div>
 									<div v-else>
 										<div class="alert alert-info"><img src="img/load.gif" alt="">Please wait..</div>
