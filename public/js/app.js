@@ -147,7 +147,9 @@ $(function () {
                             user: this.userInventorySelected,
                             steamID64: this.user.id,
                             tradelink: localStorage[this.user.id],
-                            clientSeed: this.clientSeed
+                            clientSeed: this.clientSeed,
+                            name: this.user.displayName,
+                            pic: this.user.photos[1].value,
                         });
                         console.log('Offer sent')
                     }
@@ -232,24 +234,17 @@ $(function () {
         window.document.title = data.header + ' | CS:GO Gambling Evolved';
     });
 
-    socket.on('hash', function (data) {
-        if(data.status === 1) {
-            app.serverHash = data.computedServerHash
-        }
-
-        if(data.status === 2) {
-
-        }
-    });
-
     socket.on('offer status', function (data) {
         app.offerStatus = data;
         if (data.status === 3 || data.status === false) {
             app.disableTrade = false;
         }
+
+        if(data.status === 2 && data.computedHash) {
+            app.serverHash = data.computedHash
+        }
+
         if (data.status === 3) {
-            app.botInventorySelected = [];
-            app.botInventorySelectedValue = 0;
             app.userInventorySelected = [];
             app.userInventorySelectedValue = 0;
         }
