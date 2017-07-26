@@ -10,7 +10,6 @@ $(function () {
             rates: {},
             disableReload: true,
             disableTrade: true,
-            hash: {},
 
             // user
             userInventory: [],
@@ -240,8 +239,8 @@ $(function () {
             app.disableTrade = false;
         }
 
-        if(data.status === 2 && data.computedHash) {
-            app.serverHash = data.computedHash
+        if(data.status === 2 && data.computedServerHash) {
+            app.serverHash = data.computedServerHash
         }
 
         if (data.status === 3) {

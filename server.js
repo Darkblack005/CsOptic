@@ -148,7 +148,7 @@ io.on('connection', function (socket) {
                             status: 2,
                             computedServerHash: hash
                         })
-                        
+
                         const Bot = Trade.getBot(offerData.bot_id)
                         const offer = Bot.manager.createOffer(offerData.tradelink)
 
@@ -200,10 +200,8 @@ io.on('connection', function (socket) {
                                                         error: null,
                                                         status: 3,
                                                         offer: offer.id,
-                                                        computedHash: hash
                                                     })
 
-                                                    // TODO: Verify user has confirmed the trade before calling this
                                                     Flip.createNewFlip(data, itemsAndDetails, (hash) => {
 
                                                     })
@@ -220,10 +218,8 @@ io.on('connection', function (socket) {
                                                 error: null,
                                                 status: 3,
                                                 offer: offer.id,
-                                                computedHash: hash
                                             })
 
-                                            // TODO: Verify user has confirmed the trade before calling this
                                             Flip.createNewFlip(data, itemsAndDetails, (hash) => {
 
                                             })
