@@ -62,7 +62,7 @@
 							<tbody>
 								<tr v-for="(flip, index) in coinflips">
 									<td>{{ index }}</td>
-									<td><img id="profilepic" class="img-responsive img-avatar" :src="{{ flip.flipDetails.pic }}" alt="Avatar"> {{ flip.flipDetails.name }}</td>
+									<td><img id="profilepic" class="img-responsive img-avatar" :src="flip.flipDetails.pic" alt="Avatar"> {{ flip.flipDetails.name }}</td>
 									<td>${{ flip.itemsAndDetails.value }}</td>
 									<td>{{ flip.itemsAndDetails.count }}</td>
 									<td v-if="!flip.joinable">
