@@ -5,6 +5,7 @@ $(function () {
             coinflips: [],
             priceList: {},
             rates: {},
+            flipIndexToJoin: 0,
             disableReload: true,
             disableTrade: true,
 
@@ -251,10 +252,6 @@ $(function () {
         if (data.status === 3) {
             app.userInventorySelected = [];
             app.userInventorySelectedValue = 0;
-        }
-
-        if(data.status === 4) {
-            
         }
     });
 
