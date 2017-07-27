@@ -104,6 +104,7 @@ io.on('connection', function (socket) {
     })
 
     socket.on('get coinflips', () => {
+        console.log('get coinflips, sending update coinflips')
         socket.emit('update coinflips', Flip.getCurrentFlips())
     })
 
