@@ -14,8 +14,8 @@ const config = require('./config');
 const TradeBot = require('./lib/index')
 const FlipManager = require('./lib/flipmanager')
 
-const Trade = new TradeBot({ io })
 const Flip = new FlipManager({ io })
+const Trade = new TradeBot({ io, Flip })
 
 passport.serializeUser(function (user, done) {
     done(null, user)
@@ -104,14 +104,14 @@ io.on('connection', function (socket) {
     })
 
     socket.on('get coinflips', () => {
-        socket.emit('current flips', Flip.getCurrentFlips())
+        socket.emit('update coinflips', Flip.getCurrentFlips())
     })
 
     socket.on('chat message', function (msg) {
         if (msg.name && msg.pic && msg.message.length > 0) {
             io.emit('chat message', msg);
         }
-    });
+    })
 
     socket.on('flip offer', (data) => {
         socket.emit('offer status', {
@@ -202,9 +202,7 @@ io.on('connection', function (socket) {
                                                         offer: offer.id,
                                                     })
 
-                                                    Flip.createNewFlip(data, itemsAndDetails, (hash) => {
-
-                                                    })
+                                                    Flip.createNewFlip(data, itemsAndDetails)
 
                                                 } else {
                                                     socket.emit('offer status', {
@@ -220,9 +218,7 @@ io.on('connection', function (socket) {
                                                 offer: offer.id,
                                             })
 
-                                            Flip.createNewFlip(data, itemsAndDetails, (hash) => {
-
-                                            })
+                                            Flip.createNewFlip(data, itemsAndDetails)
                                         }
                                     }
                                 })

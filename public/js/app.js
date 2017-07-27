@@ -2,10 +2,7 @@ $(function () {
     var app = new Vue({
         el: '#app',
         data: {
-            coinflips: [
-                { name1: 'Foo', name2: '', amount: '100.00', status: 'Awaiting Second Player' },
-                { name1: 'Foo', name2: 'Bar', amount: '100.00', status: 'CT Win' }
-            ],
+            coinflips: [],
             priceList: {},
             rates: {},
             disableReload: true,
@@ -223,6 +220,14 @@ $(function () {
         }
     });
 
+    socket.on('update coinflips', function (coinflips) {
+        app.coinflips = Object.assign({}, app.coinflips, coinflips);
+    });
+
+    socket.on('flip update', function() {
+        socket.emit('get coinflips')
+    })
+
     socket.on('chat message', function (msg) {
         $('#mCSB_1_container').append($('<p>').html("<hr><img src=" + msg.pic + " class='chatpic'><strong> " + msg.name + '</strong>: ' + msg.message));
         $('.content').mCustomScrollbar('scrollTo', 'last');
@@ -284,10 +289,6 @@ $(function () {
 
     socket.on('rates', function (rates) {
         app.rates = Object.assign({}, app.rates, rates);
-    });
-
-    socket.on('current flips', function (coinflips) {
-        app.coinflips = Object.assign({}, app.coinflips, coinflips);
     });
 
     function sortInventory(inventory, desc) {

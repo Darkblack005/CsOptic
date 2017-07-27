@@ -24,6 +24,7 @@
     "steam-tradeoffer-manager": "^2.5.0",
     "steam-user": "^3.15.0",
     "steamcommunity": "^3.30.3",
+    "steamid": "^1.1.0",
     "util": "^0.10.3"
   }
 }
