@@ -8,7 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 	<!-- CSS Bootstrap -->
-	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/bootstrap.css">
 
 	<!-- custom scrollbar stylesheet -->
 	<link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
@@ -181,7 +181,7 @@
 								<span class="price">
 								<span class="well well-sm">${{ userInventorySelectedValue.toFixed(2) }}</span>
 								</span>
-								<button type="button" class="btn btn-default" data-dismiss="modal" v-on:click="cancelFlip">Cancel</button>
+								<button type="button" class="btn btn-primary" style="background-color:rgb(85,85,85);" data-dismiss="modal" v-on:click="cancelFlip">Cancel</button>
 								<button type="button" class="btn btn-primary" v-on:click="createFlip">Create</button>
 							</div>
 						</div>
@@ -291,7 +291,7 @@
 						<div class="alert alert-danger" v-if="invalidTradelink">
 							<strong>Invalid tradelink!</strong>
 						</div>
-						<h4><a href="http://steamcommunity.com/id/me/tradeoffers/privacy#trade_offer_access_url" target="_blank">Where do I find this?</a></h4>
+						<h4><a href="http://steamcommunity.com/id/me/tradeoffers/privacy#trade_offer_access_url" target="_blank" style="color:white;">Where do I find this?</a></h4>
 						<input type="text" class="form-control" v-model="user.tradelink">
 						<hr style="opacity:0; margin: 7.5px 0;">
 						<a class="btn btn-primary btn-lg" v-on:click="updateTradelink">Update</a>
@@ -301,7 +301,7 @@
 						<p>This is totally safe and no items can be traded before you have inspected and accepted the offer from your steam page.</p>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
 					</div>
 				</div>
 			</div>
@@ -329,7 +329,7 @@
 							choosing CsOptic.com.
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
 					</div>
 				</div>
 			</div>
