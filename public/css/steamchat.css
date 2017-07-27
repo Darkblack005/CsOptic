@@ -10,13 +10,13 @@
     border-width: 2px;
 	border-top-right-radius: 15px;
 	border-top-left-radius: 15px;
-	border-color: rgba(78,93,108,0.75);
-	background-color: rgba(78,93,108,0.25);
+	border-color: rgba(35,35,35,0.75);
+	background-color: rgba(45,45,45,0.25);
 }
 
 #chatboxsendbutton input {
-	background-color: rgba(78,93,108,0.25);
-	border-color: rgba(78,93,108,0.75);
+	background-color: rgba(45,45,45,0.25);
+	border-color: rgba(35,35,35,0.75);
 	border-width: 2px;
 	border-bottom-left-radius: 15px;
 	border-style: solid;
@@ -26,10 +26,15 @@
 }
 
 #chatboxsendbutton button {
-	border-color: rgba(78,93,108,0.75);
+	border-color: rgba(35,35,35,0.75);
 	border-width: 2px;
 	border-bottom-right-radius: 15px;
 	outline: none;
+	background-color: red;
+}
+
+#chatboxsendbutton button:hover {
+	background-color: rgb(168, 0, 0);
 }
 
 p > hr {
@@ -51,6 +56,7 @@ p > hr {
 #navbar-main * {
     line-height: 57px !important;
     font-size: 14px;
+	background-color: rgb(75,75,75);
 }
 
 .table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td {
@@ -87,8 +93,8 @@ p > img, a > img {
 	border-width: 2px;
 	padding-left: 15px;
 	border-radius: 15px;
-	border-color: rgba(78,93,108,0.75);
-	background-color: rgba(78,93,108,0.25);
+	border-color: rgba(35,35,35,0.75);
+	background-color: rgba(45,45,45,0.25);
 }
 
 .list-unstyled {
@@ -104,6 +110,7 @@ body {
     padding-top: 70px;
     font-family: 'Exo', sans-serif;
     margin-bottom: 89px;
+	background-color: rgb(79,79,79);
 }
 
 .inventorybutton {
@@ -114,7 +121,7 @@ margin-top:5%
   position: absolute;
   bottom: 0;
   width: 100%;
-  background-color: rgba(78,93,108,0.1);
+  background-color: rgba(25,25,25,0.1);
   text-align: center;
 }
 
