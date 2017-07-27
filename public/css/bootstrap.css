@@ -3119,7 +3119,7 @@ fieldset[disabled] .btn-default.focus {
 }
 .btn-primary {
   color: #ffffff;
-  background-color: #df691a;
+  background-color: red;
   border-color: transparent;
 }
 .btn-primary:focus,
@@ -3130,7 +3130,7 @@ fieldset[disabled] .btn-default.focus {
 }
 .btn-primary:hover {
   color: #ffffff;
-  background-color: #b15315;
+  background-color: rgb(168,0,0);
   border-color: rgba(0, 0, 0, 0);
 }
 .btn-primary:active,
@@ -5070,7 +5070,7 @@ a.thumbnail.active {
   color: #d2d2d2;
 }
 .alert-info {
-  background-color: #5bc0de;
+  background-color: rgb(55,55,55);
   border-color: transparent;
   color: #ebebeb;
 }
@@ -5823,7 +5823,7 @@ button.list-group-item-danger.active:focus {
   min-height: 20px;
   padding: 19px;
   margin-bottom: 20px;
-  background-color: #546575;
+  background-color: rgb(65,65,65);
   border: 1px solid transparent;
   border-radius: 0;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
@@ -5907,7 +5907,7 @@ button.close {
 }
 .modal-content {
   position: relative;
-  background-color: #4e5d6c;
+  background-color: rgb(75,75,75);
   border: 1px solid transparent;
   border-radius: 0;
   -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
@@ -7000,7 +7000,7 @@ a.list-group-item-danger.active:focus {
 }
 .modal-header,
 .modal-footer {
-  background-color: #485563;
+  background-color:  rgb(55,55,55);
   border: none;
   border-radius: 0;
 }
