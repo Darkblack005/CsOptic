@@ -252,6 +252,10 @@ $(function () {
             app.userInventorySelected = [];
             app.userInventorySelectedValue = 0;
         }
+
+        if(data.status === 4) {
+            
+        }
     });
 
     socket.on('user', function (user) {
