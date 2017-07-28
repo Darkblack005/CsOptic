@@ -46,6 +46,18 @@ p > hr {
     border: none;
 }
 
+.updatebutton {
+	background-color:rgb(55,55,55);
+}
+
+.updatebutton:hover {
+	background-color:rgb(35,35,35);
+}
+
+.navbar-btn:hover {
+	background-color:rgb(55,55,55) !important;
+}
+
 .chatpic {
     display: inline-block;
     border-radius: 50%;
