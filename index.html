@@ -60,20 +60,16 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr v-for="flip in coinflips">
+								<tr v-for="(flip, index) in coinflips">
 									<td><img id="profilepic" class="img-responsive img-avatar" :src="flip.flipDetails.pic" alt="Avatar" style="width: 50px;height: 50px"></td>
 									<td>{{ flip.flipDetails.name }}</td>
 									<td>${{ flip.itemsAndDetails.value }}</td>
 									<td>{{ flip.itemsAndDetails.count }}</td>
 									<td v-if="!flip.joinable">
-										<form action="">
-											<button class="btn btn-default" style="outline:none;">Watch</button>
-										</form>
+										<button class="btn btn-default" style="outline:none;">Watch</button>
 									</td>
 									<td v-else>
-										<form action="">
-											<button class="btn btn-primary" style="width:77px;">Join</button>
-										</form>
+										<button class="btn btn-primary" style="width:77px;" data-toggle="modal" data-target="#joinFlipModal" v-on:click="flipIndexToJoin = index">Join</button>
 									</td>
 								</tr>
 							</tbody>
@@ -194,6 +190,99 @@
 			</div>
 		</div>
 
+
+		<div id="joinFlipModal" class="modal fade">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="false">&times;</button>
+						<h4 class="modal-title">New Flip</h4>
+					</div>
+					<div class="modal-body container-fixed">
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="alert alert-info text-center">
+									Click the items you want to add to the coinflip.
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-6">
+								<div class="well text-center inventorybutton">
+									Your inventory
+								</div>
+								<div class="csgo-items high">
+									<div v-if=" ! userInventory.error && userInventory.length">
+										<div class="csgo-item csgo-item--rare" :class="`csgo-item--${item.item_type.name}`" v-for="item in userInventory" v-if=" ! item.hidden && userInventorySelected.indexOf(item.assetid) === -1 && item.price > rates.ignore"
+										 v-on:click="addItem('user', item.assetid, item.price)">
+											<div class="csgo-item--title">{{ item.data.market_hash_name }}</div>
+											<div class="csgo-item--st" v-if="item.data.market_hash_name.indexOf('StatTrak') !== -1">ST</div>
+											<div class="csgo-item--wear" v-if="item.item_wear">{{ item.item_wear }}</div>
+											<div class="csgo-item--price">${{ item.price }}</div>
+											<div class="csgo-item--bg" :style="`background-image:url(https://steamcommunity-a.akamaihd.net/economy/image/${item.data.image});`"></div>
+										</div>
+									</div>
+									<div v-else-if="userInventory.error">
+										<div v-if="userInventory.error.statusCode == 403">
+											<div class="alert alert-danger" style="margin:0">
+												<strong>Your profile or inventory settings are set to private. We can't acquire the items of your CS:GO inventory.</strong>
+												<div><a href="http://steamcommunity.com/id/me/edit/settings" target="_blank">Change your Steam privacy settings here.</a>													After that's done you can <a href="#">try reloading inventories</a>.</div>
+											</div>
+											<div class="alert alert-warning">
+												<strong>If you're certain your privacy settings are public please contact the administrator or try again later.</strong>
+												<div>Sometimes Steam has issues with its stability of the inventory servers. Make sure that Steam is not broken
+													<a href="http://steamstat.us" target="_blank"><strong>here</strong></a>.</div>
+											</div>
+										</div>
+										<div v-else>
+											<div class="alert alert-danger">
+												<strong v-if="userInventory.error.error">{{ userInventory.error.error }}</strong>
+												<strong v-else>Something went wrong.. please try again!</strong>
+												<span v-if="userInventory.error.statusCode">({{ userInventory.error.statusCode }})</span>
+											</div>
+										</div>
+									</div>
+									<div v-else-if=" ! user.steamID64">
+										<div class="alert alert-info" style="margin-right:30px;">Please authenticate to create a new coinflip.</div>
+									</div>
+									<div v-else>
+										<div class="alert alert-info"><img src="img/load.gif" alt="">Please wait..</div>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+							<div class="col-xs-6">
+								<div div class="well text-center inventorybutton">
+									Selected items
+								</div>
+								<div class="csgo-items high">
+									<div v-if=" ! userInventory.error && userInventorySelected.length > 0">
+										<div class="csgo-item csgo-item--rare" :class="`csgo-item--${item.item_type.name}`" v-for="item in userInventory" v-if="userInventorySelected.indexOf(item.assetid) !== -1"
+										 v-on:click="removeItem('user', item.assetid, item.price)">
+											<div class="csgo-item--title">{{ item.data.market_hash_name }}</div>
+											<div class="csgo-item--st" v-if="item.data.market_hash_name.indexOf('StatTrak') !== -1">ST</div>
+											<div class="csgo-item--wear" v-if="item.item_wear">{{ item.item_wear }}</div>
+											<div class="csgo-item--price">${{ item.price }}</div>
+											<div class="csgo-item--bg" :style="`background-image:url(https://steamcommunity-a.akamaihd.net/economy/image/${item.data.image});`"></div>
+										</div>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<span class="price">
+								<span class="well well-sm">${{ userInventorySelectedValue.toFixed(2) }}</span>
+								</span>
+								<button type="button" class="btn btn-default" data-dismiss="modal" v-on:click="cancelFlip">Cancel</button>
+								<button type="button" class="btn btn-primary" v-on:click="createFlip">Create</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
 		<div class="modal fade" id="tradeLinkModal">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -225,13 +314,14 @@
 						<h4 class="modal-title">How it Works</h4>
 					</div>
 					<div class="modal-body">
+						<h4>Our Method:</h4>
 						<p>CsOptic uses the Double Blind provably fair system. That is, neither you or the CsOptic server knows who will win the
 							bet until the bet is over. This is usually just called Provably Fair, but many (almost all) CS:GO betting websites
 							don't do this. They know who the winner is and can fix the bet before the bet is over with.</p>
-						<p>It works by having both the server AND the user generate a sha256 encrypted hash. Because the determining numbers are
+						<p>The CsOptic site works by having both the server AND the user generate a sha256 encrypted hash. Because the determining numbers are
 							generated by both the server and the user and then merged, neither the server or user can fix the bet.
 						</p>
-						<h3>Disclaimer:</h3>
+						<h4>Disclaimer:</h4>
 						<p>By placing a bet on CsOptic.com, you are confirming that you are above 18 years of age and are fully responsible for
 							your own actions. CsOptic.com is not responsible for any items lost due to negligence or irresponsible behavior. CsOptic.com
 							reserves the right to suspend any bets placed on any user's account if deemed necessary by administration. With all
