@@ -196,7 +196,7 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="false">&times;</button>
-						<h4 class="modal-title">New Flip</h4>
+						<h4 class="modal-title">Join Flip</h4>
 					</div>
 					<div class="modal-body container-fixed">
 						<div class="row">
@@ -243,7 +243,7 @@
 										</div>
 									</div>
 									<div v-else-if=" ! user.steamID64">
-										<div class="alert alert-info" style="margin-right:30px;">Please authenticate to create a new coinflip.</div>
+										<div class="alert alert-info" style="margin-right:30px;">Please authenticate to join a coinflip.</div>
 									</div>
 									<div v-else>
 										<div class="alert alert-info"><img src="img/load.gif" alt="">Please wait..</div>
@@ -274,7 +274,12 @@
 								<span class="well well-sm">${{ userInventorySelectedValue.toFixed(2) }}</span>
 								</span>
 								<button type="button" class="btn btn-default" data-dismiss="modal" v-on:click="cancelFlip">Cancel</button>
-								<button type="button" class="btn btn-primary" v-on:click="createFlip">Create</button>
+								<div v-if="userInventorySelectedValue.toFixed(2) > (coinflips[flipIndexToJoin].itemsAndDetails.value)-((coinflips[flipIndexToJoin].itemsAndDetails.value)*site.flipMinimumPercentageMultiplier)">
+									<button type="button" class="btn btn-primary" v-on:click="joinFlip">Join</button>
+								</div>
+								<div v-else>
+									<button type="button" class="btn btn-disabled">Join</button>
+								</div>
 							</div>
 						</div>
 					</div>

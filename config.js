@@ -32,6 +32,7 @@ module.exports = {
         header: 'CsOptic.com', // Name/header/title of website. Prefix for  <title></title> (For more: /index.html line: 9) 
         steamGroup: '#',
         copyrights: 'Copyright © CsOptic.com 2017',  // Copyright text
+        flipMinimumPercentageMultiplier: 0.1        // Minimum value the user can put in to join a flip i.e. $10 bet, the user can join by putting up $10-($10*flipMinimumPercentageMultiplier) == $9
     },
 
     domain: 'localhost',    // Domain name only, follow the example (no http:// & no www & no /)

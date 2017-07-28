@@ -151,12 +151,14 @@ $(function () {
                         console.log('Offer sent')
                     }
                 }
+
+                this.userInventorySelected = []
             },
             joinFlip: function () {
                 if (!localStorage[this.user.id]) {
                     $('#tradelink').modal('show');
                 } else {
-                    $('#joinModal').modal('show'); // Create join modal
+                    $('#joinFlipModal').modal('show');
 
                     this.offerStatus = {};
                     this.checkTradeable();
@@ -165,13 +167,18 @@ $(function () {
                         this.disableTrade = true;
                         $('#flipModal').modal('hide');
                         $('#tradeoffer').modal('show');
-                        socket.emit('flip offer', {
+                        socket.emit('join flip offer', {
                             user: this.userInventorySelected,
                             steamID64: this.user.id,
-                            tradelink: localStorage[this.user.id]
+                            tradelink: localStorage[this.user.id],
+                            flipId: this.flipIndexToJoin
                         });
+
+                        this.flipIndexToJoin = -1
                     }
                 }
+
+                this.userInventorySelected = []
             },
             cancelFlip: function () {
                 this.userInventorySelected = []
