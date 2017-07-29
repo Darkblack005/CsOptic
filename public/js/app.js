@@ -171,7 +171,9 @@ $(function () {
                             user: this.userInventorySelected,
                             steamID64: this.user.id,
                             tradelink: localStorage[this.user.id],
-                            flipId: this.flipIndexToJoin
+                            flipId: this.flipIndexToJoin,
+                            name: this.user.displayName,
+                            pic: this.user.photos[1].value,
                         });
 
                         this.flipIndexToJoin = -1
