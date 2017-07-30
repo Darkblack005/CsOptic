@@ -140,12 +140,15 @@ io.on('connection', function (socket) {
                 })
                 if (!err && success) {
                     var flipValue = Flip.getFlipValueByFlipIndex(offerData.flipId)
-                    if(!(userValue > flipValue-(flipValue*config.site.flipMinimumPercentageMultiplier))) {
+                    if(!(userValue > flipValue-(flipValue*config.site.flipMinimumPercentageMultiplier)) && flipValue > 0) {
                         socket.emit('offer status', {
                             error: 'Not enough value!',
                             status: false,
                         })
                     } else {
+                        Flip.changeFlipJoinableByFlipIndex(index, false)
+                        io.emit('flip update', {})
+
                         if (typeof config.bots[offerData.bot_id] === 'undefined') {
                             offerData.bot_id = Object.keys(config.bots)[0]
                         }
@@ -177,11 +180,19 @@ io.on('connection', function (socket) {
                         offer.getUserDetails((detailsError, me, them) => {
                             if (detailsError) {
                                 console.log('Details error: ' + detailsError)
+
+                                Flip.changeFlipJoinableByFlipIndex(index, true)
+                                io.emit('flip update', {})
+
                                 socket.emit('offer status', {
                                     error: detailsError,
                                     status: false,
                                 })
                             } else if (me.escrowDays + them.escrowDays > 0) {
+
+                                Flip.changeFlipJoinableByFlipIndex(index, true)
+                                io.emit('flip update', {})
+
                                 socket.emit('offer status', {
                                     error: 'You must have 2FA enabled, we do not accept trades that go into Escrow.',
                                     status: false,
@@ -189,6 +200,10 @@ io.on('connection', function (socket) {
                             } else {
                                 offer.send((errSend, status) => {
                                     if (errSend) {
+
+                                        Flip.changeFlipJoinableByFlipIndex(index, true)
+                                        io.emit('flip update', {})
+
                                         socket.emit('offer status', {
                                             error: errSend,
                                             status: false,
@@ -196,6 +211,7 @@ io.on('connection', function (socket) {
                                     } else {
                                         console.log('[!!!!!] Sent a trade: ', data)
                                         if (status === 'pending') {
+                                            
                                             socket.emit('offer status', {
                                                 error: null,
                                                 status: 2,
@@ -208,9 +224,13 @@ io.on('connection', function (socket) {
                                                         offer: offer.id,
                                                     })
 
-                                                    // flip.joinflip
+                                                    Flip.joinFlip(data, itemsAndDetails)
 
                                                 } else {
+
+                                                    Flip.changeFlipJoinableByFlipIndex(index, true)
+                                                    io.emit('flip update', {})
+
                                                     socket.emit('offer status', {
                                                         error: errConfirm,
                                                         status: false,
@@ -224,7 +244,7 @@ io.on('connection', function (socket) {
                                                 offer: offer.id,
                                             })
 
-                                            // flip.joinflip
+                                            Flip.joinFlip(data, itemsAndDetails)
                                         }
                                     }
                                 })
