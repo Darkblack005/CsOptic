@@ -45,7 +45,7 @@ passport.use(new SteamStrategy({
 ));
 
 const sessionMiddleware = session({
-    secret: 'csg0tradebot',
+    secret: 'joeisanerd',
     name: config.domain,
     resave: true,
     saveUninitialized: true,
