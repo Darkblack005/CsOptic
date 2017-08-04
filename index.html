@@ -50,7 +50,7 @@
 						<h1>CsOptic</h1>
 						<p>CsOptic.com is set for launch August 1st, 2017; prepare to go wild.</p>
 						<br>
-						<table class="table table-striped table-hover ">
+						<table class="table table-striped table-hover">
 							<thead>
 								<tr>
 									<th>#</th>
@@ -65,15 +65,15 @@
 									<td>{{ flip.flipDetails.name }}</td>
 									<td>${{ flip.itemsAndDetails.value }}</td>
 									<td>{{ flip.itemsAndDetails.count }}</td>
-									<td v-if="!flip.joinable">
-										<button class="btn btn-default" style="outline:none;">Watch</button>
+									<td>
+										<button class="btn btn-default watchbtn" style="outline:none;margin-right:-20px;margin-left:-55px;" data-toggle="modal" data-target="#watchflipmodal" >Watch</button>
 									</td>
-									<td v-else>
-										<button class="btn btn-primary" style="width:77px;" data-toggle="modal" data-target="#joinFlipModal" v-on:click="flipIndexToJoin = index">Join</button>
+									<td>
+										<button class="btn btn-primary" style="width:77px;margin-right:-52px;" data-toggle="modal" data-target="#joinFlipModal" v-on:click="flipIndexToJoin = index">Join</button>
 									</td>
 								</tr>
 							</tbody>
-							<tbody v-else>
+							<tbody v-else class="nohover">
 								<td colspan="4"><em>No current flips</em></td>
 							</tbody>
 						</table>
@@ -102,7 +102,7 @@
 			</div>
 		</div>
 
-		<div id="flipModal" class="modal fade">
+		<div id="flipModal" class="modal fade" style="width:600px;height:810px;margin-left:650px;">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -122,7 +122,7 @@
 								<div class="well text-center inventorybutton">
 									Your inventory
 								</div>
-								<div class="csgo-items high">
+								<div class="csgo-items high scrollbar" id="style-3">
 									<div v-if=" ! userInventory.error && userInventory.length">
 										<div class="csgo-item csgo-item--rare" :class="`csgo-item--${item.item_type.name}`" v-for="item in userInventory" v-if=" ! item.hidden && userInventorySelected.indexOf(item.assetid) === -1 && item.price > rates.ignore"
 										 v-on:click="addItem('user', item.assetid, item.price)">
@@ -184,9 +184,9 @@
 								<span class="price">
 								<span class="well well-sm">${{ userInventorySelectedValue.toFixed(2) }}</span>
 								</span>
-								<button type="button" class="btn btn-primary" style="background-color:rgb(85,85,85); margin-top:10px;" data-dismiss="modal"
+								<button type="button" class="btn btn-primary" style="background-color:rgb(85,85,85);margin-bottom:2px;height:38px;" data-dismiss="modal"
 								 v-on:click="cancelFlip">Cancel</button>
-								<button type="button" class="btn btn-primary" style="margin-top:9.32px;" v-on:click="createFlip">Create</button>
+								<button type="button" class="btn btn-primary" style="margin-bottom:2px;margin-left:-.3px;height:38px;" v-on:click="createFlip">Create</button>
 							</div>
 						</div>
 					</div>
@@ -315,6 +315,20 @@
 				</div>
 			</div>
 		</div>
+		
+		<div class="modal fade" id="watchflipmodal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-body">
+					
+					
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
 
 		<div class="modal fade" id="howitworksmodal">
 			<div class="modal-dialog">
@@ -324,7 +338,7 @@
 					</div>
 					<div class="modal-body">
 						<h4>Our Method:</h4>
-						<p>CsOptic uses the Double Blind provably fair system. That is, neither you or the CsOptic server knows who will win the
+						<p>CsOptic uses the Double Blind provably fair system. That is, neither you nor the CsOptic server knows who will win the
 							bet until the bet is over. This is usually just called Provably Fair, but many (almost all) CS:GO betting websites
 							don't do this. They know who the winner is and can fix the bet before the bet is over with.</p>
 						<p>The CsOptic site works by having both the server AND the user generate a sha256 encrypted hash. Because the determining
