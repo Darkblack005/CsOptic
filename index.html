@@ -66,7 +66,7 @@
 									<td>${{ flip.itemsAndDetails.value }}</td>
 									<td>{{ flip.itemsAndDetails.count }}</td>
 									<td>
-										<button class="btn btn-default watchbtn" style="outline:none;margin-right:-20px;margin-left:-55px;" data-toggle="modal" data-target="#watchflipmodal" >Watch</button>
+										<button class="btn btn-default watchbtn" style="outline:none;margin-left:-55px;margin-right:-50px;" data-toggle="modal" data-target="#watchflipmodal">Watch</button>
 									</td>
 									<td>
 										<button class="btn btn-primary" style="width:77px;margin-right:-52px;" data-toggle="modal" data-target="#joinFlipModal" v-on:click="flipIndexToJoin = index">Join</button>
@@ -102,7 +102,7 @@
 			</div>
 		</div>
 
-		<div id="flipModal" class="modal fade" style="width:600px;height:810px;margin-left:650px;">
+		<div id="flipModal" class="modal fade">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -166,7 +166,7 @@
 								<div div class="well text-center inventorybutton">
 									Selected items
 								</div>
-								<div class="csgo-items high">
+								<div class="csgo-items high scrollbar" id="style-3">
 									<div v-if=" ! userInventory.error && userInventorySelected.length > 0">
 										<div class="csgo-item csgo-item--rare" :class="`csgo-item--${item.item_type.name}`" v-for="item in userInventory" v-if="userInventorySelected.indexOf(item.assetid) !== -1"
 										 v-on:click="removeItem('user', item.assetid, item.price)">
@@ -215,7 +215,7 @@
 								<div class="well text-center inventorybutton">
 									Your inventory
 								</div>
-								<div class="csgo-items high">
+								<div class="csgo-items high scrollbar" id="style-3">
 									<div v-if=" ! userInventory.error && userInventory.length">
 										<div class="csgo-item csgo-item--rare" :class="`csgo-item--${item.item_type.name}`" v-for="item in userInventory" v-if=" ! item.hidden && userInventorySelected.indexOf(item.assetid) === -1 && item.price > rates.ignore"
 										 v-on:click="addItem('user', item.assetid, item.price)">
@@ -277,9 +277,10 @@
 								<span class="price">
 								<span class="well well-sm">${{ userInventorySelectedValue.toFixed(2) }}</span>
 								</span>
-								<button type="button" class="btn btn-default" data-dismiss="modal" v-on:click="cancelFlip">Cancel</button>
+								<button type="button" class="btn btn-primary" style="background-color:rgb(85,85,85);margin-bottom:2px;height:38px;" data-dismiss="modal"
+								 v-on:click="cancelFlip">Cancel</button>
 								<div v-if="userInventorySelectedValue.toFixed(2) > (coinflips[flipIndexToJoin].itemsAndDetails.value)-((coinflips[flipIndexToJoin].itemsAndDetails.value)*site.flipMinimumPercentageMultiplier)">
-									<button type="button" class="btn btn-primary" v-on:click="joinFlip">Join</button>
+									<button type="button" class="btn btn-primary" style="margin-bottom:2px;margin-left:-.3px;height:38px;" v-on:click="joinFlip">Join</button>
 								</div>
 								<div v-else>
 									<button type="button" class="btn btn-disabled">Join</button>
@@ -319,9 +320,17 @@
 		<div class="modal fade" id="watchflipmodal">
 			<div class="modal-dialog">
 				<div class="modal-content">
+					<div class="modal-header"><h4>Coinflip</h4>
+					</div>
 					<div class="modal-body">
-					
-					
+						<div class="row">
+							<!--<div class="col-md-4"><img id="profilepic" class="img-responsive img-avatar" :src="user.photos[2].value" alt="Avatar" style="width:100px;height:100px;margin-left:20px;">
+							</div>-->
+						</div>
+						<br>
+						<div class="row">
+							<div class="col-md-4"><p style="font-size:20px;margin-left:40px;">{{ user.displayName }}</p></div>
+						</div>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>

@@ -2,7 +2,7 @@
 
 module.exports = {
     steamApiKey: '5724FDE13EAACD6BB0CD6238E984A341',    // Your Steam API key, get it here: https://steamcommunity.com/dev/apikey
-    SteamApisKey: '2eGArj4s4kTojLTBMaoJk0q3I5c',   // Your SteamApis.com key, get it here: https://steamapis.com
+    SteamApisKey: 'pCZft8PWNtnyOmST6_V-XEU8CxM',   // Your SteamApis.com key, get it here: https://steamapis.com
 
     dbUser: '',    // MongoDB login
     dbPassword: '', // MongoDB password
