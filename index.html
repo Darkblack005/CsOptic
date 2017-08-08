@@ -59,7 +59,7 @@
 									<th>Skin Count</th>
 								</tr>
 							</thead>
-							<tbody v-if="coinflips.length != 0">
+							<tbody v-if='coinflips'>
 								<tr v-for="(flip, index) in coinflips">
 									<td><img id="profilepic" class="img-responsive img-avatar" :src="flip.flipDetails.pic" alt="Avatar" style="width: 50px;height: 50px"></td>
 									<td>{{ flip.flipDetails.name }}</td>
@@ -195,7 +195,7 @@
 		</div>
 
 
-		<div id="joinFlipModal" class="modal fade" v-if="coinflips.length > 0">
+		<div id="joinFlipModal" class="modal fade" v-if="coinflips">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
