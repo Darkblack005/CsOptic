@@ -114,7 +114,7 @@ p > hr {
 }
 
 .nohover {
-	pointer-events:none;
+    pointer-events:none;
 }
 
 p > img, a > img {

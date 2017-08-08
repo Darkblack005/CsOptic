@@ -2,7 +2,7 @@ $(function () {
     var app = new Vue({
         el: '#app',
         data: {
-            coinflips: [],
+            coinflips: null,
             priceList: {},
             rates: {},
             flipIndexToJoin: 0,
