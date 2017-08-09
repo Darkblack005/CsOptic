@@ -59,17 +59,17 @@
 									<th>Skin Count</th>
 								</tr>
 							</thead>
-							<tbody v-if="coinflips > 0">
+							<tbody v-if="coinflips">
 								<tr v-for="(flip, index) in coinflips">
 									<td><img id="profilepic" class="img-responsive img-avatar" :src="flip.flipDetails.pic" alt="Avatar" style="width: 50px;height: 50px"></td>
 									<td>{{ flip.flipDetails.name }}</td>
 									<td>${{ flip.itemsAndDetails.value }}</td>
 									<td>{{ flip.itemsAndDetails.count }}</td>
 									<td>
-										<button class="btn btn-default watchbtn" style="outline:none;margin-left:-55px;margin-right:-50px;" data-toggle="modal" data-target="#watchflipmodal">Watch</button>
+										<button class="btn btn-default watchbtn" style="outline:none;margin-left:-55px;margin-right:-50px;" data-toggle="modal" data-target="#watchflipmodal" v-on:click="flipIndexClicked = index">Watch</button>
 									</td>
 									<td>
-										<button class="btn btn-primary" style="width:77px;margin-right:-52px;" data-toggle="modal" data-target="#joinFlipModal" v-on:click="flipIndexToJoin = index">Join</button>
+										<button class="btn btn-primary" style="width:77px;margin-right:-52px;" data-toggle="modal" data-target="#joinFlipModal" v-on:click="flipIndexClicked = index">Join</button>
 									</td>
 								</tr>
 							</tbody>
@@ -191,7 +191,7 @@
 		</div>
 
 
-		<div id="joinFlipModal" class="modal fade" v-if="coinflips > 0">
+		<div id="joinFlipModal" class="modal fade" v-if="coinflips">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -275,7 +275,7 @@
 								</span>
 								<button type="button" class="btn btn-primary" style="background-color:rgb(85,85,85);margin-bottom:2px;height:38px;" data-dismiss="modal"
 								 v-on:click="cancelFlip">Cancel</button>
-								<div v-if="userInventorySelectedValue.toFixed(2) > (coinflips[flipIndexToJoin].itemsAndDetails.value)-((coinflips[flipIndexToJoin].itemsAndDetails.value)*site.flipMinimumPercentageMultiplier)">
+								<div v-if="userInventorySelectedValue.toFixed(2) > (coinflips[flipIndexClicked].itemsAndDetails.value)-((coinflips[flipIndexClicked].itemsAndDetails.value)*site.flipMinimumPercentageMultiplier)">
 									<button type="button" class="btn btn-primary" style="margin-bottom:2px;margin-left:-.3px;height:38px;" v-on:click="joinFlip">Join</button>
 								</div>
 								<div v-else>
@@ -320,7 +320,8 @@
 					</div>
 					<div class="modal-body">
 						<div class="row">
-							<!--<div class="col-md-4"><img id="profilepic" class="img-responsive img-avatar" :src="user.photos[2].value" alt="Avatar" style="width:100px;height:100px;margin-left:20px;">
+							<!--<div class="col-md-4">
+								<img id="profilepic" class="img-responsive img-avatar" :src="user.photos[2].value" alt="Avatar" style="width:100px;height:100px;margin-left:20px;">
 							</div>-->
 						</div>
 						<br>

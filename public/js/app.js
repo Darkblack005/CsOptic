@@ -5,7 +5,7 @@ $(function () {
             coinflips: null,
             priceList: {},
             rates: {},
-            flipIndexToJoin: 0,
+            flipIndexClicked: 0,
             disableReload: true,
             disableTrade: true,
 
@@ -230,7 +230,7 @@ $(function () {
     });
 
     socket.on('update coinflips', function (coinflips) {
-        app.coinflips = Object.assign({}, app.coinflips, coinflips);
+        app.coinflips = coinflips
     });
 
     socket.on('flip update', function() {
