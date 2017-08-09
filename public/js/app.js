@@ -130,8 +130,7 @@ $(function () {
             },
             createFlip: function () {
                 if (!localStorage[this.user.id]) {
-                    $('#flipModal').modal('hide');
-                    $('#tradelink').modal('show');
+                    $('#flipModal').modal('hide').$('#tradelink').modal('show');
                 } else {
                     this.offerStatus = {};
                     this.checkTradeable();

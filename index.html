@@ -59,7 +59,7 @@
 									<th>Skin Count</th>
 								</tr>
 							</thead>
-							<tbody v-if='coinflips'>
+							<tbody v-if="coinflips > 0">
 								<tr v-for="(flip, index) in coinflips">
 									<td><img id="profilepic" class="img-responsive img-avatar" :src="flip.flipDetails.pic" alt="Avatar" style="width: 50px;height: 50px"></td>
 									<td>{{ flip.flipDetails.name }}</td>
@@ -191,7 +191,7 @@
 		</div>
 
 
-		<div id="joinFlipModal" class="modal fade" v-if="coinflips">
+		<div id="joinFlipModal" class="modal fade" v-if="coinflips > 0">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -369,9 +369,9 @@
 					<div class="modal-body">
 						<h3>Trade status</h3>
 						<div class="alert alert-info" v-if=" ! offerStatus.error && offerStatus.status != 3">
-							<strong v-if="offerStatus.status == 4"><img src="/public/img/load.gif" alt=""> Validating requested trade..</strong>
-							<strong v-if="offerStatus.status == 1"><img src="/public/img/load.gif" alt=""> Preparing to send offer..</strong>
-							<strong v-if="offerStatus.status == 2"><img src="/public/img/load.gif" alt=""> Confirming sent offer..</strong>
+							<strong v-if="offerStatus.status == 4"><img src="img/load.gif" alt=""> Validating requested trade..</strong>
+							<strong v-if="offerStatus.status == 1"><img src="img/load.gif" alt=""> Preparing to send offer..</strong>
+							<strong v-if="offerStatus.status == 2"><img src="img/load.gif" alt=""> Confirming sent offer..</strong>
 						</div>
 						<div v-else-if=" ! offerStatus.error && offerStatus.status == 3">
 							<div class="alert alert-success">
