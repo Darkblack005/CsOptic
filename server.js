@@ -146,7 +146,7 @@ io.on('connection', function (socket) {
                             status: false,
                         })
                     } else {
-                        Flip.changeFlipJoinableByFlipIndex(index, false)
+                        Flip.changeFlipJoinableByFlipIndex(offerData.flipId, false)
                         io.emit('flip update', {})
 
                         if (typeof config.bots[offerData.bot_id] === 'undefined') {
@@ -181,7 +181,7 @@ io.on('connection', function (socket) {
                             if (detailsError) {
                                 console.log('Details error: ' + detailsError)
 
-                                Flip.changeFlipJoinableByFlipIndex(index, true)
+                                Flip.changeFlipJoinableByFlipIndex(offerData.flipId, true)
                                 io.emit('flip update', {})
 
                                 socket.emit('offer status', {
@@ -190,7 +190,7 @@ io.on('connection', function (socket) {
                                 })
                             } else if (me.escrowDays + them.escrowDays > 0) {
 
-                                Flip.changeFlipJoinableByFlipIndex(index, true)
+                                Flip.changeFlipJoinableByFlipIndex(offerData.flipId, true)
                                 io.emit('flip update', {})
 
                                 socket.emit('offer status', {
@@ -201,7 +201,7 @@ io.on('connection', function (socket) {
                                 offer.send((errSend, status) => {
                                     if (errSend) {
 
-                                        Flip.changeFlipJoinableByFlipIndex(index, true)
+                                        Flip.changeFlipJoinableByFlipIndex(offerData.flipId, true)
                                         io.emit('flip update', {})
 
                                         socket.emit('offer status', {
@@ -228,7 +228,7 @@ io.on('connection', function (socket) {
 
                                                 } else {
 
-                                                    Flip.changeFlipJoinableByFlipIndex(index, true)
+                                                    Flip.changeFlipJoinableByFlipIndex(offerData.flipId, true)
                                                     io.emit('flip update', {})
 
                                                     socket.emit('offer status', {

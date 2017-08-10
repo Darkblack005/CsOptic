@@ -157,7 +157,7 @@ $(function () {
                 if (!localStorage[this.user.id]) {
                     $('#tradelink').modal('show');
                 } else {
-                    $('#joinFlipModal').modal('show');
+                    //$('#joinFlipModal').modal('show');
 
                     this.offerStatus = {};
                     this.checkTradeable();
@@ -170,12 +170,12 @@ $(function () {
                             user: this.userInventorySelected,
                             steamID64: this.user.id,
                             tradelink: localStorage[this.user.id],
-                            flipId: this.flipIndexToJoin,
+                            flipId: this.flipIndexClicked,
                             name: this.user.displayName,
                             pic: this.user.photos[1].value,
                         });
 
-                        this.flipIndexToJoin = -1
+                        this.flipIndexClicked = -1
                     }
                 }
 
