@@ -54,6 +54,10 @@ p > hr {
 	background-color:rgb(35,35,35);
 }
 
+.updatebutton:active {
+	background-color:rgb(32,32,32) !important;
+}
+
 .watchbtn {
 	background-color:rgb(45,45,45);
 }
