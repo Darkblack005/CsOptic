@@ -275,7 +275,7 @@
 								</span>
 								<button type="button" class="btn btn-primary" style="background-color:rgb(85,85,85);margin-bottom:2px;height:38px;outline:none;" data-dismiss="modal"
 								 v-on:click="cancelFlip">Cancel</button>
-								<div v-if="userInventorySelectedValue.toFixed(2) > (coinflips[flipIndexClicked].itemsAndDetails.value)-((coinflips[flipIndexClicked].itemsAndDetails.value)*site.flipMinimumPercentageMultiplier)">
+								<div v-if="flipIndexClicked != -1 && userInventorySelectedValue.toFixed(2) > (coinflips[flipIndexClicked].itemsAndDetails.value)-((coinflips[flipIndexClicked].itemsAndDetails.value)*site.flipMinimumPercentageMultiplier)">
 									<button type="button" class="btn btn-primary" style="margin-bottom:2px;margin-left:-.3px;height:38px;outline:none;" v-on:click="joinFlip">Join</button>
 								</div>
 								<div v-else>
@@ -392,7 +392,7 @@
 						</div>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal" v-on:click="reset">Close</button>
 					</div>
 				</div>
 			</div>

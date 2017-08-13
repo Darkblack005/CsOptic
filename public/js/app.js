@@ -128,6 +128,14 @@ $(function () {
                     socket.emit('get user inv', this.user.steamID64);
                 }
             },
+            reset: function() {
+                this.randomizeClientSeed()
+                console.log('New client seed: ' + this.clientSeed)
+                this.userInventorySelected = []
+                this.offerStatus = {}
+                this.userInventorySelectedValue = 0;
+                this.flipIndexClicked = -1
+            },
             createFlip: function () {
                 if (!localStorage[this.user.id]) {
                     $('#flipModal').modal('hide').$('#tradelink').modal('show');
@@ -147,11 +155,11 @@ $(function () {
                             name: this.user.displayName,
                             pic: this.user.photos[1].value,
                         });
-                        console.log('Offer sent')
+                        console.log('Offer sent.')
+
+                        this.reset()
                     }
                 }
-
-                this.userInventorySelected = []
             },
             joinFlip: function () {
                 if (!localStorage[this.user.id]) {
@@ -175,14 +183,12 @@ $(function () {
                             pic: this.user.photos[1].value,
                         });
 
-                        this.flipIndexClicked = -1
+                        this.reset()
                     }
                 }
-
-                this.userInventorySelected = []
             },
             cancelFlip: function () {
-                this.userInventorySelected = []
+                this.reset()
             },
             randomizeClientSeed: function () {
                 this.clientSeed = Math.floor(Math.random() * (Math.pow(16, 16))).toString(16)
