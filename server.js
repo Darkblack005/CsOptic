@@ -176,8 +176,8 @@ io.on('connection', function (socket) {
                         }
 
                         offer.addTheirItems(items)
-
                         offer.setMessage(config.tradeMessage)
+                        
                         offer.getUserDetails((detailsError, me, them) => {
                             if (detailsError) {
                                 console.log('Details error: ' + detailsError)
