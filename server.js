@@ -146,8 +146,9 @@ io.on('connection', function (socket) {
                             status: false,
                         })
                     } else {
-                        Flip.changeFlipJoinableByFlipIndex(offerData.flipId, false)
-                        io.emit('flip update', {})
+                        Flip.changeFlipJoinableByFlipIndex(offerData.flipId, false, () => {
+                            io.emit('flip update', {})
+                        })
 
                         if (typeof config.bots[offerData.bot_id] === 'undefined') {
                             offerData.bot_id = Object.keys(config.bots)[0]
@@ -181,17 +182,19 @@ io.on('connection', function (socket) {
                             if (detailsError) {
                                 console.log('Details error: ' + detailsError)
 
-                                Flip.changeFlipJoinableByFlipIndex(offerData.flipId, true)
-                                io.emit('flip update', {})
-
+                                Flip.changeFlipJoinableByFlipIndex(offerData.flipId, true, () => {
+                                    io.emit('flip update', {})
+                                })
+                                
                                 socket.emit('offer status', {
                                     error: detailsError,
                                     status: false,
                                 })
                             } else if (me.escrowDays + them.escrowDays > 0) {
 
-                                Flip.changeFlipJoinableByFlipIndex(offerData.flipId, true)
-                                io.emit('flip update', {})
+                                Flip.changeFlipJoinableByFlipIndex(offerData.flipId, true, () => {
+                                    io.emit('flip update', {})
+                                })
 
                                 socket.emit('offer status', {
                                     error: 'You must have 2FA enabled, we do not accept trades that go into Escrow.',
@@ -201,8 +204,9 @@ io.on('connection', function (socket) {
                                 offer.send((errSend, status) => {
                                     if (errSend) {
 
-                                        Flip.changeFlipJoinableByFlipIndex(offerData.flipId, true)
-                                        io.emit('flip update', {})
+                                        Flip.changeFlipJoinableByFlipIndex(offerData.flipId, true, () => {
+                                            io.emit('flip update', {})
+                                        })
 
                                         socket.emit('offer status', {
                                             error: errSend,
@@ -227,9 +231,9 @@ io.on('connection', function (socket) {
                                                     Flip.joinFlip(data, itemsAndDetails)
 
                                                 } else {
-
-                                                    Flip.changeFlipJoinableByFlipIndex(offerData.flipId, true)
-                                                    io.emit('flip update', {})
+                                                    Flip.changeFlipJoinableByFlipIndex(offerData.flipId, true, () => {
+                                                        io.emit('flip update', {})
+                                                    })
 
                                                     socket.emit('offer status', {
                                                         error: errConfirm,

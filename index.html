@@ -48,23 +48,38 @@
 				<div class="row">
 					<div class="col-md-8">
 						<h1>CsOptic</h1>
-						<p>CsOptic.com is set for launch August 1st, 2017; prepare to go wild.</p>
+						<p>CsOptic.com is set for launch August 1st, 2017. Prepare to go wild.</p>
 						<br>
 						<table class="table table-striped table-hover">
 							<thead>
 								<tr>
-									<th>#</th>
 									<th>Name</th>
-									<th>Amount</th>
+									<th>Pot Value</th>
 									<th>Skin Count</th>
 								</tr>
 							</thead>
 							<tbody v-if="coinflips">
 								<tr v-for="(flip, index) in coinflips">
-									<td><img id="profilepic" class="img-responsive img-avatar" :src="flip.flipDetails.pic" alt="Avatar" style="width: 50px;height: 50px"></td>
-									<td>{{ flip.flipDetails.name }}</td>
-									<td>${{ flip.itemsAndDetails.value }}</td>
-									<td>{{ flip.itemsAndDetails.count }}</td>
+									<template v-if="flip.joinData">
+										<td>
+											<img id="profilepic" class="img-responsive img-avatar" :src="flip.flipDetails.pic" alt="Avatar" style="width: 50px;height: 50px">
+											{{ flip.flipDetails.name }}
+											vs.
+											<img id="profilepic" class="img-responsive img-avatar" :src="flip.joinData.flipDetails.pic" alt="Avatar" style="width: 50px;height: 50px">
+											{{ flip.joinData.flipDetails.name }}
+										</td>
+										<td>${{ flip.itemsAndDetails.value + flip.joinData.itemsAndDetails.value }}</td>
+										<td>{{ flip.itemsAndDetails.count + flip.joinData.itemsAndDetails.count }}</td>
+									</template>
+									<template v-else>
+										<td>
+											<img id="profilepic" class="img-responsive img-avatar" :src="flip.flipDetails.pic" alt="Avatar" style="width: 50px;height: 50px">
+											{{ flip.flipDetails.name }}
+										</td>
+										<td>${{ flip.itemsAndDetails.value }}</td>
+										<td>{{ flip.itemsAndDetails.count }}</td>
+									</template>
+
 									<td>
 										<button class="btn btn-default watchbtn" style="outline:none;margin-left:-55px;margin-right:-50px;" data-toggle="modal" data-target="#watchflipmodal" v-on:click="flipIndexClicked = index">Watch</button>
 									</td>
