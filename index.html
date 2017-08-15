@@ -230,13 +230,10 @@
 								</div>
 							</div>
 						</div>
-						<div class="row">
+						<div class="row" style="background-color:rgb(55,55,55);margin-right:0px;margin-left:0px;height:528px;">
 							<div class="col-xs-6">
 								<div class="well text-center inventorybutton">
 									Your inventory
-								</div>
-								<div class="text-center">
-									<img src="img/t.png">
 								</div>
 								<div class="csgo-items high scrollbar" id="style-3">
 									<div v-if=" ! userInventory.error && userInventory.length">
@@ -296,17 +293,26 @@
 									<div class="clearfix"></div>
 								</div>
 							</div>
-							<div class="modal-footer">
-								<span class="price">
-								<span class="well well-sm">${{ userInventorySelectedValue.toFixed(2) }}</span>
-								</span>
-								<button type="button" class="btn btn-primary" style="background-color:rgb(85,85,85);margin-bottom:2px;height:38px;outline:none;" data-dismiss="modal"
-								 v-on:click="cancelFlip">Cancel</button>
-								<div v-if="flipIndexClicked != -1 && userInventorySelectedValue.toFixed(2) > (coinflips[flipIndexClicked].itemsAndDetails.value)-((coinflips[flipIndexClicked].itemsAndDetails.value)*site.flipMinimumPercentageMultiplier)">
-									<button type="button" class="btn btn-primary" style="margin-bottom:2px;margin-left:-.3px;height:38px;outline:none;" v-on:click="joinFlip">Join</button>
+						</div>
+						<br>
+						<div class="modal-footer" style="height:80px;">
+							<div class="row">
+								<div class="col-xs-5" style="margin-top:-5px;">
+									<img src="img/t.png" style="width:50px;height:50px;margin-right:30px;">
+									<img src="img/ct.png" style="width:50px;height:50px;margin-right:8px;">
 								</div>
-								<div v-else>
-									<button type="button" class="btn btn-disabled" style="outline:none;">Join</button>
+								<div class="col-xs-7">
+									<span class="price">
+										<span class="well well-sm">${{ userInventorySelectedValue.toFixed(2) }}</span>
+									</span>
+									<button type="button" class="btn btn-primary" style="background-color:rgb(85,85,85);margin-bottom:2px;height:38px;outline:none;" data-dismiss="modal"
+									v-on:click="cancelFlip">Cancel</button>
+									<div v-if="flipIndexClicked != -1 && userInventorySelectedValue.toFixed(2) > (coinflips[flipIndexClicked].itemsAndDetails.value)-((coinflips[flipIndexClicked].itemsAndDetails.value)*site.flipMinimumPercentageMultiplier)" style="float:right;">
+										<button type="button" class="btn btn-primary" style="outline:none;height:38px;width:80px;margin-left:4px;" v-on:click="joinFlip">Join</button>
+									</div>
+									<div v-else style="float:right;">
+										<button type="button" class="btn btn-disabled" style="outline:none;height:38px;width:80px;margin-left:4px;">Join</button>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -314,8 +320,7 @@
 				</div>
 			</div>
 		</div>
-
-
+		
 		<div class="modal fade" id="tradeLinkModal">
 			<div class="modal-dialog">
 				<div class="modal-content">
