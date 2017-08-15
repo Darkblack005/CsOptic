@@ -133,130 +133,137 @@ io.on('connection', function (socket) {
                 status: false,
             })
         } else {
-            Trade.validateOffer(offerData, (err, success, userCount, userValue) => {
+            if(!Flip.currentflips[offerData.flipId].data.joinable) {
                 socket.emit('offer status', {
-                    error: err,
-                    status: (success) ? 1 : false,
+                    error: 'Flip already has a second player!',
+                    status: false,
                 })
-                if (!err && success) {
-                    var flipValue = Flip.getFlipValueByFlipIndex(offerData.flipId)
-                    if(!(userValue > flipValue-(flipValue*config.site.flipMinimumPercentageMultiplier)) && flipValue > 0) {
-                        socket.emit('offer status', {
-                            error: 'Not enough value!',
-                            status: false,
-                        })
-                    } else {
-                        Flip.changeFlipJoinableByFlipIndex(offerData.flipId, false, () => {
-                            io.emit('flip update', {})
-                        })
+            } else {
+                Trade.validateOffer(offerData, (err, success, userCount, userValue) => {
+                    socket.emit('offer status', {
+                        error: err,
+                        status: (success) ? 1 : false,
+                    })
+                    if (!err && success) {
+                        var flipValue = Flip.getFlipValueByFlipIndex(offerData.flipId)
+                        if(!(userValue > flipValue-(flipValue*config.site.flipMinimumPercentageMultiplier)) && flipValue > 0) {
+                            socket.emit('offer status', {
+                                error: 'Not enough value!',
+                                status: false,
+                            })
+                        } else {
+                            Flip.changeFlipJoinableByFlipIndex(offerData.flipId, false, () => {
+                                io.emit('flip update', {})
+                            })
 
-                        if (typeof config.bots[offerData.bot_id] === 'undefined') {
-                            offerData.bot_id = Object.keys(config.bots)[0]
-                        }
+                            if (typeof config.bots[offerData.bot_id] === 'undefined') {
+                                offerData.bot_id = Object.keys(config.bots)[0]
+                            }
 
-                        socket.emit('offer status', {
-                            error: null,
-                            status: 2,
-                        })
+                            socket.emit('offer status', {
+                                error: null,
+                                status: 2,
+                            })
 
-                        const Bot = Trade.getBot(offerData.bot_id)
-                        const offer = Bot.manager.createOffer(offerData.tradelink)
+                            const Bot = Trade.getBot(offerData.bot_id)
+                            const offer = Bot.manager.createOffer(offerData.tradelink)
 
-                        var items = offerData.user.map(assetid => ({
-                            assetid,
-                            appid: 730,
-                            contextid: 2,
-                            amount: 1,
-                        }))
+                            var items = offerData.user.map(assetid => ({
+                                assetid,
+                                appid: 730,
+                                contextid: 2,
+                                amount: 1,
+                            }))
 
-                        var itemsAndDetails = {
-                            items: items,
-                            count: userCount,
-                            value: userValue
-                        }
+                            var itemsAndDetails = {
+                                items: items,
+                                count: userCount,
+                                value: userValue
+                            }
 
-                        offer.addTheirItems(items)
-                        offer.setMessage(config.tradeMessage)
-                        
-                        offer.getUserDetails((detailsError, me, them) => {
-                            if (detailsError) {
-                                console.log('Details error: ' + detailsError)
+                            offer.addTheirItems(items)
+                            offer.setMessage(config.tradeMessage)
+                            
+                            offer.getUserDetails((detailsError, me, them) => {
+                                if (detailsError) {
+                                    console.log('Details error: ' + detailsError)
 
-                                Flip.changeFlipJoinableByFlipIndex(offerData.flipId, true, () => {
-                                    io.emit('flip update', {})
-                                })
-                                
-                                socket.emit('offer status', {
-                                    error: detailsError,
-                                    status: false,
-                                })
-                            } else if (me.escrowDays + them.escrowDays > 0) {
+                                    Flip.changeFlipJoinableByFlipIndex(offerData.flipId, true, () => {
+                                        io.emit('flip update', {})
+                                    })
+                                    
+                                    socket.emit('offer status', {
+                                        error: detailsError,
+                                        status: false,
+                                    })
+                                } else if (me.escrowDays + them.escrowDays > 0) {
 
-                                Flip.changeFlipJoinableByFlipIndex(offerData.flipId, true, () => {
-                                    io.emit('flip update', {})
-                                })
+                                    Flip.changeFlipJoinableByFlipIndex(offerData.flipId, true, () => {
+                                        io.emit('flip update', {})
+                                    })
 
-                                socket.emit('offer status', {
-                                    error: 'You must have 2FA enabled, we do not accept trades that go into Escrow.',
-                                    status: false,
-                                })
-                            } else {
-                                offer.send((errSend, status) => {
-                                    if (errSend) {
+                                    socket.emit('offer status', {
+                                        error: 'You must have 2FA enabled, we do not accept trades that go into Escrow.',
+                                        status: false,
+                                    })
+                                } else {
+                                    offer.send((errSend, status) => {
+                                        if (errSend) {
 
-                                        Flip.changeFlipJoinableByFlipIndex(offerData.flipId, true, () => {
-                                            io.emit('flip update', {})
-                                        })
-
-                                        socket.emit('offer status', {
-                                            error: errSend,
-                                            status: false,
-                                        })
-                                    } else {
-                                        console.log('[!!!!!] Sent a trade: ', data)
-                                        if (status === 'pending') {
-                                            
-                                            socket.emit('offer status', {
-                                                error: null,
-                                                status: 2,
+                                            Flip.changeFlipJoinableByFlipIndex(offerData.flipId, true, () => {
+                                                io.emit('flip update', {})
                                             })
-                                            Trade.botConfirmation(data.bot_id, offer.id, (errConfirm) => {
-                                                if (!errConfirm) {
-                                                    socket.emit('offer status', {
-                                                        error: null,
-                                                        status: 3,
-                                                        offer: offer.id,
-                                                    })
 
-                                                    Flip.joinFlip(data, itemsAndDetails)
-
-                                                } else {
-                                                    Flip.changeFlipJoinableByFlipIndex(offerData.flipId, true, () => {
-                                                        io.emit('flip update', {})
-                                                    })
-
-                                                    socket.emit('offer status', {
-                                                        error: errConfirm,
-                                                        status: false,
-                                                    })
-                                                }
+                                            socket.emit('offer status', {
+                                                error: errSend,
+                                                status: false,
                                             })
                                         } else {
-                                            socket.emit('offer status', {
-                                                error: null,
-                                                status: 3,
-                                                offer: offer.id,
-                                            })
+                                            console.log('[!!!!!] Sent a trade: ', data)
+                                            if (status === 'pending') {
+                                                
+                                                socket.emit('offer status', {
+                                                    error: null,
+                                                    status: 2,
+                                                })
+                                                Trade.botConfirmation(data.bot_id, offer.id, (errConfirm) => {
+                                                    if (!errConfirm) {
+                                                        socket.emit('offer status', {
+                                                            error: null,
+                                                            status: 3,
+                                                            offer: offer.id,
+                                                        })
 
-                                            Flip.joinFlip(data, itemsAndDetails)
+                                                        Flip.joinFlip(data, itemsAndDetails)
+
+                                                    } else {
+                                                        Flip.changeFlipJoinableByFlipIndex(offerData.flipId, true, () => {
+                                                            io.emit('flip update', {})
+                                                        })
+
+                                                        socket.emit('offer status', {
+                                                            error: errConfirm,
+                                                            status: false,
+                                                        })
+                                                    }
+                                                })
+                                            } else {
+                                                socket.emit('offer status', {
+                                                    error: null,
+                                                    status: 3,
+                                                    offer: offer.id,
+                                                })
+
+                                                Flip.joinFlip(data, itemsAndDetails)
+                                            }
                                         }
-                                    }
-                                })
-                            }
-                        })
+                                    })
+                                }
+                            })
+                        }
                     }
-                }
-            })
+                })
+            }
         }
     })
 

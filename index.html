@@ -83,7 +83,7 @@
 									<td>
 										<button class="btn btn-default watchbtn" style="outline:none;margin-left:-55px;margin-right:-50px;" data-toggle="modal" data-target="#watchflipmodal" v-on:click="flipIndexClicked = index">Watch</button>
 									</td>
-									<td>
+									<td v-if="flip.flipDetails.joinable">
 										<button class="btn btn-primary" style="width:77px;margin-right:-52px;" data-toggle="modal" data-target="#joinFlipModal" v-on:click="flipIndexClicked = index">Join</button>
 									</td>
 								</tr>
