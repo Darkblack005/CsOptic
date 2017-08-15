@@ -267,8 +267,8 @@ margin-top:5%
 }
 .csgo-item {
     width: 16.6666667%;
-    min-height: 92px;
-    min-width: 92px;
+    min-height: 85px;
+    min-width: 85px;
     background: rgba(0, 0, 0, .05);
     float: left;
     position: relative;
@@ -417,6 +417,26 @@ animation: rotate1260 3s linear forwards;
 #coin.animation1440 {
 -webkit-animation: rotate1440 3s linear forwards; 
 animation: rotate1440 3s linear forwards;
+}
+
+#coin.animation1620 {
+-webkit-animation: rotate1620 3s linear forwards; 
+animation: rotate1620 3s linear forwards;
+}
+
+#coin.animation1800 {
+-webkit-animation: rotate1800 3s linear forwards; 
+animation: rotate1800 3s linear forwards;
+}
+
+#coin.animation1980 {
+-webkit-animation: rotate1980 3s linear forwards; 
+animation: rotate1980 3s linear forwards;
+}
+
+#coin.animation2160 {
+-webkit-animation: rotate2160 3s linear forwards; 
+animation: rotate2160 3s linear forwards;
 }
 
 @-webkit-keyframes rotate900 {

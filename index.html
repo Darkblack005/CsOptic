@@ -128,12 +128,12 @@
 								</div>
 							</div>
 						</div>
-						<div class="row">
+						<div class="row" style="background-color:rgb(55,55,55);margin-right:0px;margin-left:0px;height:528px;">
 							<div class="col-xs-6">
 								<div class="well text-center inventorybutton">
 									Your inventory
 								</div>
-								<div class="csgo-items high scrollbar" id="style-3">
+								<div class="csgo-items high scrollbar" id="style-3" style="width:262px;">
 									<div v-if=" ! userInventory.error && userInventory.length">
 										<div class="csgo-item csgo-item--rare" :class="`csgo-item--${item.item_type.name}`" v-for="item in userInventory" v-if=" ! item.hidden && userInventorySelected.indexOf(item.assetid) === -1 && item.price > rates.ignore"
 										 v-on:click="addItem('user', item.assetid, item.price)">
@@ -177,7 +177,7 @@
 								<div div class="well text-center inventorybutton">
 									Selected items
 								</div>
-								<div class="csgo-items high scrollbar" id="style-3">
+								<div class="csgo-items high scrollbar" id="style-3" style="width:262px;">
 									<div v-if=" ! userInventory.error && userInventorySelected.length > 0">
 										<div class="csgo-item csgo-item--rare" :class="`csgo-item--${item.item_type.name}`" v-for="item in userInventory" v-if="userInventorySelected.indexOf(item.assetid) !== -1"
 										 v-on:click="removeItem('user', item.assetid, item.price)">
@@ -191,13 +191,22 @@
 									<div class="clearfix"></div>
 								</div>
 							</div>
-							<div class="modal-footer">
-								<span class="price">
-								<span class="well well-sm">${{ userInventorySelectedValue.toFixed(2) }}</span>
-								</span>
-								<button type="button" class="btn btn-primary" style="background-color:rgb(85,85,85);margin-bottom:2px;height:38px;outline:none;" data-dismiss="modal"
-								 v-on:click="cancelFlip">Cancel</button>
-								<button type="button" class="btn btn-primary" style="margin-bottom:2px;margin-left:-.3px;height:38px;outline:none;" v-on:click="createFlip">Create</button>
+						</div>
+						<br>
+						<div class="modal-footer" style="height:80px;">
+							<div class="row">
+								<div class="col-xs-5" style="margin-top:-5px;">
+									<img src="img/t.png" style="width:50px;height:50px;margin-right:30px;">
+									<img src="img/ct.png" style="width:50px;height:50px;margin-right:8px;">
+								</div>
+								<div class="col-xs-7">
+									<span class="price">
+									<span class="well well-sm">${{ userInventorySelectedValue.toFixed(2) }}</span>
+									</span>
+									<button type="button" class="btn btn-primary" style="background-color:rgb(85,85,85);margin-bottom:2px;height:38px;outline:none;" data-dismiss="modal"
+									 v-on:click="cancelFlip">Cancel</button>
+									<button type="button" class="btn btn-primary" style="margin-bottom:2px;margin-left:-.3px;height:38px;outline:none;" v-on:click="createFlip">Create</button>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -225,6 +234,9 @@
 							<div class="col-xs-6">
 								<div class="well text-center inventorybutton">
 									Your inventory
+								</div>
+								<div class="text-center">
+									<img src="img/t.png">
 								</div>
 								<div class="csgo-items high scrollbar" id="style-3">
 									<div v-if=" ! userInventory.error && userInventory.length">
@@ -335,7 +347,7 @@
 					</div>
 					<div class="modal-body">
 						<div class="row">
-							<div id="coin-flip-cont" class="col-md-4">
+							<div id="coin-flip-cont">
 								<div id="coin">
 									<div class="front"></div>
 									<div class="back"></div>
@@ -410,7 +422,7 @@
 						</div>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal" v-on:click="reset">Close</button>
+						<button type="button" style="background-color:rgb(85,85,85)" class="btn btn-default" data-dismiss="modal" v-on:click="reset">Close</button>
 					</div>
 				</div>
 			</div>
