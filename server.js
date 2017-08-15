@@ -133,7 +133,7 @@ io.on('connection', function (socket) {
                 status: false,
             })
         } else {
-            if(!Flip.currentflips[offerData.flipId].data.joinable) {
+            if(!Flip.currentflips[offerData.flipId].joinable) {
                 socket.emit('offer status', {
                     error: 'Flip already has a second player!',
                     status: false,
