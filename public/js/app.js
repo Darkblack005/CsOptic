@@ -23,7 +23,7 @@ $(function () {
             },
             // trade
             offerStatus: {},
-            invalidTradelink: false,
+            invalidTradelink: true,
 
             // Real provable fairness. Other sites don't use a client created seed to generate the hash, making it not actually fair.
             // Generate random 16 character hex code for client seed
@@ -138,7 +138,8 @@ $(function () {
             },
             createFlip: function () {
                 if (!localStorage[this.user.id]) {
-                    $('#flipModal').modal('hide').$('#tradelink').modal('show');
+                    $('#flipModal').modal('hide')
+                    $('#tradeLinkModal').modal('show')
                 } else {
                     this.offerStatus = {};
                     this.checkTradeable();
@@ -163,10 +164,8 @@ $(function () {
             },
             joinFlip: function () {
                 if (!localStorage[this.user.id]) {
-                    $('#tradelink').modal('show');
+                    $('#tradeLinkModal').modal('show');
                 } else {
-                    //$('#joinFlipModal').modal('show');
-
                     this.offerStatus = {};
                     this.checkTradeable();
 
@@ -279,8 +278,9 @@ $(function () {
 
         if (localStorage[user.id]) {
             app.user.tradelink = localStorage.getItem(user.id)
+            app.invalidTradelink = false
         } else {
-            $('#tradelink').modal('show');
+            //$('#tradeLinkModal').modal('show');
         }
     });
 

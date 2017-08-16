@@ -136,7 +136,7 @@
 									Your inventory
 								</div>
 								<div class="csgo-items high scrollbar" id="style-3" style="width:262px;">
-									<div v-if=" ! userInventory.error && userInventory.length && user.tradelink">
+									<div v-if=" ! userInventory.error && userInventory.length && !invalidTradelink">
 										<div class="csgo-item csgo-item--rare" :class="`csgo-item--${item.item_type.name}`" v-for="item in userInventory" v-if=" ! item.hidden && userInventorySelected.indexOf(item.assetid) === -1 && item.price > rates.ignore"
 										 v-on:click="addItem('user', item.assetid, item.price)">
 											<div class="csgo-item--title">{{ item.data.market_hash_name }}</div>
@@ -169,7 +169,7 @@
 									<div v-else-if=" ! user.steamID64">
 										<div class="alert alert-info" style="margin-right:30px;">Please authenticate to create a new coinflip.</div>
 									</div>
-									<div v-else-if="! user.tradelink">
+									<div v-else-if="invalidTradelink">
 										<div class="alert alert-info" style="margin-right:30px;">Please update your trade link.</div>
 									</div>
 									<div v-else>
