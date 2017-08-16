@@ -373,30 +373,30 @@ height: 250px;
 
 #coin {
 position: relative;
-width: 255px;
+width: 128px;
 transform-style: preserve-3d;
 }
 
 #coin .front, #coin .back {
 position: absolute;
-width: 255px;
-height: 250px;
+width: 128px;
+height: 128px;
 }
 
 #coin .front {
 transform: translateZ(1px) translateX(-1px);
-height:255px;
-width:254px;
+height:128px;
+width:128px;
 border-radius:50%;
-background-image: url("../img/t.png");
+background-image: url("../img/t-small.png");
 }
 
 #coin .back {
 transform: translateZ(-1px) rotateY(180deg);
-height:255px;
-width:254px;
+height:128px;
+width:127px;
 border-radius:50%;
-background-image: url("../img/ct.png");
+background-image: url("../img/ct-small.png");
 }
 
 #coin.animation900 {
