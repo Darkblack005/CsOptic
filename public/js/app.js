@@ -276,6 +276,12 @@ $(function () {
         if (app.user.steamID64) {
             socket.emit('get user inv', app.user.steamID64);
         }
+
+        if (localStorage[user.id]) {
+            app.user.tradelink = localStorage.getItem(user.id)
+        } else {
+            $('#tradelink').modal('show');
+        }
     });
 
     socket.on('user inv', function (data) {
