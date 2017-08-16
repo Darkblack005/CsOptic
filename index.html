@@ -63,12 +63,8 @@
 									<template v-if="flip.joinData">
 										<td width="300px;">
 											<img id="profilepic" class="img-responsive img-avatar" :src="flip.flipDetails.pic" alt="Avatar" style="width: 50px; height: 50px;display:inline;margin-right: 5px">
-											{{ flip.flipDetails.name }}
-
-											<span style="display:inline;margin-right: 15px; margin-left: 15px;">vs.</span>
-
-											<img id="profilepic" class="img-responsive img-avatar" :src="flip.joinData.data.pic" alt="Avatar" style="width: 50px; height: 50px;display:inline;margin-right: 5px">
-											{{ flip.joinData.data.name }}
+											<span style="display:inline;margin-right: 15px; margin-left: 15px;font-size:15px;">vs.</span>
+											<img id="profilepic" class="img-responsive img-avatar" :src="flip.joinData.data.pic" alt="Avatar" style="width: 50px; height: 50px;display:inline;margin-left:5px;">
 										</td>
 										<td>${{ flip.itemsAndDetails.value + flip.joinData.itemsAndDetails.value }}</td>
 										<td>{{ flip.itemsAndDetails.count + flip.joinData.itemsAndDetails.count }}</td>
@@ -76,17 +72,16 @@
 									<template v-else>
 										<td width="300px;">
 											<img id="profilepic" class="img-responsive img-avatar" :src="flip.flipDetails.pic" alt="Avatar" style="width: 50px; height: 50px;display:inline;margin-right: 5px">
-											{{ flip.flipDetails.name }}
 										</td>
 										<td>${{ flip.itemsAndDetails.value }}</td>
-										<td>{{ flip.itemsAndDetails.count }}</td>
+										<td width="122px;">{{ flip.itemsAndDetails.count }}</td>
 									</template>
-
-									<td>
-										<button class="btn btn-default watchbtn" style="outline:none;margin-left:-55px;margin-right:-50px;" data-toggle="modal" data-target="#watchflipmodal" v-on:click="flipIndexClicked = index">Watch</button>
+									<td v-if="flip.joinable" width="186px;">
+										<button class="btn btn-default watchbtn" style="outline:none;" data-toggle="modal" data-target="#watchflipmodal" v-on:click="flipIndexClicked = index">Watch</button>
+										<button class="btn btn-primary" style="width:77px;margin-left:8px;" data-toggle="modal" data-target="#joinFlipModal" v-on:click="flipIndexClicked = index">Join</button>
 									</td>
-									<td v-if="flip.joinable">
-										<button class="btn btn-primary" style="width:77px;margin-right:-52px;" data-toggle="modal" data-target="#joinFlipModal" v-on:click="flipIndexClicked = index">Join</button>
+									<td v-else width="186px;">
+										<button class="btn btn-default watchbtn" style="outline:none;float:right;margin-right:5px;" data-toggle="modal" data-target="#watchflipmodal" v-on:click="flipIndexClicked = index">Watch</button>
 									</td>
 								</tr>
 							</tbody>
