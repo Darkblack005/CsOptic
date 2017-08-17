@@ -152,10 +152,6 @@ io.on('connection', function (socket) {
                                 status: false,
                             })
                         } else {
-                            Flip.changeFlipJoinableByFlipIndex(offerData.flipId, false, () => {
-                                io.emit('flip update', {})
-                            })
-
                             if (typeof config.bots[offerData.bot_id] === 'undefined') {
                                 offerData.bot_id = Object.keys(config.bots)[0]
                             }
@@ -187,20 +183,12 @@ io.on('connection', function (socket) {
                             offer.getUserDetails((detailsError, me, them) => {
                                 if (detailsError) {
                                     console.log('Details error: ' + detailsError)
-
-                                    Flip.changeFlipJoinableByFlipIndex(offerData.flipId, true, () => {
-                                        io.emit('flip update', {})
-                                    })
                                     
                                     socket.emit('offer status', {
                                         error: detailsError,
                                         status: false,
                                     })
                                 } else if (me.escrowDays + them.escrowDays > 0) {
-
-                                    Flip.changeFlipJoinableByFlipIndex(offerData.flipId, true, () => {
-                                        io.emit('flip update', {})
-                                    })
 
                                     socket.emit('offer status', {
                                         error: 'You must have 2FA enabled, we do not accept trades that go into Escrow.',
@@ -209,10 +197,6 @@ io.on('connection', function (socket) {
                                 } else {
                                     offer.send((errSend, status) => {
                                         if (errSend) {
-
-                                            Flip.changeFlipJoinableByFlipIndex(offerData.flipId, true, () => {
-                                                io.emit('flip update', {})
-                                            })
 
                                             socket.emit('offer status', {
                                                 error: errSend,
@@ -234,13 +218,22 @@ io.on('connection', function (socket) {
                                                             offer: offer.id,
                                                         })
 
+                                                        Flip.changeFlipJoinableByFlipIndex(offerData.flipId, false, () => {
+                                                            io.emit('flip update', {})
+
+                                                            // Set timeout for 3 minutes or so for the joiner to trade over their items
+                                                            setTimeout(() => {
+                                                                if(!Flip.currentflips[offerData.flipId].joinData) {
+                                                                    Flip.changeFlipJoinableByFlipIndex(offerData.flipId, true, () => {
+                                                                        console.log('User did not trade items after 3 minutes. Changing flip # ' + offerData.flipId + ' back to joinable')
+                                                                    })
+                                                                }
+                                                            }, 180000)
+                                                        })
+
                                                         Flip.joinFlip(data, itemsAndDetails)
 
                                                     } else {
-                                                        Flip.changeFlipJoinableByFlipIndex(offerData.flipId, true, () => {
-                                                            io.emit('flip update', {})
-                                                        })
-
                                                         socket.emit('offer status', {
                                                             error: errConfirm,
                                                             status: false,
@@ -252,6 +245,19 @@ io.on('connection', function (socket) {
                                                     error: null,
                                                     status: 3,
                                                     offer: offer.id,
+                                                })
+
+                                                Flip.changeFlipJoinableByFlipIndex(offerData.flipId, false, () => {
+                                                    io.emit('flip update', {})
+
+                                                    // Set timeout for 3 minutes or so for the joiner to trade over their items
+                                                    setTimeout(() => {
+                                                        if(!Flip.currentflips[offerData.flipId].joinData) {
+                                                            Flip.changeFlipJoinableByFlipIndex(offerData.flipId, true, () => {
+                                                                console.log('User did not trade items after 3 minutes. Changing flip # ' + offerData.flipId + ' back to joinable')
+                                                            })
+                                                        }
+                                                    }, 180000)
                                                 })
 
                                                 Flip.joinFlip(data, itemsAndDetails)
