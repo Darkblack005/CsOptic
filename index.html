@@ -78,7 +78,7 @@
 									</template>
 									<td v-if="flip.joinable" width="186px;">
 										<button class="btn btn-default watchbtn" style="outline:none;" data-toggle="modal" data-target="#watchflipmodal" v-on:click="flipIndexClicked = index">Watch</button>
-										<button class="btn btn-primary" style="width:77px;margin-left:8px;" data-toggle="modal" data-target="#joinFlipModal" v-on:click="flipIndexClicked = index">Join</button>
+										<button class="btn btn-primary" style="outline:none;width:77px;margin-left:8px;" data-toggle="modal" data-target="#joinFlipModal" v-on:click="flipIndexClicked = index">Join</button>
 									</td>
 									<td v-else width="186px;">
 										<button class="btn btn-default watchbtn" style="outline:none;float:right;margin-right:5px;" data-toggle="modal" data-target="#watchflipmodal" v-on:click="flipIndexClicked = index">Watch</button>
@@ -311,7 +311,7 @@
 										<button type="button" class="btn btn-primary" style="outline:none;height:38px;width:80px;margin-left:4px;" v-on:click="joinFlip">Join</button>
 									</div>
 									<div v-else style="float:right;">
-										<button type="button" class="btn btn-disabled" style="outline:none;height:38px;width:80px;margin-left:4px;">Join</button>
+										<button type="button" class="btn btn-disabled" style="outline:none;height:38px;width:80px;margin-left:4px;color:black;">Join</button>
 									</div>
 								</div>
 							</div>
