@@ -44,33 +44,30 @@ $(function () {
                     }
                 });
             },
-            addItem: function (who, id, assetid, price) {
-                if (typeof price === 'undefined') {
-                    price = assetid;
-                    assetid = id;
+            addItem: function (assetid, price, image) {
+                var userInventorySelected = this.userInventorySelected;
+                userInventorySelected.push({ assetid, image });
+                this.userInventorySelected = userInventorySelected;
+                if(typeof price === 'undefined') {
+                    price = 0
                 }
-                if (who == 'user') {
-                    var userInventorySelected = this.userInventorySelected;
-                    userInventorySelected.push(assetid);
-                    this.userInventorySelected = userInventorySelected;
-                    this.userInventorySelectedValue += parseFloat(price);
-                }
+                this.userInventorySelectedValue += parseFloat(price);
                 this.checkTradeable();
             },
-            removeItem: function (who, id, assetid, price) {
+            removeItem: function (assetid, price) {
                 if (typeof price === 'undefined') {
-                    price = assetid;
-                    assetid = id;
+                    price = 0
                 }
-                // Clean this later
-                if (who == 'user') {
-                    this.userInventorySelected.splice($.inArray(assetid, this.userInventorySelected), 1);
-                    this.userInventorySelectedValue -= price;
 
-                    if (this.userInventorySelectedValue <= 0) {
-                        this.userInventorySelectedValue = 0;
-                    }
+                this.userInventorySelected = $.grep(this.userInventorySelected, function(e) {
+                    return e.assetid != assetid
+                })
+                this.userInventorySelectedValue -= price;
+
+                if (this.userInventorySelectedValue <= 0) {
+                    this.userInventorySelectedValue = 0;
                 }
+
                 this.checkTradeable();
             },
             checkTradeable: function () {
