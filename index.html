@@ -58,7 +58,7 @@
 									<th>Skin Count</th>
 								</tr>
 							</thead>
-							<tbody v-if="coinflips">
+							<tbody v-if="coinflips && coinflips.length > 0">
 								<tr v-for="(flip, index) in coinflips">
 									<template v-if="flip.joinData">
 										<td width="300px;">
@@ -131,8 +131,8 @@
 								</div>
 								<div class="csgo-items high scrollbar" id="style-3" style="width:262px;">
 									<div v-if=" ! userInventory.error && userInventory.length && !invalidTradelink">
-										<div class="csgo-item csgo-item--rare" :class="`csgo-item--${item.item_type.name}`" v-for="item in userInventory" v-if=" ! item.hidden && userInventorySelected.indexOf(item.assetid) === -1 && item.price > rates.ignore"
-										 v-on:click="addItem('user', item.assetid, item.price)">
+										<div class="csgo-item csgo-item--rare" :class="`csgo-item--${item.item_type.name}`" v-for="item in userInventory" v-if=" ! item.hidden && userInventorySelected.find((e) => {return e.assetid == item.assetid}) === undefined && item.price > rates.ignore"
+										 v-on:click="addItem(item.assetid, item.price, item.data.image)">
 											<div class="csgo-item--title">{{ item.data.market_hash_name }}</div>
 											<div class="csgo-item--st" v-if="item.data.market_hash_name.indexOf('StatTrak') !== -1">ST</div>
 											<div class="csgo-item--wear" v-if="item.item_wear">{{ item.item_wear }}</div>
@@ -178,8 +178,8 @@
 								</div>
 								<div class="csgo-items high scrollbar" id="style-3" style="width:262px;">
 									<div v-if=" ! userInventory.error && userInventorySelected.length > 0">
-										<div class="csgo-item csgo-item--rare" :class="`csgo-item--${item.item_type.name}`" v-for="item in userInventory" v-if="userInventorySelected.indexOf(item.assetid) !== -1"
-										 v-on:click="removeItem('user', item.assetid, item.price)">
+										<div class="csgo-item csgo-item--rare" :class="`csgo-item--${item.item_type.name}`" v-for="item in userInventory" v-if="userInventorySelected.find((e) => {return e.assetid == item.assetid}) !== undefined"
+										 v-on:click="removeItem(item.assetid, item.price)">
 											<div class="csgo-item--title">{{ item.data.market_hash_name }}</div>
 											<div class="csgo-item--st" v-if="item.data.market_hash_name.indexOf('StatTrak') !== -1">ST</div>
 											<div class="csgo-item--wear" v-if="item.item_wear">{{ item.item_wear }}</div>
@@ -306,7 +306,7 @@
 									</span>
 									<button type="button" class="btn btn-primary" style="background-color:rgb(85,85,85);margin-bottom:2px;height:38px;outline:none;" data-dismiss="modal"
 									v-on:click="cancelFlip">Cancel</button>
-									<div v-if="flipIndexClicked != -1 && userInventorySelectedValue.toFixed(2) > (coinflips[flipIndexClicked].itemsAndDetails.value)-((coinflips[flipIndexClicked].itemsAndDetails.value)*site.flipMinimumPercentageMultiplier)" style="float:right;">
+									<div v-if="coinflips && coinflips.length > 0 && flipIndexClicked != -1 && userInventorySelectedValue.toFixed(2) > (coinflips[flipIndexClicked].itemsAndDetails.value)-((coinflips[flipIndexClicked].itemsAndDetails.value)*site.flipMinimumPercentageMultiplier)" style="float:right;">
 										<button type="button" class="btn btn-primary" style="outline:none;height:38px;width:80px;margin-left:4px;" v-on:click="joinFlip">Join</button>
 									</div>
 									<div v-else style="float:right;">
