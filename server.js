@@ -312,12 +312,16 @@ io.on('connection', function (socket) {
                         const Bot = Trade.getBot(offerData.bot_id)
                         const offer = Bot.manager.createOffer(offerData.tradelink)
 
-                        var items = offerData.user.map(assetid => ({
-                            assetid,
-                            appid: 730,
-                            contextid: 2,
-                            amount: 1,
-                        }))
+                        var items = []
+
+                        offerData.user.forEach(function(e) {
+                            items.push({
+                                assetid: e.assetid,
+                                appid: 730,
+                                contextid: 2,
+                                amount: 1,
+                            })
+                        })
 
                         var itemsAndDetails = {
                             items: items,
