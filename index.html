@@ -344,7 +344,7 @@
 			</div>
 		</div>
 		
-		<div class="modal fade" id="watchflipmodal">
+		<div class="modal fade" id="watchflipmodal" v-if="coinflips && coinflips[flipIndexClicked]">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header"><h4>Coinflip</h4>
@@ -352,10 +352,10 @@
 					<div class="modal-body">
 						<div class="row">
 							<div class="col-xs-4">
-								<img src="img/ct-small.png">
+								<img style="height:100px;width:100px;margin:25px;" :src="coinflips[flipIndexClicked].flipDetails.pic">
 							</div>
 							<div class="col-xs-4">
-								<div id="coin-flip-cont">
+								<div id="coin-flip-cont" style="margin-left:25px;">
 									<div id="coin">
 										<div class="front"></div>
 										<div class="back"></div>
@@ -363,16 +363,56 @@
 								</div>
 							</div>
 							<div class="col-xs-4">
-								<img src="img/t-small.png">
-							</div>
+								<div v-if="coinflips.joinData == null">
+									<img style="height:100px;width:100px;float:right;margin:25px;" src="img\blank-avatar.png">
+								</div>
+								<div v-else>
+									<img style="height:100px;width:100px;margin:25px;" :src="coinflips[flipIndexClicked].joinData.data.pic">
+								</div>
+							</div>		
 						</div>
 						<div class="row">
-							<div class="col-xs-8"><p style="font-size:20px;margin-left:35px;">{{ user.displayName }}</p></div>
-							<div class="col-xs-4"><p style="font-size:20px;margin-left:35px;">{{ user.displayName }}</p></div>
+							<div class="col-xs-4">
+								<strong style="margin-left:50px;"> {{ coinflips[flipIndexClicked].flipDetails.name }} </strong>
+							</div>
+							<div class="col-xs-4">
+								<strong style="margin-left:58px;">Amount</strong>
+							</div>
+							<div class="col-xs-4">
+								<div v-if="coinflips.joinData == null">
+									<strong style="margin-left:77px;">Foo</strong>
+								</div>
+								<div v-else>
+									<strong style="margin-left:25px;"> {{ coinflips[flipIndexClicked].joinData.data.name }} </strong>
+								</div>
+							</div>
+						</div>
+						<br>
+						<div class="row" style="margin-left:40px;">
+							<div class="col-xs-4">
+								<strong> {{ coinflips[flipIndexClicked].itemsAndDetails.value }} </strong>
+							</div>
+							<div class="col-xs-4">
+								<div v-if="coinflips.joinData == null">
+									<strong style="margin-left:33px;"> 0.00 </strong>
+								</div>
+								<div v-else>
+									<strong> {{ coinflips[flipIndexClicked].itemsAndDetails.value + coinflips[flipIndexClicked].joinData.itemsAndDetails.value }} </strong>
+								</div>
+							</div>
+							<div class="col-xs-4">
+								<div v-if="coinflips.joinData == null">
+									<strong style="margin-left:55px;">0.00</strong>
+								</div>
+								<div v-else>
+									<strong> {{ coinflips[flipIndexClicked].joinData.itemsAndDetails.value }} </strong>
+								</div>
+							</div>
 						</div>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-primary" style="outline:none;" data-dismiss="modal">Close</button>
+						<p style="float:left;margin-top:10px;"> Server Hash: Lorem ipsum dolor sit amet </p>
 					</div>
 				</div>
 			</div>

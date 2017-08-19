@@ -372,9 +372,11 @@ height: 128px;
 }
 
 #coin {
-position: relative;
+position: absolute;
 width: 128px;
+height:128px;
 transform-style: preserve-3d;
+z-index: 5000;
 }
 
 #coin .front, #coin .back {

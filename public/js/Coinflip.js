@@ -17,4 +17,14 @@ $('#coin').addClass(getSpin());
 
 });
 
+// Delete Me
+
+setTimeout(function() {
+	document.getElementById("coin").addEventListener("click", function() {
+		setTimeout(function(){
+			$('#coin').addClass(getSpin());
+		}, 100);
+	});
+}, 2000);
+
 });
