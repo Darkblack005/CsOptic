@@ -42,5 +42,6 @@ module.exports = {
     
     rates: {
         ignoreItemsBelow: 0.01, // Ignore items below this price (price * rate < ignoreItemsBelow) - shows (Too Low) for user
+        commissionPercentage: 0.08 // 0-commitionPercentage
     }
 }
