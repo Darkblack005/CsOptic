@@ -34,7 +34,6 @@
 						<li style="margin-top:1px;"><button type="button" style="outline:none;" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#howitworksmodal">How it Works</button></li>
 						<li style="margin-top:1px;"><button type="button" style="outline:none;" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#tradeLinkModal">Trade Link</button></li>
 					</ul>
-
 					<ul class="nav navbar-nav navbar-right">
 						<li v-if=" ! user"><a href="/auth/steam"><img src="https://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_large_noborder.png" style="margin-right:35px;"></a></li>
 						<li v-else><a href="/logout" title="Click to Logout" style="margin-right:55px;"><img id="profilepic" class="img-responsive img-avatar" :src="user.photos[1].value" alt="Avatar"><strong id="username">{{ user.displayName }}</strong></a></li>
@@ -94,7 +93,6 @@
 							<p v-if=" ! user"><strong>Hello, log in with Steam to use this chat.</strong></p>
 							<p v-else><strong>Hello {{ user.displayName }}, welcome to the chat.</strong></p>
 						</div>
-
 						<div id="textarea">
 							<form id="chatboxsendbutton" action="">
 								<input id="m" style="width: 252px; height: 40px;" autocomplete="off" />
@@ -149,7 +147,7 @@
 											<div class="alert alert-warning">
 												<strong>If you're certain your privacy settings are public please contact the administrator or try again later.</strong>
 												<div>Sometimes Steam has issues with its stability of the inventory servers. Make sure that Steam is not broken
-													<a href="http://steamstat.us" target="_blank"><strong>here</strong></a>.</div>
+												<a href="http://steamstat.us" target="_blank"><strong>here</strong></a>.</div>
 											</div>
 										</div>
 										<div v-else>
@@ -213,7 +211,6 @@
 			</div>
 		</div>
 
-
 		<div id="joinFlipModal" class="modal fade" v-if="coinflips">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -254,7 +251,8 @@
 											<div class="alert alert-warning">
 												<strong>If you're certain your privacy settings are public please contact the administrator or try again later.</strong>
 												<div>Sometimes Steam has issues with its stability of the inventory servers. Make sure that Steam is not broken
-													<a href="http://steamstat.us" target="_blank"><strong>here</strong></a>.</div>
+												<a href="http://steamstat.us" target="_blank"><strong>here</strong></a>.
+												</div>
 											</div>
 										</div>
 										<div v-else>
@@ -352,7 +350,7 @@
 					<div class="modal-body">
 						<div class="row">
 							<div class="col-xs-4">
-								<img style="height:100px;width:100px;margin:25px;" :src="coinflips[flipIndexClicked].flipDetails.pic">
+								<img style="height:100px;width:100px;margin:25px;border-radius:5px;" :src="coinflips[flipIndexClicked].flipDetails.pic">
 							</div>
 							<div class="col-xs-4">
 								<div id="coin-flip-cont" style="margin-left:25px;">
@@ -364,7 +362,7 @@
 							</div>
 							<div class="col-xs-4">
 								<div v-if="coinflips.joinData == null">
-									<img style="height:100px;width:100px;float:right;margin:25px;" src="img\blank-avatar.png">
+									<img style="height:100px;width:100px;float:right;margin:25px;border-radius:5px;" src="img\blank-avatar.png">
 								</div>
 								<div v-else>
 									<img style="height:100px;width:100px;margin:25px;" :src="coinflips[flipIndexClicked].joinData.data.pic">
@@ -479,7 +477,6 @@
 				</div>
 			</div>
 		</div>
-
 	</div>
 
 	<div class="footer">
