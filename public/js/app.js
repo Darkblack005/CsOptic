@@ -29,7 +29,10 @@ $(function () {
             // Generate random 16 character hex code for client seed
             // Look at randomizeClientSeed()
             clientSeed: '',
-            serverHash: ''
+            serverHash: '',
+
+            // Which side of the coin user chooses (ct default)
+            ctSide: true
         },
         methods: {
             setInventorySort: function (value) {
@@ -132,6 +135,9 @@ $(function () {
                 this.offerStatus = {}
                 this.userInventorySelectedValue = 0;
                 this.flipIndexClicked = -1
+            },
+            switchCoinside: function(ctSide) {
+                this.ctSide = ctSide
             },
             createFlip: function () {
                 if (!localStorage[this.user.id]) {
