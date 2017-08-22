@@ -158,6 +158,7 @@ $(function () {
                             clientSeed: this.clientSeed,
                             name: this.user.displayName,
                             pic: this.user.photos[1].value,
+                            side: this.ctSide
                         });
                         console.log('Offer sent.')
 
