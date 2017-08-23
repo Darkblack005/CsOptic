@@ -192,11 +192,14 @@
 						<br>
 						<div class="modal-footer" style="height:80px;">
 							<div class="row">
-								<div class="col-xs-5" style="margin-top:-5px;">
-									<img src="img/t.png" style="width:50px;height:50px;margin-right:30px;" v-on:click="switchCoinside(false)">
-									<img src="img/ct.png" style="width:50px;height:50px;margin-right:8px;" v-on:click="switchCoinside(true)">
+								<div class="col-xs-1" style="margin-top:-10px;">
+									<strong>Select your side:</strong>
 								</div>
-								<div class="col-xs-7">
+								<div class="col-xs-5" style="margin-top:-5px;">
+									<img src="img/t.png" style="width:50px;height:50px;margin-right:30px;" v-on:click="switchCoinside(false)" v-bind:class="{ selected:ctSide==false }">
+									<img src="img/ct.png" style="width:50px;height:50px;margin-right:8px;" v-on:click="switchCoinside(true)" v-bind:class="{ selected:ctSide==true }">
+								</div>
+								<div class="col-xs-6">
 									<span class="price">
 									<span class="well well-sm">${{ userInventorySelectedValue.toFixed(2) }}</span>
 									</span>
