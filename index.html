@@ -96,7 +96,7 @@
 						<div id="textarea">
 							<form id="chatboxsendbutton" action="">
 								<input id="m" style="width: 252px; height: 40px;" autocomplete="off" />
-								<button class="btn btn-primary" style="height:40px;width:69px;margin-top:-2px;margin-left:-4px">Send</button>
+								<button class="btn btn-primary" style="height:40px;width:69px;margin-top:-2px;margin-left:-4px;">Send</button>
 							</form>
 						</div> <!--Twitter Shit-->
 						<div id="info" style="margin-right:40px;">
@@ -364,7 +364,7 @@
 								</div>
 							</div>
 							<div class="col-xs-4">
-								<div v-if="coinflips.joinData == null">
+								<div v-if="coinflips[0].joinData == null">
 									<img style="height:100px;width:100px;float:right;margin:25px;border-radius:5px;" src="img\blank-avatar.png">
 								</div>
 								<div v-else>
@@ -380,7 +380,7 @@
 								<strong style="margin-left:58px;">Amount</strong>
 							</div>
 							<div class="col-xs-4">
-								<div v-if="coinflips.joinData == null">
+								<div v-if="coinflips[0].joinData == null">
 									<strong style="margin-left:77px;">Foo</strong>
 								</div>
 								<div v-else>
@@ -394,7 +394,7 @@
 								<strong> {{ coinflips[flipIndexClicked].itemsAndDetails.value }} </strong>
 							</div>
 							<div class="col-xs-4">
-								<div v-if="coinflips.joinData == null">
+								<div v-if="coinflips[0].joinData == null">
 									<strong style="margin-left:33px;"> 0.00 </strong>
 								</div>
 								<div v-else>
@@ -402,7 +402,7 @@
 								</div>
 							</div>
 							<div class="col-xs-4">
-								<div v-if="coinflips.joinData == null">
+								<div v-if="coinflips[0].joinData == null">
 									<strong style="margin-left:55px;">0.00</strong>
 								</div>
 								<div v-else>
