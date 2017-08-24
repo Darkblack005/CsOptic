@@ -48,6 +48,7 @@ $(function () {
                 });
             },
             addItem: function (assetid, price, image) {
+                
                 var userInventorySelected = this.userInventorySelected;
                 userInventorySelected.push({ assetid, image });
                 this.userInventorySelected = userInventorySelected;
@@ -257,18 +258,22 @@ $(function () {
     });
 
     socket.on('offer status', function (data) {
-        app.offerStatus = data;
-        if (data.status === 3 || data.status === false) {
-            app.disableTrade = false;
-        }
+        if(data.tl && app.user.tradelink != data.tl) {
 
-        if(data.status === 2 && data.computedServerHash) {
-            app.serverHash = data.computedServerHash
-        }
+        } else {
+            app.offerStatus = data;
+            if (data.status === 3 || data.status === false) {
+                app.disableTrade = false;
+            }
 
-        if (data.status === 3) {
-            app.userInventorySelected = [];
-            app.userInventorySelectedValue = 0;
+            if(data.status === 2 && data.computedServerHash) {
+                app.serverHash = data.computedServerHash
+            }
+
+            if (data.status === 3) {
+                app.userInventorySelected = [];
+                app.userInventorySelectedValue = 0;
+            }
         }
     });
 
