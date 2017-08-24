@@ -352,62 +352,75 @@
 					</div>
 					<div class="modal-body">
 						<div class="row">
-							<div class="col-xs-4">
-								<img style="height:100px;width:100px;margin:25px;border-radius:5px;" :src="coinflips[flipIndexClicked].flipDetails.pic">
+							<div class="col-xs-4 watch-playerinfo" align="center" style="padding:20px;">
+								<img style="height:100px;width:100px;border-radius:5px;" :src="coinflips[flipIndexClicked].flipDetails.pic">
 							</div>
-							<div class="col-xs-4">
-								<div id="coin-flip-cont" style="margin-left:25px;">
+							<div class="col-xs-4" align="center">
+								<div id="coin-flip-cont">
 									<div id="coin">
 										<div class="front"></div>
 										<div class="back"></div>
 									</div>
 								</div>
 							</div>
-							<div class="col-xs-4">
+							<div class="col-xs-4 watch-playerinfo" align="center" style="padding:20px;">
 								<div v-if="coinflips[0].joinData == null">
-									<img style="height:100px;width:100px;float:right;margin:25px;border-radius:5px;" src="img\blank-avatar.png">
+									<img style="height:100px;width:100px;border-radius:5px;" src="img\blank-avatar.png">
 								</div>
 								<div v-else>
-									<img style="height:100px;width:100px;margin:25px;" :src="coinflips[flipIndexClicked].joinData.data.pic">
+									<img style="height:100px;width:100px;boder-radius:5px;" :src="coinflips[flipIndexClicked].joinData.data.pic">
 								</div>
 							</div>		
 						</div>
 						<div class="row">
-							<div class="col-xs-4">
-								<strong style="margin-left:50px;"> {{ coinflips[flipIndexClicked].flipDetails.name }} </strong>
+							<div class="col-xs-4 watch-playerinfo" align="center">
+								<strong> {{ coinflips[flipIndexClicked].flipDetails.name }} </strong>
 							</div>
-							<div class="col-xs-4">
-								<strong style="margin-left:58px;">Amount</strong>
+							<div class="col-xs-4" align="center">
+								<strong>Amount</strong>
 							</div>
-							<div class="col-xs-4">
+							<div class="col-xs-4 watch-playerinfo" align="center">
 								<div v-if="coinflips[0].joinData == null">
-									<strong style="margin-left:77px;">Foo</strong>
+									<strong>Foo</strong>
 								</div>
 								<div v-else>
-									<strong style="margin-left:25px;"> {{ coinflips[flipIndexClicked].joinData.data.name }} </strong>
+									<strong> {{ coinflips[flipIndexClicked].joinData.data.name }} </strong>
 								</div>
 							</div>
 						</div>
 						<br>
-						<div class="row" style="margin-left:40px;">
-							<div class="col-xs-4">
+						<div class="row">
+							<div class="col-xs-4 watch-playerinfo" align="center">
 								<strong> {{ coinflips[flipIndexClicked].itemsAndDetails.value }} </strong>
 							</div>
-							<div class="col-xs-4">
+							<div class="col-xs-4" align="center">
 								<div v-if="coinflips[0].joinData == null">
-									<strong style="margin-left:33px;"> 0.00 </strong>
+									<strong> 0.00 </strong>
 								</div>
 								<div v-else>
 									<strong> {{ coinflips[flipIndexClicked].itemsAndDetails.value + coinflips[flipIndexClicked].joinData.itemsAndDetails.value }} </strong>
 								</div>
 							</div>
-							<div class="col-xs-4">
+							<div class="col-xs-4 watch-playerinfo" align="center">
 								<div v-if="coinflips[0].joinData == null">
-									<strong style="margin-left:55px;">0.00</strong>
+									<strong>0.00</strong>
 								</div>
 								<div v-else>
 									<strong> {{ coinflips[flipIndexClicked].joinData.itemsAndDetails.value }} </strong>
 								</div>
+							</div>
+						</div>
+						<hr>
+						<div class="row">
+							<div class="col-xs-6">
+								<strong>Item</strong>
+								<strong style="float:right;margin-right:10px;">Price</strong>
+								<!--<div id="csgo-item--bg" :style="`background-image:url(https://steamcommunity-a.akamaihd.net/economy/image/${itemimage.user.image});`"></div>
+								<div><strong> {{ coinflips[flipIndexClicked].itemsAndDetails.value }} </strong></div>-->
+							</div>
+							<div class="col-xs-6">
+								<strong>item</strong>
+								<strong style="float:right;margin-right:10px;">price</strong>
 							</div>
 						</div>
 					</div>
