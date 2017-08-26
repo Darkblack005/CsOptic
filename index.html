@@ -415,12 +415,22 @@
 							<div class="col-xs-6">
 								<strong>Item</strong>
 								<strong style="float:right;margin-right:10px;">Price</strong>
-								<!--<div id="csgo-item--bg" :style="`background-image:url(https://steamcommunity-a.akamaihd.net/economy/image/${itemimage.user.image});`"></div>
-								<div><strong> {{ coinflips[flipIndexClicked].itemsAndDetails.value }} </strong></div>-->
-							</div>
+							</div>	
 							<div class="col-xs-6">
 								<strong>item</strong>
 								<strong style="float:right;margin-right:10px;">price</strong>
+							</div>
+						</div>
+						<div class="row" style="margin-top:5px;">
+							<div class="col-xs-6">
+								<div class="watch-csgo-items scrollbar" id="style-3">
+									<div v-for="item in coinflips[flipIndexClicked].flipDetails.user" class="watch-csgo-item">
+										<div class="watch-csgo-item watch-csgo-item-bg" :style="`background-image:url(https://steamcommunity-a.akamaihd.net/economy/image/${item.image});`"></div>
+										<div class="watch-csgo-item-price">{{ coinflips[flipIndexClicked].itemsAndDetails.value }}</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-6">
 							</div>
 						</div>
 					</div>
