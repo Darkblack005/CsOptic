@@ -426,6 +426,7 @@
 								<div v-for="item in coinflips[flipIndexClicked].flipDetails.user" class="watch-csgo-item">
 									<div class="watch-csgo-item watch-csgo-item-bg" :style="`background-image:url(https://steamcommunity-a.akamaihd.net/economy/image/${item.image});`"></div>
 									<div class="watch-csgo-item-price">{{ coinflips[flipIndexClicked].itemsAndDetails.value }}</div>
+									<strong class="watch-csgo-item-name"> {{ coinflips[flipIndexClicked].flipDetails.user[flipIndexClicked].name }} </strong>
 								</div>
 							</div>
 							<div class="col-xs-6">
@@ -436,6 +437,7 @@
 									<div v-for="item in coinflips[flipIndexClicked].joinData.data.user" class="watch-csgo-item">
 										<div class="watch-csgo-item watch-csgo-item-bg" :style="`background-image:url(https://steamcommunity-a.akamaihd.net/economy/image/${item.image});`"></div>
 										<div class="watch-csgo-item-price">{{ coinflips[flipIndexClicked].joinData.itemsAndDetails.value }}</div>
+										<strong class="watch-csgo-item-name"> {{ coinflips[flipIndexClicked].flipDetails.user[flipIndexClicked].name }} </strong>
 									</div>
 								</div>
 							</div>
@@ -528,7 +530,6 @@
 	<script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/app.js"></script>
-	<script src="js/Coinflip.js"></script>
 	<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 </body>
