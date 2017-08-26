@@ -76,7 +76,7 @@
 										<td width="122px;">{{ flip.itemsAndDetails.count }}</td>
 									</template>
 									<td v-if="flip.joinable && user.id != flip.flipDetails.steamID64">
-										<button class="btn btn-default watchbtn" style="outline:none;margin-right:15px;" data-toggle="modal" data-target="#watchflipmodal" v-on:click="flipIndexClicked = index">Watch</button>
+										<button class="btn btn-default watchbtn" style="outline:none;margin-right:15px;" data-toggle="modal" data-target="#watchflipmodal" v-on:click="clickWatchModal(index)">Watch</button>
 										<button class="btn btn-primary" style="width:77px;margin-right:-52px;" data-toggle="modal" data-target="#joinFlipModal" v-on:click="flipIndexClicked = index">Join</button>
 									<td v-else width="186px;">
 										<button class="btn btn-default watchbtn" style="outline:none;float:right;margin-right:7px;" data-toggle="modal" data-target="#watchflipmodal" v-on:click="flipIndexClicked = index">Watch</button>

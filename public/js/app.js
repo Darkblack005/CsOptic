@@ -140,6 +140,22 @@ $(function () {
             switchCoinside: function(ctSide) {
                 this.ctSide = ctSide
             },
+            clickWatchModal: function(index) {
+                $('#coin').removeClass();
+                this.flipIndexClicked = index;
+
+                this.flipCoin(this.coinflips[coinflipIndex].ctwin);
+            },
+            flipCoin: function(ctSide) {
+                $('#coin').removeClass();
+                setTimeout(function() {
+	                document.getElementById("coin").addEventListener("click", function() {
+                        setTimeout(function(){
+                            $('#coin').addClass(ctSide ? 'animation1260' : 'animation1440');
+                        }, 100);
+	                });
+                }, 2000);
+            },
             createFlip: function () {
                 if (!localStorage[this.user.id]) {
                     $('#flipModal').modal('hide')
