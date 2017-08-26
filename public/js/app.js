@@ -47,10 +47,10 @@ $(function () {
                     }
                 });
             },
-            addItem: function (assetid, price, image) {
+            addItem: function (assetid, price, image, name) {
                 
                 var userInventorySelected = this.userInventorySelected;
-                userInventorySelected.push({ assetid, image });
+                userInventorySelected.push({ assetid, image, name });
                 this.userInventorySelected = userInventorySelected;
                 if(typeof price === 'undefined') {
                     price = 0
@@ -257,10 +257,16 @@ $(function () {
         window.document.title = data.header + ' | CS:GO Gambling Evolved';
     });
 
-    socket.on('offer status', function (data) {
-        if(data.tl && app.user.tradelink != data.tl) {
+    socket.on('coinflip winner', function (data) {
+        /*
+        id: coinflipIndex,
+        didCtWin: boolean*/
 
-        } else {
+        app.coinflips[data.coinflipIndex].ctWin = data.didCtWin
+    })
+
+    socket.on('offer status', function (data) {
+        if(!data.tl || app.user.tradelink == data.tl) {
             app.offerStatus = data;
             if (data.status === 3 || data.status === false) {
                 app.disableTrade = false;
