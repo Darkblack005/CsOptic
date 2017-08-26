@@ -372,9 +372,39 @@ margin-top:5%
 	border-color:#8c8c8c;
 }
 
-/*.watch-playerinfo {
-	background-color: gray;
-}*/
+.watch-csgo-item {
+    width: 16.6666667%;
+    min-height: 65px;
+    min-width: 260px;
+    background: rgba(0, 0, 0, .05);
+    float: left;
+    position: relative;
+    border: 1px solid rgba(0, 0, 0, .4);
+}
+
+.watch-csgo-item-bg {
+    position: absolute;
+    left: 0; top: 0; right: 0; bottom: 0;
+    background-position: left;
+    background-size: 65px;
+    background-repeat: no-repeat;
+}
+
+.watch-csgo-items {
+    width: 265px;
+    height: 293.5px;
+    overflow: auto;
+    display: block;
+}
+
+.watch-csgo-item-price {
+    text-align: right;
+	margin-top: 42px;
+	margin-right: 5px;
+    font-size: 16px;
+    font-weight: 400;
+    z-index: 2;
+}
 
 #coin-flip-cont {
 width: 128px;
