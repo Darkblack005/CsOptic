@@ -380,13 +380,14 @@ margin-top:5%
     float: left;
     position: relative;
     border: 1px solid rgba(0, 0, 0, .4);
+	margin-bottom: 3px;
 }
 
 .watch-csgo-item-bg {
     position: absolute;
     left: 0; top: 0; right: 0; bottom: 0;
     background-position: left;
-    background-size: 65px;
+    background-size: 60px;
     background-repeat: no-repeat;
 }
 
