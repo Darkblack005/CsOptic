@@ -278,7 +278,7 @@ $(function () {
         id: coinflipIndex,
         didCtWin: boolean*/
 
-        app.coinflips[data.coinflipIndex].ctWin = data.didCtWin
+        app.coinflips[data.id].ctWin = data.didCtWin
     })
 
     socket.on('offer status', function (data) {
