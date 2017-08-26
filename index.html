@@ -364,7 +364,7 @@
 								</div>
 							</div>
 							<div class="col-xs-4 watch-playerinfo" align="center" style="padding:20px;">
-								<div v-if="coinflips[0].joinData == null">
+								<div v-if="coinflips[flipIndexClicked].joinData == null">
 									<img style="height:100px;width:100px;border-radius:5px;" src="img\blank-avatar.png">
 								</div>
 								<div v-else>
@@ -380,7 +380,7 @@
 								<strong>Amount</strong>
 							</div>
 							<div class="col-xs-4 watch-playerinfo" align="center">
-								<div v-if="coinflips[0].joinData == null">
+								<div v-if="coinflips[flipIndexClicked].joinData == null">
 									<strong>Foo</strong>
 								</div>
 								<div v-else>
@@ -394,7 +394,7 @@
 								<strong> {{ coinflips[flipIndexClicked].itemsAndDetails.value }} </strong>
 							</div>
 							<div class="col-xs-4" align="center">
-								<div v-if="coinflips[0].joinData == null">
+								<div v-if="coinflips[flipIndexClicked].joinData == null">
 									<strong> 0.00 </strong>
 								</div>
 								<div v-else>
@@ -402,7 +402,7 @@
 								</div>
 							</div>
 							<div class="col-xs-4 watch-playerinfo" align="center">
-								<div v-if="coinflips[0].joinData == null">
+								<div v-if="coinflips[flipIndexClicked].joinData == null">
 									<strong>0.00</strong>
 								</div>
 								<div v-else>
@@ -423,14 +423,20 @@
 						</div>
 						<div class="row" style="margin-top:5px;">
 							<div class="col-xs-6">
-								<div class="watch-csgo-items scrollbar" id="style-3">
-									<div v-for="item in coinflips[flipIndexClicked].flipDetails.user" class="watch-csgo-item">
-										<div class="watch-csgo-item watch-csgo-item-bg" :style="`background-image:url(https://steamcommunity-a.akamaihd.net/economy/image/${item.image});`"></div>
-										<div class="watch-csgo-item-price">{{ coinflips[flipIndexClicked].itemsAndDetails.value }}</div>
-									</div>
+								<div v-for="item in coinflips[flipIndexClicked].flipDetails.user" class="watch-csgo-item">
+									<div class="watch-csgo-item watch-csgo-item-bg" :style="`background-image:url(https://steamcommunity-a.akamaihd.net/economy/image/${item.image});`"></div>
+									<div class="watch-csgo-item-price">{{ coinflips[flipIndexClicked].itemsAndDetails.value }}</div>
 								</div>
 							</div>
 							<div class="col-xs-6">
+								<div v-if="coinflips[flipIndexClicked].joinData == null">
+								<strong style="margin-left:45px;">Waiting for User to Join</strong>
+								</div>
+								<div v-else>
+									<div v-for="items in coinflips[flipIndexClicked].joindata.user" class="watch-csgo-item"></div>
+									<div class="watch-csgo-item watch-csgo-item-bg" :style="`background-image:url(https://steamcommunity-a.akamaihd.net/economy/image/${item.image});`"></div>
+									<div class="watch-csgo-item-price">{{ coinflips[flipIndexClicked].joindata.itemsAndDetails.value }}</div>
+								</div>
 							</div>
 						</div>
 					</div>
