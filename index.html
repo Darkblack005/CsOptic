@@ -411,16 +411,6 @@
 							</div>
 						</div>
 						<hr>
-						<div class="row">
-							<div class="col-xs-6">
-								<strong>Item</strong>
-								<strong style="float:right;margin-right:10px;">Price</strong>
-							</div>	
-							<div class="col-xs-6">
-								<strong>Item</strong>
-								<strong style="float:right;margin-right:10px;">Price</strong>
-							</div>
-						</div>
 						<div class="row" style="margin-top:5px;">
 							<div class="col-xs-6">
 								<div v-for="item in coinflips[flipIndexClicked].flipDetails.user" class="watch-csgo-item">
@@ -447,7 +437,7 @@
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-primary" style="outline:none;" data-dismiss="modal">Close</button>
-						<p style="float:left;margin-top:10px;"> Server Hash: Lorem ipsum dolor sit amet </p>
+						<p style="float:left;margin-top:10px;font-size:10px;">Server Hash: {{ coinflips[flipIndexClicked].finalHash }} </p>
 					</div>
 				</div>
 			</div>
