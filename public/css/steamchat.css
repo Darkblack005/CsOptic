@@ -399,16 +399,21 @@ margin-top:5%
 }
 
 .watch-csgo-item-price {
-    text-align: right;
-	margin-top: 42px;
-	margin-right: 5px;
+    float: right;
+	margin-top: 32px;
+	margin-right: 75px;
     font-size: 16px;
     font-weight: 400;
+	width:40px;
     z-index: 2;
 }
 
 .watch-csgo-item-name {
-	font-size: 12px;
+	font-size: 14px;
+	float: right;
+	margin-top: 10px;
+	margin-right: -60px;
+	text-wrap: normal;
 }
 
 #coin-flip-cont {
