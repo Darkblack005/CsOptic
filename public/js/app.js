@@ -144,7 +144,7 @@ $(function () {
                 $('#coin').removeClass();
                 this.flipIndexClicked = index;
 
-                this.flipCoin(this.coinflips[coinflipIndex].ctwin);
+                this.flipCoin(this.coinflips[index].ctwin);
             },
             flipCoin: function(ctSide) {
                 $('#coin').removeClass();
