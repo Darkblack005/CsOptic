@@ -50,7 +50,7 @@ $(function () {
             addItem: function (assetid, price, image, name) {
                 
                 var userInventorySelected = this.userInventorySelected;
-                userInventorySelected.push({ assetid, image, name });
+                userInventorySelected.push({ assetid, price, image, name });
                 this.userInventorySelected = userInventorySelected;
                 if(typeof price === 'undefined') {
                     price = 0
