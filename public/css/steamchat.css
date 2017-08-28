@@ -414,6 +414,14 @@ margin-top:5%
 	text-align:center;
 }
 
+.side-selected {
+	position:absolute;
+	right:38px; bottom:10px;
+	width:35px;
+	height:35px;
+	z-index:1
+}
+
 #coin-flip-cont {
 width: 128px;
 height: 128px;
