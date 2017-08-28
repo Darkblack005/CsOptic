@@ -43,5 +43,7 @@ module.exports = {
     rates: {
         ignoreItemsBelow: 0.01, // Ignore items below this price (price * rate < ignoreItemsBelow) - shows (Too Low) for user
         commissionPercentage: 0.08 // The bot will keep 0-commission % value of whatever items it receives
-    }
+    },
+
+    flipDeleteTimout: 5    // After the flip finishes, how long to wait before deleting it (in seconds)
 }
