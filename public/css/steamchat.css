@@ -350,7 +350,6 @@ margin-top:5%
     padding: 1px 3px;
     position: absolute;
     z-index: 1;
-    pointer-events: none;
 }
 .csgo-item--title:after {
     content: " ";
