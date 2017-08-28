@@ -254,9 +254,13 @@ io.on('connection', function (socket) {
                                                 Flip.changeFlipJoinableByFlipIndex(offerData.flipId, false, () => {
                                                     io.emit('flip update', {})
 
+                                                    // Need this to make sure it isnt a different flip that took this position
+                                                    var finalhash = Flip.currentflips[offerData.flipId].finalHash
+
                                                     // Set timeout for 3 minutes or so for the joiner to trade over their items
                                                     setTimeout(() => {
-                                                        if(!Flip.currentflips[offerData.flipId].joinData) {
+                                                        // If the flip exists in that position and its hash is the same as it was 3 minutes ago and there is no joiner data
+                                                        if(Flip.currentflips[offerData.flipId] && finalhash == Flip.currentflips[offerData.flipId].finalhash && !Flip.currentflips[offerData.flipId].joinData) {
                                                             Flip.changeFlipJoinableByFlipIndex(offerData.flipId, true, () => {
                                                                 console.log('User did not trade items after 3 minutes. Changing flip # ' + offerData.flipId + ' back to joinable')
                                                             })
