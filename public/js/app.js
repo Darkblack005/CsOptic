@@ -174,7 +174,7 @@ $(function () {
                             tradelink: localStorage[this.user.id],
                             clientSeed: this.clientSeed,
                             name: this.user.displayName,
-                            pic: this.user.photos[1].value,
+                            pic: this.user.photos[2].value,
                             side: this.ctSide
                         });
                         console.log('Offer sent.')
