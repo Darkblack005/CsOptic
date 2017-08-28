@@ -296,6 +296,10 @@ $(function () {
                 app.userInventorySelected = [];
                 app.userInventorySelectedValue = 0;
             }
+
+            if(data.tl && app.user.tradelink == data.tl) {
+                $('#tradeoffer').modal('show');
+            }
         }
     });
 
