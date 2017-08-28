@@ -65,14 +65,14 @@
 											<span style="display:inline;margin-right: 15px; margin-left: 15px;font-size:15px;">vs.</span>
 											<img id="profilepic" class="img-responsive img-avatar" :src="flip.joinData.data.pic" alt="Avatar" style="width: 50px; height: 50px;display:inline;margin-left:5px;">
 										</td>
-										<td>${{ flip.itemsAndDetails.value + flip.joinData.itemsAndDetails.value }}</td>
+										<td>${{ flip.itemsAndDetails.value + flip.joinData.itemsAndDetails.value.toFixed(2) }}</td>
 										<td>{{ flip.itemsAndDetails.count + flip.joinData.itemsAndDetails.count }}</td>
 									</template>
 									<template v-else>
 										<td width="300px;">
 											<img id="profilepic" class="img-responsive img-avatar" :src="flip.flipDetails.pic" alt="Avatar" style="width: 50px; height: 50px;display:inline;margin-right: 5px">
 										</td>
-										<td>${{ flip.itemsAndDetails.value }}</td>
+										<td>${{ flip.itemsAndDetails.value.toFixed(2) }}</td>
 										<td width="122px;">{{ flip.itemsAndDetails.count }}</td>
 									</template>
 									<td v-if="flip.joinable && user.id != flip.flipDetails.steamID64">
@@ -395,14 +395,14 @@
 						<br>
 						<div class="row">
 							<div class="col-xs-4 watch-playerinfo" align="center">
-								<strong> ${{ coinflips[flipIndexClicked].itemsAndDetails.value }} </strong>
+								<strong> ${{ coinflips[flipIndexClicked].itemsAndDetails.value.toFixed(2) }} </strong>
 							</div>
 							<div class="col-xs-4" align="center">
 								<div v-if="coinflips[flipIndexClicked].joinData == null">
 									<strong> 0.00 </strong>
 								</div>
 								<div v-else>
-									<strong> {{ coinflips[flipIndexClicked].itemsAndDetails.value + coinflips[flipIndexClicked].joinData.itemsAndDetails.value }} </strong>
+									<strong> {{ coinflips[flipIndexClicked].itemsAndDetails.value.toFixed(2) + coinflips[flipIndexClicked].joinData.itemsAndDetails.value.toFixed(2) }} </strong>
 								</div>
 							</div>
 							<div class="col-xs-4 watch-playerinfo" align="center">
@@ -410,7 +410,7 @@
 									<strong>$0.00</strong>
 								</div>
 								<div v-else>
-									<strong> ${{ coinflips[flipIndexClicked].joinData.itemsAndDetails.value }} </strong>
+									<strong> ${{ coinflips[flipIndexClicked].joinData.itemsAndDetails.value.toFixed(2) }} </strong>
 								</div>
 							</div>
 						</div>
