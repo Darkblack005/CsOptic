@@ -76,7 +76,7 @@
 										<td width="122px;">{{ flip.itemsAndDetails.count }}</td>
 									</template>
 									<td v-if="flip.joinable && user.id != flip.flipDetails.steamID64">
-										<button class="btn btn-default watchbtn" style="outline:none;margin-right:15px;margin-left:50px;" data-toggle="modal" data-target="#watchflipmodal" v-on:click="clickWatchModal(index)">Watch</button>
+										<button class="btn btn-default watchbtn" style="outline:none;margin-right:15px;margin-left:60px;" data-toggle="modal" data-target="#watchflipmodal" v-on:click="clickWatchModal(index)">Watch</button>
 										<button class="btn btn-primary" style="width:77px;margin-right:-52px;" data-toggle="modal" data-target="#joinFlipModal" v-on:click="flipIndexClicked = index">Join</button>
 									<td v-else width="186px;">
 										<button class="btn btn-default watchbtn" style="outline:none;float:right;margin-right:7px;" data-toggle="modal" data-target="#watchflipmodal" v-on:click="flipIndexClicked = index">Watch</button>
@@ -348,7 +348,7 @@
 		<div class="modal fade" id="watchflipmodal" v-if="coinflips && coinflips[flipIndexClicked]">
 			<div class="modal-dialog">
 				<div class="modal-content">
-					<div class="modal-header"><h4>Coinflip</h4>
+					<div class="modal-header" style="height:60px;"><p style="margin-top:-10px;font-size:22px;"><image width="50px" height="50px" src="img/favicon.png">CsOptic</p>
 					</div>
 					<div class="modal-body">
 						<div class="row">
