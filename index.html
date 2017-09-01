@@ -366,7 +366,7 @@
 								</div>
 							</div>
 							<div class="col-xs-4 watch-playerinfo" align="center" style="padding:20px;">
-								<div v-if="coinflips[flipIndexClicked].joinData == null">
+								<div v-if="!coinflips[flipIndexClicked].joinData">
 									<img style="height:100px;width:100px;border-radius:5px;" src="img\blank-avatar.png">
 								</div>
 								<div v-else>
@@ -384,7 +384,7 @@
 								<strong>Amount</strong>
 							</div>
 							<div class="col-xs-4 watch-playerinfo" align="center">
-								<div v-if="coinflips[flipIndexClicked].joinData == null">
+								<div v-if="!coinflips[flipIndexClicked].joinData">
 									<strong>User 2</strong>
 								</div>
 								<div v-else>
@@ -398,7 +398,7 @@
 								<strong> ${{ coinflips[flipIndexClicked].itemsAndDetails.value.toFixed(2) }} </strong>
 							</div>
 							<div class="col-xs-4" align="center">
-								<div v-if="coinflips[flipIndexClicked].joinData == null">
+								<div v-if="!coinflips[flipIndexClicked].joinData">
 									<strong> 0.00 </strong>
 								</div>
 								<div v-else>
@@ -406,7 +406,7 @@
 								</div>
 							</div>
 							<div class="col-xs-4 watch-playerinfo" align="center">
-								<div v-if="coinflips[flipIndexClicked].joinData == null">
+								<div v-if="!coinflips[flipIndexClicked].joinData">
 									<strong>$0.00</strong>
 								</div>
 								<div v-else>
@@ -424,7 +424,7 @@
 								</div>
 							</div>
 							<div class="col-xs-6">
-								<div v-if="coinflips[flipIndexClicked].joinData == null">
+								<div v-if="!coinflips[flipIndexClicked].joinData">
 								<strong style="margin-left:45px;">Waiting for User to Join</strong>
 								</div>
 								<div v-else>
@@ -440,11 +440,11 @@
 					<div class="modal-footer">
 						<div class="row">
 							<div class="col-xs-10">
-								<div v-if="coinflips[flipIndexClicked].joinData==null">
-								<p style="float:left;margin-top:10px;font-size:10px;">Server Hash:</p>
+								<div v-if="!coinflips[flipIndexClicked].joinData">
+									<p style="float:left;margin-top:10px;font-size:10px;">Server Hash (fix):</p>
 								</div>
 								<div v-else>
-								<p style="float:left;margin-top:10px;font-size:10px;">Server Hash: {{ coinflips[flipIndexClicked].finalHash }} </p>
+									<p style="float:left;margin-top:10px;font-size:10px;">Server Hash (fix): {{ coinflips[flipIndexClicked].finalHash }} </p>
 								</div>
 							</div>
 							<div class="col-xs-2">
