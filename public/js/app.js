@@ -136,6 +136,7 @@ $(function () {
                 this.offerStatus = {}
                 this.userInventorySelectedValue = 0;
                 this.flipIndexClicked = -1
+                this.reloadInventories()
             },
             switchCoinside: function(ctSide) {
                 this.ctSide = ctSide
