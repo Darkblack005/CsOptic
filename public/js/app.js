@@ -268,6 +268,12 @@ $(function () {
         $('.content').mCustomScrollbar('scrollTo', 'last');
     });
 
+    socket.on('spam message', function(msg) {
+        $('#mCSB_1_container').append($('<p>').html('<hr>'));
+        $('#mCSB_1_container').append($('<p>').html('<strong>' + msg + '</strong>'));
+        $('.content').mCustomScrollbar('scrollTo', 'last');
+    })
+
     socket.on('site', function (data) {
         app.site = data;
         window.document.title = data.header + ' | CS:GO Gambling Evolved';

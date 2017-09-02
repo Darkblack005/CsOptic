@@ -109,7 +109,12 @@ io.on('connection', function (socket) {
 
     socket.on('chat message', function (msg) {
         if (msg.name && msg.pic && msg.message.length > 0) {
-            io.emit('chat message', msg);
+            if(!io.sockets.connected[socket.id].lastMsgTime || Date.now()-io.sockets.connected[socket.id].lastMsgTime > config.spamTime*1000) {
+                socket.lastMsgTime = Date.now()
+                io.emit('chat message', msg);
+            } else {
+                socket.emit('spam message', config.spamMessage);
+            }
         }
     })
 
