@@ -305,7 +305,7 @@ io.on('connection', function (socket) {
                 status: false,
             })
         } else {
-            if(!FlipManager.userHasFlip(offerData.steamID64))
+            if(!Flip.userHasFlip(offerData.steamID64))
             {
                 Trade.validateOffer(offerData, (err, success, userCount, userValue) => {
                     socket.emit('offer status', {
