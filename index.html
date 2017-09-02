@@ -75,10 +75,10 @@
 										<td>${{ flip.itemsAndDetails.value.toFixed(2) }}</td>
 										<td width="122px;">{{ flip.itemsAndDetails.count }}</td>
 									</template>
-									<td v-if="flip.joinable && user.id != flip.flipDetails.steamID64">
-										<button class="btn btn-default watchbtn" style="outline:none;margin-right:15px;margin-left:60px;" data-toggle="modal" data-target="#watchflipmodal" v-on:click="clickWatchModal(index)">Watch</button>
+									<td v-if="flip.joinable && user.id != flip.flipDetails.steamID64" width="220px;">
+										<button class="btn btn-default watchbtn" style="outline:none;margin-right:15px;margin-left:27px;" data-toggle="modal" data-target="#watchflipmodal" v-on:click="clickWatchModal(index)">Watch</button>
 										<button class="btn btn-primary" style="width:77px;margin-right:-52px;" data-toggle="modal" data-target="#joinFlipModal" v-on:click="flipIndexClicked = index">Join</button>
-									<td v-else width="186px;">
+									<td v-else width="220px;">
 										<button class="btn btn-default watchbtn" style="outline:none;float:right;margin-right:7px;" data-toggle="modal" data-target="#watchflipmodal" v-on:click="flipIndexClicked = index">Watch</button>
 									</td>
 								</tr>
@@ -440,7 +440,8 @@
 					<div class="modal-footer">
 						<div class="row">
 							<div class="col-xs-10">
-								<p style="float:left;margin-top:10px;font-size:10px;">Server Hash (fix): {{ coinflips[flipIndexClicked].finalHash }} </p>
+								<p style="float:left;font-size:10px;">Server Hash (fix): {{ coinflips[flipIndexClicked].finalHash }} </p>
+								<p style="float:left;font-size:10px;margin-bottom:-10px;">Client Seed: {{coinflips[flipIndexClicked].flipDetails.clientSeed }} </p>
 							</div>
 							<div class="col-xs-2">
 								<button type="button" class="btn btn-primary" style="outline:none;" data-dismiss="modal">Close</button>
@@ -517,9 +518,7 @@
 	<div class="footer">
 		<div class="container">
 			<span>
-          		<a href='#'><i class="fa fa-facebook fa-3x fa-fw"></i></a>
           		<a href='https://twitter.com/cs_optic' target="_blank"><i class="fa fa-twitter fa-3x fa-fw"></i></a>
-				<a href='#'><i class="fa fa-instagram fa-3x fa-fw" style="color:rgb(238, 66, 244);"></i></a>
           	</span>
 		</div>
 	</div>
