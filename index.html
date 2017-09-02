@@ -505,10 +505,6 @@
 							<strong v-if="offerStatus.error.code === 429">We are being rate-limited and could not send the offer. Please try again later.</strong>
 							<strong v-else>{{ offerStatus.error }}</strong>
 						</div>
-						<div>
-							<h4>Server hash</h4>
-							<p>{{ serverHash }}</p>
-						</div>
 					</div>
 					<div class="modal-footer">
 						<button type="button" style="background-color:rgb(85,85,85)" class="btn btn-default" data-dismiss="modal" v-on:click="reset">Close</button>

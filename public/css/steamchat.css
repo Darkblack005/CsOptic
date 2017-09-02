@@ -260,6 +260,7 @@ margin-top:5%
 .csgo-items.high {
     height: 420px;
 	width: 283px;
+	position: absolute;
 }
 .csgo-items .well {
     border-radius: 0;
@@ -267,8 +268,8 @@ margin-top:5%
 }
 .csgo-item {
     width: 16.6666667%;
-    min-height: 85px;
-    min-width: 85px;
+    height: 84px;
+    width: 84px;
     background: rgba(0, 0, 0, .05);
     float: left;
     position: relative;
@@ -342,24 +343,29 @@ margin-top:5%
 .csgo-item--title {
     visibility: hidden;
     width: 100%;
-    bottom: 100%;
+	top:100%;
     background: rgba(0, 0, 0, .8);
     color: #fff;
     font-size: 13px;
     text-align: center;
     padding: 1px 3px;
-    position: absolute;
+    position: relative;
     z-index: 1;
 }
 .csgo-item--title:after {
     content: " ";
     position: absolute;
-    top: 100%;
+    bottom: 100%;
     left: 50%;
-    margin-left: -5px;
+	margin-left:-5px;
     border-width: 5px;
     border-style: solid;
     border-color: rgba(0, 0, 0, .8) transparent transparent transparent;
+	-moz-transform: scale(1, -1);
+	-webkit-transform: scale(1, -1);
+	-o-transform: scale(1, -1);
+	-ms-transform: scale(1, -1);
+	transform: scale(1, -1);
 }
 .csgo-items .alert {
     border-radius: 0;
