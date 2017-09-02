@@ -58,7 +58,7 @@
 								</tr>
 							</thead>
 							<tbody v-if="coinflips && coinflips.length > 0">
-								<tr v-for="(flip, index) in coinflips">
+								<tr v-for="(flip, index) in coinflips" v-if="flip">
 									<template v-if="flip.joinData">
 										<td width="300px;">
 											<img id="profilepic" class="img-responsive img-avatar" :src="flip.flipDetails.pic" alt="Avatar" style="width: 50px; height: 50px;display:inline;margin-right: 5px">
