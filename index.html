@@ -307,7 +307,7 @@
 									</span>
 									<button type="button" class="btn btn-primary" style="background-color:rgb(85,85,85);margin-bottom:2px;height:38px;outline:none;" data-dismiss="modal"
 									v-on:click="cancelFlip">Cancel</button>
-									<div v-if="coinflips && coinflips.length > 0 && flipIndexClicked != -1 && userInventorySelectedValue.toFixed(2) > (coinflips[flipIndexClicked].itemsAndDetails.value)-((coinflips[flipIndexClicked].itemsAndDetails.value)*site.flipMinimumPercentageMultiplier)" style="float:right;">
+									<div v-if="coinflips && coinflips.length > 0 && coinflips[flipIndexClicked] && flipIndexClicked != -1 && userInventorySelectedValue.toFixed(2) > (coinflips[flipIndexClicked].itemsAndDetails.value)-((coinflips[flipIndexClicked].itemsAndDetails.value)*site.flipMinimumPercentageMultiplier)" style="float:right;">
 										<button type="button" class="btn btn-primary" style="outline:none;height:38px;width:80px;margin-left:4px;" v-on:click="joinFlip">Join</button>
 									</div>
 									<div v-else style="float:right;">
