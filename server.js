@@ -305,105 +305,113 @@ io.on('connection', function (socket) {
                 status: false,
             })
         } else {
-            Trade.validateOffer(offerData, (err, success, userCount, userValue) => {
-                socket.emit('offer status', {
-                    error: err,
-                    status: (success) ? 1 : false,
-                })
-                if (!err && success) {
-                    if (typeof config.bots[offerData.bot_id] === 'undefined') {
-                        offerData.bot_id = Object.keys(config.bots)[0]
-                    }
-
-                    Flip.createNewServerSeed(data.steamID64, (hash) => {
-                        socket.emit('offer status', {
-                            error: null,
-                            status: 2,
-                            computedServerHash: hash
-                        })
-
-                        const Bot = Trade.getBot(offerData.bot_id)
-                        const offer = Bot.manager.createOffer(offerData.tradelink)
-
-                        var items = []
-
-                        offerData.user.forEach(function(e) {
-                            items.push({
-                                assetid: e.assetid,
-                                appid: 730,
-                                contextid: 2,
-                                amount: 1,
-                            })
-                        })
-
-                        var itemsAndDetails = {
-                            items: items,
-                            count: userCount,
-                            value: userValue
+            if(!FlipManager.userHasFlip(offerData.steamID64))
+            {
+                Trade.validateOffer(offerData, (err, success, userCount, userValue) => {
+                    socket.emit('offer status', {
+                        error: err,
+                        status: (success) ? 1 : false,
+                    })
+                    if (!err && success) {
+                        if (typeof config.bots[offerData.bot_id] === 'undefined') {
+                            offerData.bot_id = Object.keys(config.bots)[0]
                         }
 
-                        offer.addTheirItems(items)
+                        Flip.createNewServerSeed(data.steamID64, (hash) => {
+                            socket.emit('offer status', {
+                                error: null,
+                                status: 2,
+                                computedServerHash: hash
+                            })
 
-                        offer.setMessage(config.tradeMessage)
-                        offer.getUserDetails((detailsError, me, them) => {
-                            if (detailsError) {
-                                console.log('Details error: ' + detailsError)
-                                socket.emit('offer status', {
-                                    error: detailsError,
-                                    status: false,
+                            const Bot = Trade.getBot(offerData.bot_id)
+                            const offer = Bot.manager.createOffer(offerData.tradelink)
+
+                            var items = []
+
+                            offerData.user.forEach(function(e) {
+                                items.push({
+                                    assetid: e.assetid,
+                                    appid: 730,
+                                    contextid: 2,
+                                    amount: 1,
                                 })
-                            } else if (me.escrowDays + them.escrowDays > 0) {
-                                socket.emit('offer status', {
-                                    error: 'You must have 2FA enabled, we do not accept trades that go into Escrow.',
-                                    status: false,
-                                })
-                            } else {
-                                offer.send((errSend, status) => {
-                                    if (errSend) {
-                                        socket.emit('offer status', {
-                                            error: errSend,
-                                            status: false,
-                                        })
-                                    } else {
-                                        console.log('[!!!!!] Sent a trade: ', data)
-                                        if (status === 'pending') {
+                            })
+
+                            var itemsAndDetails = {
+                                items: items,
+                                count: userCount,
+                                value: userValue
+                            }
+
+                            offer.addTheirItems(items)
+
+                            offer.setMessage(config.tradeMessage)
+                            offer.getUserDetails((detailsError, me, them) => {
+                                if (detailsError) {
+                                    console.log('Details error: ' + detailsError)
+                                    socket.emit('offer status', {
+                                        error: detailsError,
+                                        status: false,
+                                    })
+                                } else if (me.escrowDays + them.escrowDays > 0) {
+                                    socket.emit('offer status', {
+                                        error: 'You must have 2FA enabled, we do not accept trades that go into Escrow.',
+                                        status: false,
+                                    })
+                                } else {
+                                    offer.send((errSend, status) => {
+                                        if (errSend) {
                                             socket.emit('offer status', {
-                                                error: null,
-                                                status: 2,
-                                            })
-                                            Trade.botConfirmation(data.bot_id, offer.id, (errConfirm) => {
-                                                if (!errConfirm) {
-                                                    socket.emit('offer status', {
-                                                        error: null,
-                                                        status: 3,
-                                                        offer: offer.id,
-                                                    })
-
-                                                    Flip.createNewFlip(data, itemsAndDetails)
-
-                                                } else {
-                                                    socket.emit('offer status', {
-                                                        error: errConfirm,
-                                                        status: false,
-                                                    })
-                                                }
+                                                error: errSend,
+                                                status: false,
                                             })
                                         } else {
-                                            socket.emit('offer status', {
-                                                error: null,
-                                                status: 3,
-                                                offer: offer.id,
-                                            })
+                                            console.log('[!!!!!] Sent a trade: ', data)
+                                            if (status === 'pending') {
+                                                socket.emit('offer status', {
+                                                    error: null,
+                                                    status: 2,
+                                                })
+                                                Trade.botConfirmation(data.bot_id, offer.id, (errConfirm) => {
+                                                    if (!errConfirm) {
+                                                        socket.emit('offer status', {
+                                                            error: null,
+                                                            status: 3,
+                                                            offer: offer.id,
+                                                        })
 
-                                            Flip.createNewFlip(data, itemsAndDetails)
+                                                        Flip.createNewFlip(data, itemsAndDetails)
+
+                                                    } else {
+                                                        socket.emit('offer status', {
+                                                            error: errConfirm,
+                                                            status: false,
+                                                        })
+                                                    }
+                                                })
+                                            } else {
+                                                socket.emit('offer status', {
+                                                    error: null,
+                                                    status: 3,
+                                                    offer: offer.id,
+                                                })
+
+                                                Flip.createNewFlip(data, itemsAndDetails)
+                                            }
                                         }
-                                    }
-                                })
-                            }
+                                    })
+                                }
+                            })
                         })
-                    })
-                }
-            })
+                    }
+                })
+            } else {
+                socket.emit('offer status', {
+                    error: 'You already made a flip! Open the offer and hit accept or decline.',
+                    status: false,
+                })
+            }
         }
     })
 });
