@@ -147,15 +147,18 @@ $(function () {
 
                 this.flipCoin(this.coinflips[index].ctwin);
             },
-            flipCoin: function(ctSide) {
-                $('#coin').removeClass();
-                setTimeout(function() {
-	                document.getElementById("coin").addEventListener("click", function() {
-                        setTimeout(function(){
-                            $('#coin').addClass(ctSide ? 'animation1260' : 'animation1440');
-                        }, 100);
-	                });
-                }, 2000);
+            flipCoin: function(index) {
+                var winner = this.coinflips[index].ctwin
+                if(winner) {
+                    $('#coin').removeClass();
+                    setTimeout(function() {
+                        document.getElementById("coin").addEventListener("click", function() {
+                            setTimeout(function(){
+                                $('#coin').addClass(winner ? 'animation1260' : 'animation1440');
+                            }, 100);
+                        });
+                    }, 2000);
+                }
             },
             createFlip: function () {
                 if (!localStorage[this.user.id]) {
@@ -286,6 +289,9 @@ $(function () {
         didCtWin: boolean*/
 
         app.coinflips[data.id].ctWin = data.didCtWin
+        if(($("element").data('bs.modal') || {}).isShown && data.id == app.flipIndexClicked) {
+            flipCoin(data.id)
+        }
     })
 
     socket.on('offer status', function (data) {
