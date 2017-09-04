@@ -288,7 +288,7 @@ $(function () {
         didCtWin: boolean*/
 
         app.coinflips[data.id].ctWin = data.didCtWin
-        flipCoin(data.id)
+        app.flipCoin(data.id)
         /*if(($('watchflipmodal').data('bs.modal') || {}).isShown && data.id == app.flipIndexClicked) {
             flipCoin(data.id)
         }*/
