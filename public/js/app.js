@@ -148,14 +148,15 @@ $(function () {
                 this.flipCoin(index);
             },
             flipCoin: function(index) {
+                const self = this
                 console.log('flipCoin called')
                 if(typeof this.coinflips[index].ctwin !== 'null' && typeof this.coinflips[index].ctwin !== 'undefined') {
                     console.log('ctWin exists')
                     $('#coin').removeClass();
                     setTimeout(function(){
-                        $('#coin').addClass(this.coinflips[index].ctwin ? 'animation1260' : 'animation1440');
+                        $('#coin').addClass(self.coinflips[index].ctwin ? 'animation1260' : 'animation1440');
                         console.log('flipped coin')
-                    }, 2500);
+                    }, 1000);
                 }
             },
             createFlip: function () {
