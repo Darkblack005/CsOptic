@@ -154,7 +154,7 @@ $(function () {
                     console.log('ctWin exists')
                     $('#coin').removeClass();
                     setTimeout(function(){
-                        $('#coin').addClass(self.coinflips[index].ctWin ? 'animation1440' : 'animation1260');
+                        $('#coin').addClass((self.coinflips[index].ctWin === true) ? 'animation1260' : 'animation1440');
                         console.log('flipped coin')
                     }, 500);
                 } else {
