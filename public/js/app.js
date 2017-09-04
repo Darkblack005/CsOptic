@@ -145,16 +145,15 @@ $(function () {
                 $('#coin').removeClass();
                 this.flipIndexClicked = index;
 
-                this.flipCoin(this.coinflips[index].ctwin);
+                this.flipCoin(index);
             },
             flipCoin: function(index) {
-                var winner = this.coinflips[index].ctwin
-                if(winner) {
+                if(this.coinflips[index].ctwin) {
                     $('#coin').removeClass();
                     setTimeout(function() {
                         document.getElementById("coin").addEventListener("click", function() {
                             setTimeout(function(){
-                                $('#coin').addClass(winner ? 'animation1260' : 'animation1440');
+                                $('#coin').addClass(this.coinflips[index].ctwin ? 'animation1260' : 'animation1440');
                             }, 100);
                         });
                     }, 2000);
