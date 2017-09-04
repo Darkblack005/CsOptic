@@ -150,13 +150,15 @@ $(function () {
             flipCoin: function(index) {
                 const self = this
                 console.log('flipCoin called')
-                if(typeof this.coinflips[index].ctwin !== 'null' && typeof this.coinflips[index].ctwin !== 'undefined') {
+                if(typeof self.coinflips[index].ctWin !== 'null' && typeof self.coinflips[index].ctWin !== 'undefined') {
                     console.log('ctWin exists')
                     $('#coin').removeClass();
                     setTimeout(function(){
-                        $('#coin').addClass(self.coinflips[index].ctwin ? 'animation1260' : 'animation1440');
+                        $('#coin').addClass(self.coinflips[index].ctWin ? 'animation1260' : 'animation1440');
                         console.log('flipped coin')
-                    }, 1000);
+                    }, 500);
+                } else {
+                    console.log('ctWin DNE')
                 }
             },
             createFlip: function () {
@@ -288,7 +290,7 @@ $(function () {
         didCtWin: boolean*/
 
         app.coinflips[data.id].ctWin = data.didCtWin
-        app.flipCoin(data.id)
+        
         /*if(($('watchflipmodal').data('bs.modal') || {}).isShown && data.id == app.flipIndexClicked) {
             flipCoin(data.id)
         }*/
@@ -296,6 +298,7 @@ $(function () {
         console.log('got coinflip winner: ctWin=')
         console.log(app.coinflips[data.id].ctWin)
         console.log('for index ' + data.id)
+        app.flipCoin(data.id)
     })
 
     socket.on('offer status', function (data) {
