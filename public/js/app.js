@@ -150,13 +150,9 @@ $(function () {
             flipCoin: function(index) {
                 if(this.coinflips[index].ctwin) {
                     $('#coin').removeClass();
-                    setTimeout(function() {
-                        document.getElementById("coin").addEventListener("click", function() {
-                            setTimeout(function(){
-                                $('#coin').addClass(this.coinflips[index].ctwin ? 'animation1260' : 'animation1440');
-                            }, 100);
-                        });
-                    }, 2000);
+                    setTimeout(function(){
+                        $('#coin').addClass(this.coinflips[index].ctwin ? 'animation1260' : 'animation1440');
+                    }, 2500);
                 }
             },
             createFlip: function () {
