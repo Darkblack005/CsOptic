@@ -282,7 +282,9 @@ $(function () {
         /*
         id: coinflipIndex,
         didCtWin: boolean*/
-
+        console.log('got coinflip winner: ctWin=')
+        console.log(app.coinflips[data.id].ctWin)
+        console.log('for index ' + data.id)
         app.coinflips[data.id].ctWin = data.didCtWin
         if(($("element").data('bs.modal') || {}).isShown && data.id == app.flipIndexClicked) {
             flipCoin(data.id)
