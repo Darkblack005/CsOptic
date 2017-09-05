@@ -197,7 +197,7 @@ $(function () {
 
                     if (!this.disableTrade) {
                         this.disableTrade = true;
-                        $('#flipModal').modal('hide');
+                        $('#joinFlipModal').modal('hide');
                         $('#tradeoffer').modal('show');
                         socket.emit('join flip offer', {
                             user: this.userInventorySelected,
