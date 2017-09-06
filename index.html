@@ -301,8 +301,9 @@
 						<div class="modal-footer" style="height:80px;">
 							<div class="row">
 								<div class="col-xs-5" style="margin-top:-5px;">
-									<img src="img/t.png" style="width:50px;height:50px;margin-right:30px;">
-									<img src="img/ct.png" style="width:50px;height:50px;margin-right:8px;">
+									<strong>Your Side</strong>
+									<div v-if="ctSide == true"><img src="img\t.png" style="height:50px;width:50px;margin-left:50px;"></div>
+									<div v-else><img src="img\ct.png" style="height:50px;width:50px;margin-left:50px;"></div>
 								</div>
 								<div class="col-xs-7">
 									<span class="price">
@@ -339,7 +340,7 @@
 						<hr>
 						<p>By adding your Steam Trade url you make it possible for our bots to send you a trade offer without the need to add
 							you as a friend on steam.</p>
-						<p>This is totally safe and no items can be traded before you have inspected and accepted the offer from your steam page.</p>
+						<p>This is completely safe and no items can be traded before you have inspected and accepted the offer from your steam page.</p>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-primary" style="outline:none;" data-dismiss="modal">Close</button>
@@ -513,13 +514,49 @@
 			</div>
 		</div>
 	</div>
+	
+	<div class="modal fade" id="winnerTradeOffer">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h3>Congratulations, you have won as</h3><h3 v-if="ctWin == true">Counter-Terrorists.</h3><h3 v-else>Terrorists.</h3>
+				</div>
+				<div class="modal-body">
+					<h3>Trade Status</h3>
+					<div class="alert alert-info" v-if=" ! offerStatus.error && offerStatus.status != 3">
+						<strong v-if="offerStatus.status == 4"><img src="img/load.gif" alt=""> Validating requested trade..</strong>
+						<strong v-if="offerStatus.status == 1"><img src="img/load.gif" alt=""> Preparing to send offer..</strong>
+						<strong v-if="offerStatus.status == 2"><img src="img/load.gif" alt=""> Confirming sent offer..</strong>
+					</div>
+					<div v-else-if=" ! offerStatus.error && offerStatus.status == 3">
+						<div class="alert alert-success">
+							<strong>Requested trade has been sent successfully!
+								<a :href="`http://steamcommunity.com/tradeoffer/${offerStatus.offer}`" target="_blank">Click here to open the trade offer.</a>
+							</strong>
+						</div>
+						<div class="alert alert-warning">This trade offer will expire in <strong>10 minutes</strong>.</div>
+					</div>
+					<div v-else>
+						<strong v-if="offerStatus.error.code === 429">We are being rate-limited and could not send the offer. Please try again later.</strong>
+						<strong v-else>{{ offerStatus.error }}</strong>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" style="background-color:rgb(85,85,85)" class="btn btn-default" data-dismiss="modal" v-on:click="reset">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<div class="footer">
-		<div class="container">
-			<span>
-          		<a href='https://twitter.com/cs_optic' target="_blank"><i class="fa fa-twitter fa-3x fa-fw"></i></a>
-          	</span>
-		</div>
+		<div class="row">
+			<div class="col-xs-6 col-xs-offset-3">
+				<a href='https://twitter.com/cs_optic' target="_blank"><i class="fa fa-twitter fa-3x fa-fw" align="center"></i></a>
+			</div>
+			<div class="col-xs-3" style="margin-top:10px;">
+				<strong style="float:right;font-size:10px;">Please contact us with any questions, comments or concerns @ CsOpticBets@gmail.com</strong>
+			</div>
+		</div
 	</div>
 	
 	<script src="/socket.io/socket.io.js"></script>
