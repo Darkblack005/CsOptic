@@ -190,6 +190,7 @@ $(function () {
             },
             joinFlip: function () {
                 if (!localStorage[this.user.id]) {
+					$('joinFlipModal').modal('hide');
                     $('#tradeLinkModal').modal('show');
                 } else {
                     this.offerStatus = {};
