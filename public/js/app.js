@@ -318,7 +318,7 @@ $(function () {
             }
 
             if(data.tl && app.user.tradelink == data.tl) {
-                $('#winnerTradeOffer').modal('show');
+                $('#tradeoffer').modal('show');
             }
         }
     });
