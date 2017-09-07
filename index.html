@@ -309,9 +309,9 @@
 						<div class="modal-footer" style="height:80px;">
 							<div class="row">
 								<div class="col-xs-5" style="margin-top:-5px;">
-									<strong>Your Side</strong>
-									<div v-if="ctSide == true"><img src="img\t.png" style="height:50px;width:50px;margin-left:50px;"></div>
-									<div v-else><img src="img\ct.png" style="height:50px;width:50px;margin-left:50px;"></div>
+									<strong style="float:left;margin-top:15px;">Your Side:</strong>
+									<div v-if="coinflips[flipIndexClicked].flipDetails.side == true"><img src="img\t.png" style="height:50px;width:50px;float:left;margin-left:10px;"></div>
+									<div v-else><img src="img\ct.png" style="height:50px;width:50px;float:left;margin-left:10px;"></div>
 								</div>
 								<div class="col-xs-7">
 									<span class="price">
