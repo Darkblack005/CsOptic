@@ -64,8 +64,8 @@
 											<img id="profilepic" class="img-responsive img-avatar" :src="flip.flipDetails.pic" alt="Avatar" style="width: 50px; height: 50px;display:inline;margin-right: 5px">
 											<span style="display:inline;margin-right: 15px; margin-left: 15px;font-size:15px;">vs.</span>
 											<img id="profilepic" class="img-responsive img-avatar" :src="flip.joinData.data.pic" alt="Avatar" style="width: 50px; height: 50px;display:inline;margin-left:5px;">
-											<div v-if="coinflips[index].flipDetails.side == true"><img src="img\ct.png" class="table-side-selected"></div>
-											<div v-else><img src="img\t.png" class="table-side-selected"></div>
+											<div v-if="coinflips[index].flipDetails.side == true"><img src="img\ct.png" class="table-side-selected-creator"></div>
+											<div v-else><img src="img\t.png" class="table-side-selected-creator"></div>
 											<div v-if="coinflips[index].flipDetails.side == false"><img src="img\ct.png" class="table-side-selected-joiner"></div>
 											<div v-else><img src="img\t.png" class="table-side-selected-joiner"></div>
 										</td>
@@ -91,7 +91,7 @@
 									</td>
 								</tr>
 							</tbody>
-							<tbody v-else-if="coinflips == null">
+							<tbody v-else-if="coinflips === null">
 								<td colspan="4"><em>No current flips</em></td>
 							</tbody>
 							<tbody v-else class="nohover">
@@ -360,7 +360,15 @@
 		<div class="modal fade" id="watchflipmodal" v-if="coinflips && coinflips[flipIndexClicked]">
 			<div class="modal-dialog">
 				<div class="modal-content">
-					<div class="modal-header" style="height:60px;"><p style="margin-top:-10px;font-size:22px;"><image width="50px" height="50px" src="img/favicon.png">CsOptic</p>
+					<div class="modal-header" style="height:60px;">
+						<div class="row">
+							<div class="col-xs-8">
+								<p style="margin-top:-10px;font-size:22px;"><image width="50px" height="50px" src="img/favicon.png">CsOptic</p>
+							</div>
+							<div class="col-xs-4">
+								<button type="button" class="btn btn-primary manageOffer">Trade Offer</button>
+							</div>
+						</div>
 					</div>
 					<div class="modal-body">
 						<div class="row">
@@ -527,7 +535,8 @@
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h3>Congratulations, you have won as</h3><h3 v-if="ctWin == true">Counter-Terrorists.</h3><h3 v-else>Terrorists.</h3>
+					<div v-if="ctWin == true"><h3 style="font-size:10px;">Congratulations, you have won as Counter-Terrorists.</h3></div>
+					<div v-else><h3 style="font-size:10px;">Congratulations, you have won as Counter-Terrorists.</h3></div>
 				</div>
 				<div class="modal-body">
 					<h3>Trade Status</h3>

@@ -445,6 +445,28 @@ margin-top:5%
 	z-index:1
 }
 
+.manageOffer {
+	position:absolute;
+	left:80px; top:-5px;
+	background-color:rgb(75,75,75);
+	outline:none;
+}
+
+.manageOffer:hover {
+	background-color:rgb(70,70,70);
+	outline:none;
+}
+
+.manageOffer:active {
+	background-color:rgb(60,60,60) !important;
+	outline:none !important;
+}
+
+.manageOffer:focus {
+	background-color:rgb(70,70,70);
+	outline:none;
+}
+
 #coin-flip-cont {
 width: 128px;
 height: 128px;
