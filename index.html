@@ -91,24 +91,30 @@
 									</td>
 								</tr>
 							</tbody>
+							<tbody v-else-if="coinflips == null">
+								<td colspan="4"><em>No current flips</em></td>
+							</tbody>
 							<tbody v-else class="nohover">
 								<td colspan="4"><em>No current flips</em></td>
 							</tbody>
 						</table>
 					</div>
 					<div class="col-md-4">
-						<div id="chatbox" class="content" data-mcs-axis="y" data-mcs-theme="light-2">
-							<p v-if=" ! user"><strong>Hello, log in with Steam to use this chat.</strong></p>
-							<p v-else><strong>Hello {{ user.displayName }}, welcome to the chat.</strong></p>
-						</div>
-						<div id="textarea">
-							<form id="chatboxsendbutton" action="">
-								<input id="m" style="width: 252px; height: 40px;" autocomplete="off" />
-								<button class="btn btn-primary" style="height:40px;width:69px;margin-top:-2px;margin-left:-4px;">Send</button>
-							</form>
-						</div> <!--Twitter Shit-->
-						<div id="info" style="margin-right:40px;">
-							<a class="twitter-timeline" data-width="320" data-height="396" data-chrome="transparent noscrollbar" data-dnt="true" data-theme="dark" href="https://twitter.com/cs_optic">Tweets by CsOptic</a>
+						<div class="container-fluid" style="width:350px;">
+							<div id="chatbox" class="content" data-mcs-axis="y" data-mcs-theme="light-2">
+								<p v-if=" ! user"><strong>Hello, log in with Steam to use this chat.</strong></p>
+								<p v-else><strong>Hello {{ user.displayName }}, welcome to the chat.</strong></p>
+							</div>
+							<div id="textarea">
+								<form id="chatboxsendbutton" action="">
+									<input id="m" autocomplete="off" />
+									<button class="btn btn-primary" style="height:40px;width:69px;margin-top:-2px;margin-left:-4px;">Send</button>
+								</form>
+							</div>
+						 <!--Twitter Shit-->
+							<div id="info" style="margin-right:40px;">
+								<a class="twitter-timeline" data-width="320" data-height="396" data-chrome="transparent noscrollbar" data-dnt="true" data-theme="dark" href="https://twitter.com/cs_optic">Tweets by CsOptic</a>
+							</div>
 						</div>
 					</div>
 				</div>
