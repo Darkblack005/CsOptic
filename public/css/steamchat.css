@@ -10,13 +10,13 @@
     border-width: 2px;
 	border-top-right-radius: 15px;
 	border-top-left-radius: 15px;
-	border-color: rgba(35,35,35,0.75);
-	background-color: rgba(45,45,45,0.25);
+	border-color: rgb(45,45,45);
+	background-color: rgba(50,50,50,0.4);
 }
 
 #chatboxsendbutton input {
-	background-color: rgba(45,45,45,0.25);
-	border-color: rgba(35,35,35,0.75);
+	background-color: rgba(50,50,50,0.4);
+	border-color: rgb(45,45,45);
 	border-width: 2px;
 	border-bottom-left-radius: 15px;
 	border-style: solid;
@@ -26,7 +26,7 @@
 }
 
 #chatboxsendbutton button {
-	border-color: rgba(35,35,35,0.75);
+	border-color: rgb(55,55,55);
 	border-width: 2px;
 	border-bottom-right-radius: 15px;
 	outline: none;
@@ -46,6 +46,16 @@ p > hr {
     border: none;
 }
 
+.maincontainer {
+	background-color:rgba(40,40,40,0.5);
+	margin-top:7px;
+	border-color:rgb(45,45,45);
+}
+
+.modal-body {
+	background-color: rgb(40,40,40);
+}
+
 .updatebutton {
 	background-color:rgb(55,55,55);
 }
@@ -59,7 +69,7 @@ p > hr {
 }
 
 .watchbtn {
-	background-color:rgb(45,45,45);
+	background-color:rgb(40,40,40);
 }
 
 .watchbtn:hover {
@@ -75,7 +85,7 @@ p > hr {
 }
 
 .navbar-btn:hover {
-	background-color:rgb(55,55,55) !important;
+	background-color:rgb(40,40,40) !important;
 }
 
 .chatpic {
@@ -86,9 +96,10 @@ p > hr {
 }
 
 #navbar-main * {
+	position:static;
     line-height: 57px !important;
     font-size: 14px;
-	background-color: rgb(75,75,75);
+	background-color: transparent;
 }
 
 .table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td {
@@ -98,23 +109,23 @@ p > hr {
 }
 
 .table>thead>tr>th {
-	background-color: rgb(79,79,79)
+	background-color: rgba(40,40,40,0.0)
 }
 
 .table-striped>tbody>tr:nth-of-type(even) {
-	background-color: rgba(55,55,55,0.4);
+	background-color: rgb(50,50,50);
 }
 
 .table-striped>tbody>tr:nth-of-type(even):hover {
-	background-color: rgba(45,45,45,0.6);
+	background-color: rgba(55,55,55,0.6);
 }
 
 .table-striped>tbody>tr:nth-of-type(odd) {
-    background-color: rgba(40,40,40,0.4);
+    background-color: rgb(45,45,45);
 }
 
 .table-striped>tbody>tr:nth-of-type(odd):hover {
-	background-color: rgba(30,30,30,0.4);
+	background-color: rgb(46,46,46);
 }
 
 .nohover {
@@ -144,8 +155,8 @@ p > img, a > img {
     min-height:400px;
     min-width:321px;
 	border-radius: 8px;
-	border-color: rgba(35,35,35,0.75);
-	background-color: rgba(45,45,45,0.25);
+	border-color: rgb(45,45,45);
+	background-color: rgba(50,50,50,0.4);
 	margin-bottom:20px;
 }
 
@@ -180,7 +191,8 @@ body {
     padding-top: 70px;
     font-family: 'Exo', sans-serif;
     margin-bottom: 89px;
-	background-color: rgb(79,79,79);
+	background-image:url("../img/Background2.jpg");
+	background-color:rgb(40,40,40);
 }
 
 .inventorybutton {
@@ -191,7 +203,7 @@ margin-top:5%
   position: absolute;
   bottom: 0;
   width: 100%;
-  background-color: rgba(25,25,25,0.1);
+  background-color: rgba(35,35,35,0.5);
   text-align: center;
 }
 
@@ -448,7 +460,7 @@ margin-top:5%
 .manageOffer {
 	position:absolute;
 	left:80px; top:-5px;
-	background-color:rgb(75,75,75);
+	background-color:rgb(45,45,45);
 	outline:none;
 }
 
