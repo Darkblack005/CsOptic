@@ -141,12 +141,6 @@ $(function () {
             switchCoinside: function(ctSide) {
                 this.ctSide = ctSide
             },
-            clickWatchModal: function(index) {
-                $('#coin').removeClass();
-                this.flipIndexClicked = index;
-
-                this.flipCoin(index);
-            },
             flipCoin: function(index) {
                 const self = this
                 console.log('flipCoin called')
@@ -165,6 +159,12 @@ $(function () {
                 } else {
                     console.log('ctWin DNE')
                 }
+            },
+			clickWatchModal: function(index) {
+                $('#coin').removeClass();
+                this.flipIndexClicked = index;
+
+                this.flipCoin(index);
             },
             createFlip: function () {
                 if (!localStorage[this.user.id]) {
