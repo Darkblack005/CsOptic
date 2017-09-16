@@ -362,8 +362,15 @@
 					<div class="modal-header" style="height:60px;">
 						<h3 style="margin-top:1px;">Manage Offers</h2>
 					</div>
-					<div class="modal-body" style="min-height:100px;text-align:center;">
-						<strong style="text-decoration:underline;">Current Unaccepted Trades </strong>
+					<div class="modal-body" style="min-height:100px;">
+						<strong>If you've won any flips in the past and are concerned about where your items have gone, worry not.
+						By pressing this button our bots will send you a trade offer with all outstanding items associated with your steam ID.
+						We associate your items with your steam ID by using the item data for each particular item, so you'll recieve the exact items
+						that were involved in the flips you missed out on.</strong>
+						<br>
+						<br>
+						<strong style="text-decoration:underline;">Click here to retrieve your items:</strong>
+						<button id="tradeStoredItems" class="btn btn-primary manageItemsBtn" v-onclick="tradeOwedItems"> Click Here </button>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-primary" style="outline:none;" data-dismiss="modal">Close</button>
