@@ -103,6 +103,10 @@ io.on('connection', function (socket) {
         })
     })
 
+    socket.on('owed items request', (data) => {
+        Flip.sendOwedItems(data.tradelink, socket);
+    })
+
     socket.on('get coinflips', () => {
         socket.emit('update coinflips', Flip.getCurrentFlips())
     })

@@ -223,6 +223,11 @@ $(function () {
             },
             randomizeClientSeed: function () {
                 this.clientSeed = Math.floor(Math.random() * (Math.pow(16, 16))).toString(16)
+            },
+            tradeOwedItems: function() {
+                socket.emit('owed items request', {
+                    tradelink: localStorage[this.user.id]
+                });
             }
         }
     });
