@@ -33,6 +33,7 @@
 						<li style="margin-top:1px;"><button type="button" style="outline:none;" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#flipModal">New Flip</button></li>
 						<li style="margin-top:1px;"><button type="button" style="outline:none;" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#howitworksmodal">How it Works</button></li>
 						<li style="margin-top:1px;"><button type="button" style="outline:none;" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#tradeLinkModal">Trade Link</button></li>
+						<li style="margin-top:1px;"><button type="button" style="outline:none;" class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#manageTradesModal">Manage Offers</button></li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
 						<li v-if=" ! user"><a href="/auth/steam"><img src="https://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_large_noborder.png" style="margin-right:35px;"></a></li>
@@ -355,18 +356,27 @@
 			</div>
 		</div>
 		
+		<div class="modal fade" id="manageTradesModal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header" style="height:60px;">
+						<h3 style="margin-top:1px;">Manage Offers</h2>
+					</div>
+					<div class="modal-body" style="min-height:100px;text-align:center;">
+						<strong style="text-decoration:underline;">Current Unaccepted Trades </strong>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" style="outline:none;" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		
 		<div class="modal fade" id="watchflipmodal" v-if="coinflips && coinflips[flipIndexClicked]">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header" style="height:60px;width:599px;margin-left:-1px;">
-						<div class="row">
-							<div class="col-xs-8">
-								<p style="margin-top:-10px;font-size:22px;"><image width="50px" height="50px" src="img/favicon.png">CsOptic</p>
-							</div>
-							<div class="col-xs-4">
-								<button type="button" class="btn btn-primary manageOffer">Trade Offer</button>
-							</div>
-						</div>
+						<p style="margin-top:-10px;font-size:22px;"><image width="50px" height="50px" src="img/favicon.png">CsOptic</p>
 					</div>
 					<div class="modal-body" style="width:599px;margin-left:-1px;">
 						<div class="row">

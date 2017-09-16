@@ -141,12 +141,6 @@ $(function () {
             switchCoinside: function(ctSide) {
                 this.ctSide = ctSide
             },
-            clickWatchModal: function(index) {
-                $('#coin').removeClass();
-                this.flipIndexClicked = index;
-
-                this.flipCoin(index);
-            },
             flipCoin: function(index) {
                 const self = this
                 console.log('flipCoin called')
@@ -154,12 +148,23 @@ $(function () {
                     console.log('ctWin exists')
                     $('#coin').removeClass();
                     setTimeout(function(){
-                        $('#coin').addClass((self.coinflips[index].ctWin === true) ? 'animation1260' : 'animation1440');
+						if (self.coinflips[index].ctWin === true) {
+							$('#coin').addClass ('animation1260')
+						}
+						else { 
+							$('#coin').addClass ('animation1440')
+						}
                         console.log('flipped coin')
                     }, 500);
                 } else {
                     console.log('ctWin DNE')
                 }
+            },
+			clickWatchModal: function(index) {
+                $('#coin').removeClass();
+                this.flipIndexClicked = index;
+
+                this.flipCoin(index);
             },
             createFlip: function () {
                 if (!localStorage[this.user.id]) {
