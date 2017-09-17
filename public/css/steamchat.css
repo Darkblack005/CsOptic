@@ -442,18 +442,16 @@ margin-top:5%
 }
 
 .table-side-selected-creator {
-	position:absolute;
-	bottom:20px; 
-	margin-left:-22px;
+	margin-bottom:-32px;
+	margin-left:-23px;
 	width:25px;
 	height:25px;
 	z-index:1
 }
 
 .table-side-selected-joiner {
-	position:absolute;
-	bottom:20px;
-	margin-left:-13px;	
+	margin-bottom:-32px;
+	margin-left:-18px;	
 	width:25px;
 	height:25px;
 	z-index:1
