@@ -63,12 +63,12 @@
 									<template v-if="flip.joinData">
 										<td width="300px;">
 											<img id="profilepic" class="img-responsive img-avatar" :src="flip.flipDetails.pic" alt="Avatar" style="width: 50px; height: 50px;display:inline;margin-right: 5px">
+											<img v-if="flip.flipDetails.side == true" src="img\ct.png" class="table-side-selected-creator"></div>
+											<img v-else src="img\t.png" class="table-side-selected-creator"></div>
 											<span style="display:inline;margin-right: 15px; margin-left: 15px;font-size:15px;">vs.</span>
 											<img id="profilepic" class="img-responsive img-avatar" :src="flip.joinData.data.pic" alt="Avatar" style="width: 50px; height: 50px;display:inline;margin-left:5px;">
-											<div v-if="flip.flipDetails.side == true"><img src="img\ct.png" class="table-side-selected-creator"></div>
-											<div v-else><img src="img\t.png" class="table-side-selected-creator"></div>
-											<div v-if="flip.flipDetails.side == false"><img src="img\ct.png" class="table-side-selected-joiner"></div>
-											<div v-else><img src="img\t.png" class="table-side-selected-joiner"></div>
+											<img v-if="flip.flipDetails.side == false" src="img\ct.png" class="table-side-selected-joiner"></div>
+											<img v-else src="img\t.png" class="table-side-selected-joiner"></div>
 										</td>
 										<td>${{ (flip.itemsAndDetails.value + flip.joinData.itemsAndDetails.value).toFixed(2) }}</td>
 										<td>{{ flip.itemsAndDetails.count + flip.joinData.itemsAndDetails.count }}</td>
@@ -76,10 +76,10 @@
 									<template v-else>
 										<td width="300px;">
 											<img id="profilepic" class="img-responsive img-avatar" :src="flip.flipDetails.pic" alt="Avatar" style="width: 50px; height: 50px;display:inline;margin-right: 5px">
+											<img v-if="flip.flipDetails.side == true" src="img\ct.png" class="table-side-selected-creator">
+											<img v-else src="img\t.png" class="table-side-selected-creator">
 											<span style="display:inline;margin-right: 15px; margin-left: 15px;font-size:15px;">vs.</span>
 											<img src="img\blank-avatar.png" style="width:50px;height:50px;display:inline;margin-left:5px;border-radius:50%;">
-											<div v-if="flip.flipDetails.side == true"><img src="img\ct.png" class="table-side-selected-creator"></div>
-											<div v-else><img src="img\t.png" class="table-side-selected-creator"></div>
 										</td>
 										<td>${{ flip.itemsAndDetails.value.toFixed(2) }}</td>
 										<td width="122px;">{{ flip.itemsAndDetails.count }}</td>
