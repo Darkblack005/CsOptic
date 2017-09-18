@@ -3,7 +3,7 @@
 const fs = require('fs');
 
 const options = {
-    cert: fs.readFileSync('/etc/letsencrypt/live/csoptic.com/fullchain.pem/fullchain.pem'),
+    cert: fs.readFileSync('/etc/letsencrypt/live/csoptic.com/fullchain.pem'),
     key: fs.readFileSync('/etc/letsencrypt/live/csoptic.com/privkey.pem')
 };
 
