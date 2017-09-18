@@ -1,12 +1,19 @@
 'use strict'
 
+const options = {
+    cert: fs.readFileSync('../key/fullchain.pem'),
+    key: fs.readFileSync('../key/privkey.pem')
+};
+
 const express = require('express');
 const app = express();
-const http = require('http').Server(app);
-const io = require('socket.io')(http);
+const https = require('https');
+var server = https.createServer(options, app);
+const io = require('socket.io').listen(https);
 const cookieParser = require('cookie-parser')
 const passport = require('passport');
 const session = require('express-session');
+const fs = require('fs');
 const sharedsession = require('express-socket.io-session');
 const SteamStrategy = require('passport-steam').Strategy;
 
@@ -16,6 +23,8 @@ const FlipManager = require('./lib/flipmanager')
 
 const Flip = new FlipManager({ io })
 const Trade = new TradeBot({ io, Flip })
+
+
 
 passport.serializeUser(function (user, done) {
     done(null, user)
@@ -51,6 +60,7 @@ const sessionMiddleware = session({
     saveUninitialized: true,
 })
 
+app.use(require('helmet')());
 app.use(cookieParser())
 app.use(sessionMiddleware)
 app.use(passport.initialize())
@@ -413,6 +423,4 @@ io.on('connection', function (socket) {
     })
 });
 
-http.listen(config.websitePort, function () {
-    console.log('[!] Server listening on *:' + config.websitePort);
-});
+https.listen(config.websitePort);
