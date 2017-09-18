@@ -10,7 +10,7 @@ const options = {
 const express = require('express');
 const app = express();
 const https = require('https');
-var server = https.createServer(options, app);
+var server = https.createServer(options, app).listen(config.websitePort);
 const io = require('socket.io').listen(https);
 const cookieParser = require('cookie-parser')
 const passport = require('passport');
@@ -423,5 +423,3 @@ io.on('connection', function (socket) {
         }
     })
 });
-
-https.listen(config.websitePort);
