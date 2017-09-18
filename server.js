@@ -1,6 +1,7 @@
 'use strict'
 
 const fs = require('fs');
+const config = require('./config');
 
 const options = {
     cert: fs.readFileSync('/etc/letsencrypt/live/csoptic.com/fullchain.pem'),
@@ -18,7 +19,6 @@ const session = require('express-session');
 const sharedsession = require('express-socket.io-session');
 const SteamStrategy = require('passport-steam').Strategy;
 
-const config = require('./config');
 const TradeBot = require('./lib/index')
 const FlipManager = require('./lib/flipmanager')
 
