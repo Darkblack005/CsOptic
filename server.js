@@ -1,5 +1,7 @@
 'use strict'
 
+const fs = require('fs');
+
 const options = {
     cert: fs.readFileSync('../key/fullchain.pem'),
     key: fs.readFileSync('../key/privkey.pem')
@@ -13,7 +15,6 @@ const io = require('socket.io').listen(https);
 const cookieParser = require('cookie-parser')
 const passport = require('passport');
 const session = require('express-session');
-const fs = require('fs');
 const sharedsession = require('express-socket.io-session');
 const SteamStrategy = require('passport-steam').Strategy;
 
