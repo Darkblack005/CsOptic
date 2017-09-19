@@ -176,8 +176,8 @@
 									<div v-else-if=" ! user.steamID64">
 										<div class="alert alert-info" style="margin-right:30px;">Please authenticate to create a new coinflip.</div>
 									</div>
-									<div v-else-if="invalidTradelink">
-										<div class="alert alert-info" style="margin-right:30px;">Please update your trade link.</div>
+									<div v-else-if="invalidTradelink"  style="margin-left:15px;margin-top:10px;">
+										<strong>Please update your <br> trade link <strong data-dismiss="modal" data-toggle="modal" data-target="#tradeLinkModal" class="tradelinkLink">here</strong></strong>
 									</div>
 									<div v-else>
 										<div class="alert alert-info"><img src="img/load.gif" alt="">Please wait..</div>

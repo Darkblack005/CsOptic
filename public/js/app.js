@@ -329,7 +329,7 @@ $(function () {
             }
 
             if(data.tl && app.user.tradelink == data.tl) {
-                $('#tradeoffer').modal('show');
+                $('#tradeoffer').delay( 1000 ).modal('show');
             }
         }
     });
@@ -345,8 +345,6 @@ $(function () {
         if (localStorage[user.id]) {
             app.user.tradelink = localStorage.getItem(user.id)
             app.invalidTradelink = false
-        } else {
-            //$('#tradeLinkModal').modal('show');
         }
     });
 

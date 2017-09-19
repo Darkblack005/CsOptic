@@ -457,6 +457,15 @@ margin-top:5%
 	z-index:1
 }
 
+.tradelinkLink {
+	text-decoration:underline;
+	cursor:pointer;
+}
+
+.tradelinkLink:hover {
+	font-style:bold;
+}
+
 .manageItemsBtn {
 	border:solid;
 	border-width: 2px;
