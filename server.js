@@ -1,16 +1,24 @@
 'use strict'
 
+const fs = require('fs');
+const config = require('./config');
+
+const options = {
+    cert: fs.readFileSync('/etc/letsencrypt/live/csoptic.com/fullchain.pem'),
+    key: fs.readFileSync('/etc/letsencrypt/live/csoptic.com/privkey.pem')
+};
+
+const https = require('https');
 const express = require('express');
 const app = express();
-const http = require('http').Server(app);
-const io = require('socket.io')(http);
+var server = https.createServer(options, app);
+const io = require('socket.io').listen(server);
 const cookieParser = require('cookie-parser')
 const passport = require('passport');
 const session = require('express-session');
 const sharedsession = require('express-socket.io-session');
 const SteamStrategy = require('passport-steam').Strategy;
 
-const config = require('./config');
 const TradeBot = require('./lib/index')
 const FlipManager = require('./lib/flipmanager')
 
@@ -51,6 +59,7 @@ const sessionMiddleware = session({
     saveUninitialized: true,
 })
 
+app.use(require('helmet')());
 app.use(cookieParser())
 app.use(sessionMiddleware)
 app.use(passport.initialize())
@@ -413,6 +422,6 @@ io.on('connection', function (socket) {
     })
 });
 
-http.listen(config.websitePort, function () {
-    console.log('[!] Server listening on *:' + config.websitePort);
+server.listen(config.websitePort, function() {
+  console.log('[!] Server up and running at port' + config.websitePort);
 });
