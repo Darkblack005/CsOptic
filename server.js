@@ -11,7 +11,8 @@ const options = {
 const express = require('express');
 const app = express();
 const https = require('https');
-var server = https.createServer(options, app).listen(config.websitePort);
+var server = https.createServer(options, app);
+server.listen(config.websitePort)
 const io = require('socket.io').listen(server);
 const cookieParser = require('cookie-parser')
 const passport = require('passport');
@@ -24,8 +25,6 @@ const FlipManager = require('./lib/flipmanager')
 
 const Flip = new FlipManager({ io })
 const Trade = new TradeBot({ io, Flip })
-
-
 
 passport.serializeUser(function (user, done) {
     done(null, user)
