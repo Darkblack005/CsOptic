@@ -8,11 +8,10 @@ const options = {
     key: fs.readFileSync('/etc/letsencrypt/live/csoptic.com/privkey.pem')
 };
 
+const https = require('https');
 const express = require('express');
 const app = express();
-const https = require('https');
 var server = https.createServer(options, app);
-server.listen(config.websitePort)
 const io = require('socket.io').listen(server);
 const cookieParser = require('cookie-parser')
 const passport = require('passport');
@@ -421,4 +420,8 @@ io.on('connection', function (socket) {
             }
         }
     })
+});
+
+server.listen(config.websitePort, function() {
+  console.log('[!] Server up and running at port' + config.websitePort);
 });
