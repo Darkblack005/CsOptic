@@ -4,8 +4,8 @@ const fs = require('fs');
 const config = require('./config');
 
 const options = {
-    cert: fs.readFileSync('/etc/letsencrypt/live/csoptic.com/fullchain.pem'),
-    key: fs.readFileSync('/etc/letsencrypt/live/csoptic.com/privkey.pem')
+    cert: fs.readFileSync('/etc/letsencrypt/live/www.csoptic.com/fullchain.pem'),
+    key: fs.readFileSync('/etc/letsencrypt/live/www.csoptic.com/privkey.pem')
 };
 
 const https = require('https');
@@ -13,6 +13,7 @@ const express = require('express');
 const app = express();
 var server = https.createServer(options, app);
 const io = require('socket.io').listen(server);
+var helmet = require('helmet')
 const cookieParser = require('cookie-parser')
 const passport = require('passport');
 const session = require('express-session');
@@ -59,7 +60,23 @@ const sessionMiddleware = session({
     saveUninitialized: true,
 })
 
-app.use(require('helmet')());
+var env = process.env.NODE_ENV || 'development';
+function forceSsl(req, res, next){
+  if(req.secure){
+    // OK, continue
+    return next();
+  };
+  // handle port numbers if you need non defaults
+  // res.redirect('https://' + req.host + req.url); // express 3.x
+  res.redirect('https://www.csoptic.com'); // express 4.x
+}
+
+//if (env === 'production')
+//{
+app.use(forceSsl);
+//}
+
+app.use(helmet())
 app.use(cookieParser())
 app.use(sessionMiddleware)
 app.use(passport.initialize())
@@ -422,6 +439,5 @@ io.on('connection', function (socket) {
     })
 });
 
-server.listen(config.websitePort, function() {
-  console.log('[!] Server up and running at port' + config.websitePort);
-});
+app.listen(80)
+server.listen(443);

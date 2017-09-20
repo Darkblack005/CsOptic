@@ -35,8 +35,8 @@ module.exports = {
         flipMinimumPercentageMultiplier: 0.1        // Minimum value the user can put in to join a flip i.e. $10 bet, the user can join by putting up $10-($10*flipMinimumPercentageMultiplier) == $9
     },
 
-    domain: 'localhost',    // Domain name only, follow the example (no http:// & no www & no /)
-    website: 'http://localhost',    // Website URL, follow the example (do not add / at the end)
+    domain: 'csoptic.com',
+    website: 'https://www.csoptic.com',
     websitePort: 443,    // Website PORT, don't change it unless you're using a reverse proxy
     tradeMessage: 'Trade offer from CsOptic | If you did not request this offer or the offer looks invalid please decline.', // Quite obvious
     
