@@ -163,8 +163,12 @@ $(function () {
 			clickWatchModal: function(index) {
                 $('#coin').removeClass();
                 this.flipIndexClicked = index;
-
-                this.flipCoin(index);
+				if (self.coinflips[index].ctWin === true) {
+					$('#coin').addClass ('animation1260')
+				}
+				else { 
+					$('#coin').addClass ('animation1440')
+				}
             },
             createFlip: function () {
                 if (!localStorage[this.user.id]) {
