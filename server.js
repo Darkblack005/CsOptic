@@ -4,8 +4,8 @@ const fs = require('fs');
 const config = require('./config');
 
 const options = {
-    cert: fs.readFileSync('/etc/letsencrypt/live/csoptic.com/fullchain.pem'),
-    key: fs.readFileSync('/etc/letsencrypt/live/csoptic.com/privkey.pem')
+    cert: fs.readFileSync('/etc/letsencrypt/live/www.csoptic.com/fullchain.pem'),
+    key: fs.readFileSync('/etc/letsencrypt/live/www.csoptic.com/privkey.pem')
 };
 
 const https = require('https');
@@ -68,7 +68,7 @@ function forceSsl(req, res, next){
   };
   // handle port numbers if you need non defaults
   // res.redirect('https://' + req.host + req.url); // express 3.x
-  res.redirect('https://csoptic.com'); // express 4.x
+  res.redirect('https://www.csoptic.com'); // express 4.x
 }
 
 //if (env === 'production')
