@@ -161,8 +161,8 @@ $(function () {
                 }
             },
 			clickWatchModal: function(index) {
-                $('#coin').removeClass();
-				if (self.coinflips[flipIndexClicked].ctWin === true) {
+                this.flipIndexClicked = index;
+				if (self.coinflips[index].ctWin === true) {
 					$('#coin').addClass ('animation1260')
 				}
 				else { 
