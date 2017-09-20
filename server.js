@@ -13,6 +13,7 @@ const express = require('express');
 const app = express();
 var server = https.createServer(options, app);
 const io = require('socket.io').listen(server);
+var helmet = require('helmet')
 const cookieParser = require('cookie-parser')
 const passport = require('passport');
 const session = require('express-session');
@@ -59,7 +60,7 @@ const sessionMiddleware = session({
     saveUninitialized: true,
 })
 
-app.use(require('helmet')());
+app.use(helmet())
 app.use(cookieParser())
 app.use(sessionMiddleware)
 app.use(passport.initialize())
@@ -422,6 +423,5 @@ io.on('connection', function (socket) {
     })
 });
 
-server.listen(config.websitePort, function() {
-  console.log('[!] Server up and running at port' + config.websitePort);
-});
+app.listen(80)
+server.listen(443);
