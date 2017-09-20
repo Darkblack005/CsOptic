@@ -149,24 +149,28 @@ $(function () {
                     $('#coin').removeClass();
                     setTimeout(function(){
 						if (self.coinflips[index].ctWin === true) {
-							$('#coin').addClass ('animation1260')
+							$('#coin').addClass ('animation1260');
+							console.log('flipped 1260 degrees');
 						}
 						else { 
-							$('#coin').addClass ('animation1440')
+							$('#coin').addClass ('animation1440');
+							console.log('flipped 1440 degrees');
 						}
-                        console.log('flipped coin')
+                        console.log('flipped coin');
                     }, 500);
                 } else {
-                    console.log('ctWin DNE')
+                    console.log('ctWin DNE');
                 }
             },
 			clickWatchModal: function(index) {
                 this.flipIndexClicked = index;
 				if (self.coinflips[index].ctWin === true) {
-					$('#coin').addClass ('animation1260')
+					$('#coin').addClass ('animation1260');
+					console.log('flipped 1260 degrees');
 				}
 				else { 
-					$('#coin').addClass ('animation1440')
+					$('#coin').addClass ('animation1440');
+					console.log('flipped 1440 degrees');
 				}
             },
             createFlip: function () {
