@@ -68,12 +68,10 @@ var forceSsl = function (req, res, next) {
     return next();
 };
 
-app.configure(function () {
-    //if (env === 'production')
-    {
-        app.use(forceSsl);
-    }
-})
+//if (env === 'production')
+//{
+app.use(forceSsl);
+//}
 
 app.use(helmet())
 app.use(cookieParser())
