@@ -160,19 +160,12 @@ $(function () {
                     console.log('ctWin DNE')
                 }
             },
-			if(typeof self.coinflips[index].ctWin !== 'null' && typeof self.coinflips[index].ctWin !== 'undefined') {
-				clickWatchModal: function(index) {
-					$('#coin').removeClass();
-					if (self.coinflips[index].ctWin === true) {
-						$('#coin').addClass('animation1440');
-					} else {
-						$('#coin').addClass('animation1260');
-					}
-					this.flipIndexClicked = index;
+			clickWatchModal: function(index) {
+                $('#coin').removeClass();
+                this.flipIndexClicked = index;
 
-					this.flipCoin(index);
-				},
-			}
+                this.flipCoin(index);
+            },
             createFlip: function () {
                 if (!localStorage[this.user.id]) {
                     $('#flipModal').modal('hide')
