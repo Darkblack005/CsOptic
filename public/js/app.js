@@ -160,7 +160,7 @@ $(function () {
                     console.log('ctWin DNE')
                 }
             },
-			clickWatchModal: function(index) {
+			clickWatchModal: function(flipIndexClicked) {
                 $('#coin').removeClass();
 				if (self.coinflips[flipIndexClicked].ctWin === true) {
 					$('#coin').addClass ('animation1260')
