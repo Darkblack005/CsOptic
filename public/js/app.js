@@ -162,7 +162,6 @@ $(function () {
                     console.log('ctWin DNE');
                 }
             },
-			if (typeof self.coinflips[index].ctWin !== 'null' && typeof self.coinflips[index].ctWin !== 'undefined') {
 				clickWatchModal: function(index) {
 					this.flipIndexClicked = index;
 					if (self.coinflips[index].ctWin === true) {
