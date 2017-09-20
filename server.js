@@ -68,7 +68,7 @@ function forceSsl(req, res, next){
   };
   // handle port numbers if you need non defaults
   // res.redirect('https://' + req.host + req.url); // express 3.x
-  res.redirect('https://' + req.hostname + req.url); // express 4.x
+  res.redirect('https://csoptic.com'); // express 4.x
 }
 
 //if (env === 'production')
