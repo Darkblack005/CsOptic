@@ -152,7 +152,7 @@ $(function () {
 							$('#coin').addClass ('animation1260');
 							console.log('flipped 1260 degrees');
 						}
-						else { 
+						else if (self.coinflips[index].ctWin === false) { 
 							$('#coin').addClass ('animation1440');
 							console.log('flipped 1440 degrees');
 						}
@@ -162,17 +162,19 @@ $(function () {
                     console.log('ctWin DNE');
                 }
             },
-			clickWatchModal: function(index) {
-                this.flipIndexClicked = index;
-				if (self.coinflips[index].ctWin === true) {
-					$('#coin').addClass ('animation1260');
-					console.log('flipped 1260 degrees');
-				}
-				else { 
-					$('#coin').addClass ('animation1440');
-					console.log('flipped 1440 degrees');
-				}
-            },
+			if (typeof self.coinflips[index].ctWin !== 'null' && typeof self.coinflips[index].ctWin !== 'undefined') {
+				clickWatchModal: function(index) {
+					this.flipIndexClicked = index;
+					if (self.coinflips[index].ctWin === true) {
+						$('#coin').addClass ('animation1260');
+						console.log('flipped 1260 degrees');
+					}
+					else { 
+						$('#coin').addClass ('animation1440');
+						console.log('flipped 1440 degrees');
+					}
+				},
+			}
             createFlip: function () {
                 if (!localStorage[this.user.id]) {
                     $('#flipModal').modal('hide')
