@@ -60,7 +60,7 @@ const sessionMiddleware = session({
     saveUninitialized: true,
 })
 
-var express = require('express'), env = process.env.NODE_ENV || 'development';
+var env = process.env.NODE_ENV || 'development';
 var forceSsl = function (req, res, next) {
     if (req.headers['x-forwarded-proto'] !== 'https') {
         return res.redirect(['https://', req.get('Host'), req.url].join(''));
