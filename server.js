@@ -61,12 +61,15 @@ const sessionMiddleware = session({
 })
 
 var env = process.env.NODE_ENV || 'development';
-var forceSsl = function (req, res, next) {
-    if (req.headers['x-forwarded-proto'] !== 'https') {
-        return res.redirect(['https://', req.get('Host'), req.url].join(''));
-    }
+function forceSsl(req, res, next){
+  if(req.secure){
+    // OK, continue
     return next();
-};
+  };
+  // handle port numbers if you need non defaults
+  // res.redirect('https://' + req.host + req.url); // express 3.x
+  res.redirect('https://' + req.hostname + req.url); // express 4.x
+}
 
 //if (env === 'production')
 //{
