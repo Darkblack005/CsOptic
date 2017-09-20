@@ -244,7 +244,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="row" style="background-color:rgb(55,55,55);margin-right:0px;margin-left:0px;height:528px;">
+						<div class="row" style="background-color:rgb(45,45,45);margin-right:0px;margin-left:0px;height:528px;">
 							<div class="col-xs-6">
 								<div class="well text-center inventorybutton">
 									Your inventory
@@ -316,7 +316,7 @@
 									<span class="price">
 										<span class="well well-sm">${{ userInventorySelectedValue.toFixed(2) }}</span>
 									</span>
-									<button type="button" class="btn btn-primary" style="background-color:rgb(85,85,85);margin-bottom:2px;height:38px;outline:none;" data-dismiss="modal"
+									<button type="button" class="btn btn-primary" style="background-color:rgb(55,55,55);margin-bottom:2px;height:38px;outline:none;" data-dismiss="modal"
 									v-on:click="cancelFlip">Cancel</button>
 									<div v-if="coinflips && coinflips.length > 0 && coinflips[flipIndexClicked] && flipIndexClicked != -1 && userInventorySelectedValue.toFixed(2) > (coinflips[flipIndexClicked].itemsAndDetails.value)-((coinflips[flipIndexClicked].itemsAndDetails.value)*site.flipMinimumPercentageMultiplier)" style="float:right;">
 										<button type="button" class="btn btn-primary" style="outline:none;height:38px;width:80px;margin-left:4px;" v-on:click="joinFlip">Join</button>
