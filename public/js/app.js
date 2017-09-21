@@ -237,6 +237,10 @@ $(function () {
         }
     });
 
+	if (Coinflips[flipIndexClicked] == null) {
+		$('watchflipmodal').modal('hide');
+	}
+	
     $(window).on("load", function () {
 
         /* call mCustomScrollbar function before jquery ui resizable() */
