@@ -152,7 +152,7 @@ $(function () {
 							$('#coin').addClass ('animation1260');
 							console.log('flipped 1260 degrees');
 						}
-						else { 
+						else if (self.coinflips[index].ctWin == false){ 
 							$('#coin').addClass ('animation1440');
 							console.log('flipped 1440 degrees');
 						}
@@ -168,7 +168,7 @@ $(function () {
 					$('#coin').addClass ('animation1260');
 					console.log('flipped 1260 degrees');
 				}
-				else { 
+				else if (this.coinflips[index].ctWin == false) {
 					$('#coin').addClass ('animation1440');
 					console.log('flipped 1440 degrees');
 				}
