@@ -163,8 +163,8 @@ $(function () {
                 }
             },
 			clickWatchModal: function(index) {
+				this.flipIndexClicked = index;
 				if(typeof self.coinflips[index].ctWin !== 'null' && typeof self.coinflips[index].ctWin !== 'undefined') {
-					this.flipIndexClicked = index;
 					if (self.coinflips[index].ctWin === true) {
 						$('#coin').addClass ('animation1260');
 						console.log('flipped 1260 degrees');
