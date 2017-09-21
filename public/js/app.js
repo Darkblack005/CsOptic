@@ -162,14 +162,16 @@ $(function () {
             },
 			clickWatchModal: function(index) {
 				this.flipIndexClicked = index;
+				setTimeout(function(){
 				if (this.coinflips[index].ctWin == true) {
 					$('#coin').removeClass('animation1260');
-					$('#coin').delay(1000).addClass ('animation1260');
+					$('#coin').addClass ('animation1260');
 				}
 				else if (this.coinflips[index].ctWin == false) {
-					$('#coin').removeClass('animation1260');
-					$('#coin').delay(1000).addClass ('animation1440');
+					$('#coin').removeClass('animation1440');
+					$('#coin').addClass ('animation1440');
 				}
+				}, 300);
             },
             createFlip: function () {
                 if (!localStorage[this.user.id]) {
