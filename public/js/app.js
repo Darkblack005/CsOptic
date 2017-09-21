@@ -148,7 +148,7 @@ $(function () {
                     console.log('ctWin exists')
                     $('#coin').removeClass();
                     setTimeout(function(){
-						if (self.coinflips[index].ctWin === true) {
+						if (self.coinflips[index].ctWin == true) {
 							$('#coin').addClass ('animation1260');
 							console.log('flipped 1260 degrees');
 						}
@@ -161,19 +161,6 @@ $(function () {
                 } else {
                     console.log('ctWin DNE');
                 }
-            },
-			clickWatchModal: function(index) {
-                this.flipIndexClicked = index;
-				if (self.coinflips[index].ctWin !== 'undefined') {
-					if (self.coinflips[index].ctWin === true) {
-						$('#coin').addClass ('animation1260');
-						console.log('flipped 1260 degrees');
-					}
-					else { 
-						$('#coin').addClass ('animation1440');
-						console.log('flipped 1440 degrees');
-					}
-				}
             },
             createFlip: function () {
                 if (!localStorage[this.user.id]) {
