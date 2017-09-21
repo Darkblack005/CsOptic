@@ -234,8 +234,6 @@ $(function () {
                     tradelink: localStorage[this.user.id]
                 });
             },
-			if (coinflips[flipIndexClicked] == null) {
-				$('watchflipmodal').modal('hide');
 			}
         }
     });
