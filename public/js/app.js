@@ -173,8 +173,8 @@ $(function () {
 						$('#coin').addClass ('animation1440');
 						console.log('flipped 1440 degrees');
 					}
-				},
-			}
+				}
+			},
             createFlip: function () {
                 if (!localStorage[this.user.id]) {
                     $('#flipModal').modal('hide')
