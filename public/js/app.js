@@ -148,11 +148,11 @@ $(function () {
                     console.log('ctWin exists')
                     $('#coin').removeClass();
                     setTimeout(function(){
-						if (self.coinflips[index].ctWin === true) {
+						if (self.coinflips[index].ctWin == true) {
 							$('#coin').addClass ('animation1260');
 							console.log('flipped 1260 degrees');
 						}
-						else if (self.coinflips[index].ctWin === false) { 
+						else if (self.coinflips[index].ctWin == false) { 
 							$('#coin').addClass ('animation1440');
 							console.log('flipped 1440 degrees');
 						}
@@ -162,17 +162,19 @@ $(function () {
                     console.log('ctWin DNE');
                 }
             },
-			clickWatchModal: function(index) {
-                this.flipIndexClicked = index;
-				if (self.coinflips[index].ctWin === true) {
-					$('#coin').addClass ('animation1260');
-					console.log('flipped 1260 degrees');
-				}
-				else { 
-					$('#coin').addClass ('animation1440');
-					console.log('flipped 1440 degrees');
-				}
-            },
+			if (self.coinflips[index].ctWin !== 'null' && self.coinflips[index].ctWin !== 'undefined') {
+				clickWatchModal: function(index) {
+					this.flipIndexClicked = index;
+					if (self.coinflips[index].ctWin === true) {
+						$('#coin').addClass ('animation1260');
+						console.log('flipped 1260 degrees');
+					}
+					else { 
+						$('#coin').addClass ('animation1440');
+						console.log('flipped 1440 degrees');
+					}
+				},
+			}
             createFlip: function () {
                 if (!localStorage[this.user.id]) {
                     $('#flipModal').modal('hide')
