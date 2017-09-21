@@ -162,8 +162,8 @@ $(function () {
                     console.log('ctWin DNE');
                 }
             },
-			if (coinflips[index].ctWin !== 'null' && coinflips[index].ctWin !== 'undefined') {
-				clickWatchModal: function(index) {
+			clickWatchModal: function(index) {
+				if(typeof self.coinflips[index].ctWin !== 'null' && typeof self.coinflips[index].ctWin !== 'undefined') {
 					this.flipIndexClicked = index;
 					if (self.coinflips[index].ctWin === true) {
 						$('#coin').addClass ('animation1260');
