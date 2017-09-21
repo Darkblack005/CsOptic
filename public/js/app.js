@@ -177,7 +177,7 @@ $(function () {
 						$('#coin').removeClass('animation1440');
 						$('#coin').addClass ('animation1440');
 					}
-				}, 2000;
+				}, 2000);
             },
             createFlip: function () {
                 if (!localStorage[this.user.id]) {
