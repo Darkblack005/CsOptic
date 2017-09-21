@@ -150,11 +150,9 @@ $(function () {
                     setTimeout(function(){
 						if (self.coinflips[index].ctWin == true) {
 							$('#coin').addClass ('animation1260');
-							console.log('flipped 1260 degrees');
 						}
 						else if (self.coinflips[index].ctWin == false){ 
 							$('#coin').addClass ('animation1440');
-							console.log('flipped 1440 degrees');
 						}
                         console.log('flipped coin');
                     }, 500);
@@ -165,12 +163,10 @@ $(function () {
 			clickWatchModal: function(index) {
 				this.flipIndexClicked = index;
 				if (this.coinflips[index].ctWin == true) {
-					$('#coin').addClass ('animation1260');
-					console.log('flipped 1260 degrees');
+					$('#coin').delay(200).addClass ('animation1260');
 				}
 				else if (this.coinflips[index].ctWin == false) {
-					$('#coin').addClass ('animation1440');
-					console.log('flipped 1440 degrees');
+					$('#coin').delay(200).addClass ('animation1440');
 				}
             },
             createFlip: function () {
