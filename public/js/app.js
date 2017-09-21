@@ -150,26 +150,34 @@ $(function () {
                     setTimeout(function(){
 						if (self.coinflips[index].ctWin == true) {
 							$('#coin').addClass ('animation1260');
+							setTimeout(function() {
+								$('#watchflipmodal').modal('hide'); 
+							}, config.flipDeleteTimout * 1000);
 						}
 						else if (self.coinflips[index].ctWin == false){ 
 							$('#coin').addClass ('animation1440');
+							setTimeout(function() {
+								$('#watchflipmodal').modal('hide'); 
+							}, config.flipDeleteTimout * 1000);
 						}
                         console.log('flipped coin');
-                    }, 500);
+                    }, 1000);
                 } else {
                     console.log('ctWin DNE');
                 }
             },
 			clickWatchModal: function(index) {
 				this.flipIndexClicked = index;
-				if (this.coinflips[index].ctWin == true) {
-					$('#coin').removeClass('animation1260');
-					$('#coin').addClass ('animation1260');
-				}
-				else if (this.coinflips[index].ctWin == false) {
-					$('#coin').removeClass('animation1440');
-					$('#coin').addClass ('animation1440');
-				}
+				setTimout(function() {
+					if (this.coinflips[index].ctWin == true) {
+						$('#coin').removeClass('animation1260');
+						$('#coin').addClass ('animation1260');
+					}
+					else if (this.coinflips[index].ctWin == false) {
+						$('#coin').removeClass('animation1440');
+						$('#coin').addClass ('animation1440');
+					}
+				}, 2000;
             },
             createFlip: function () {
                 if (!localStorage[this.user.id]) {
