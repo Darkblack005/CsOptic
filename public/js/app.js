@@ -162,7 +162,6 @@ $(function () {
             },
 			clickWatchModal: function(index) {
 				this.flipIndexClicked = index;
-				setTimeout(function(){
 				if (this.coinflips[index].ctWin == true) {
 					$('#coin').removeClass('animation1260');
 					$('#coin').addClass ('animation1260');
@@ -171,7 +170,6 @@ $(function () {
 					$('#coin').removeClass('animation1440');
 					$('#coin').addClass ('animation1440');
 				}
-				}, 300);
             },
             createFlip: function () {
                 if (!localStorage[this.user.id]) {
