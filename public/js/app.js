@@ -233,11 +233,10 @@ $(function () {
                 socket.emit('owed items request', {
                     tradelink: localStorage[this.user.id]
                 });
-            },
-			}
+            }
         }
     });
-	
+
     $(window).on("load", function () {
 
         /* call mCustomScrollbar function before jquery ui resizable() */
