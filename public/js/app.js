@@ -237,7 +237,7 @@ $(function () {
         }
     });
 
-	if (coinflips[flipIndexClicked] == null) {
+	if (this.coinflips[flipIndexClicked] == null) {
 		$('watchflipmodal').modal('hide');
 	}
 	
