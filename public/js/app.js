@@ -234,12 +234,11 @@ $(function () {
                     tradelink: localStorage[this.user.id]
                 });
             }
+			if (this.coinflips[flipIndexClicked] == null) {
+				$('watchflipmodal').modal('hide');
+			}
         }
     });
-
-	if (this.coinflips[flipIndexClicked] == null) {
-		$('watchflipmodal').modal('hide');
-	}
 	
     $(window).on("load", function () {
 
