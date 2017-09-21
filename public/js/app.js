@@ -163,12 +163,12 @@ $(function () {
 			clickWatchModal: function(index) {
 				this.flipIndexClicked = index;
 				if (this.coinflips[index].ctWin == true) {
-					$('#coin').removeclass('animation1260');
-					$('#coin').delay(200).addClass ('animation1260');
+					$('#coin').removeClass('animation1260');
+					$('#coin').delay(1000).addClass ('animation1260');
 				}
 				else if (this.coinflips[index].ctWin == false) {
-					$('#coin').removeclass('animation1260');
-					$('#coin').delay(200).addClass ('animation1440');
+					$('#coin').removeClass('animation1260');
+					$('#coin').delay(1000).addClass ('animation1440');
 				}
             },
             createFlip: function () {
