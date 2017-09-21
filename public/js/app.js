@@ -233,7 +233,7 @@ $(function () {
                 socket.emit('owed items request', {
                     tradelink: localStorage[this.user.id]
                 });
-            }
+            },
 			if (this.coinflips[flipIndexClicked] == null) {
 				$('watchflipmodal').modal('hide');
 			}
