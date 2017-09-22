@@ -152,13 +152,17 @@ $(function () {
 							$('#coin').addClass ('animation1260');
 							setTimeout(function() {
 								$('#watchflipmodal').modal('hide'); 
+<<<<<<< HEAD
 							}, config.flipDeleteTimeout * 1000);
+=======
+							}, 30000);
+>>>>>>> b3ebd900505a2c3a4a7d11ffb09768805a31e2bb
 						}
 						else if (self.coinflips[index].ctWin == false){ 
 							$('#coin').addClass ('animation1440');
 							setTimeout(function() {
 								$('#watchflipmodal').modal('hide'); 
-							}, config.flipDeleteTimout * 1000);
+							}, 30000);
 						}
                         console.log('flipped coin');
                     }, 1000);
@@ -168,7 +172,7 @@ $(function () {
             },
 			clickWatchModal: function(index) {
 				this.flipIndexClicked = index;
-				setTimout(function() {
+				setTimeout(function() {
 					if (this.coinflips[index].ctWin == true) {
 						$('#coin').removeClass('animation1260');
 						$('#coin').addClass ('animation1260');
@@ -322,7 +326,9 @@ $(function () {
         console.log('got coinflip winner: ctWin=')
         console.log(app.coinflips[data.id].ctWin)
         console.log('for index ' + data.id)
-        app.flipCoin(data.id)
+		if (flipIndexClicked == data.id) {
+			app.flipCoin(data.id)
+		}
     })
 
     socket.on('offer status', function (data) {
