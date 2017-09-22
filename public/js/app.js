@@ -152,11 +152,8 @@ $(function () {
 							$('#coin').addClass ('animation1260');
 							setTimeout(function() {
 								$('#watchflipmodal').modal('hide'); 
-<<<<<<< HEAD
 							}, config.flipDeleteTimeout * 1000);
-=======
 							}, 30000);
->>>>>>> b3ebd900505a2c3a4a7d11ffb09768805a31e2bb
 						}
 						else if (self.coinflips[index].ctWin == false){ 
 							$('#coin').addClass ('animation1440');
