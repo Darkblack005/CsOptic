@@ -152,9 +152,8 @@ $(function () {
 							$('#coin').addClass ('animation1260');
 							setTimeout(function() {
 								$('#watchflipmodal').modal('hide'); 
-							}, config.flipDeleteTimeout * 1000);
 							}, 30000);
-						}
+							}
 						else if (self.coinflips[index].ctWin == false){ 
 							$('#coin').addClass ('animation1440');
 							setTimeout(function() {
