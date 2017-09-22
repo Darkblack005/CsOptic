@@ -167,13 +167,14 @@ $(function () {
                 }
             },
 			clickWatchModal: function(index) {
+				const self = this
 				this.flipIndexClicked = index;
 				setTimeout(function() {
-					if (this.coinflips[index].ctWin == true) {
+					if (self.coinflips[index].ctWin == true) {
 						$('#coin').removeClass('animation1260');
 						$('#coin').addClass ('animation1260');
 					}
-					else if (this.coinflips[index].ctWin == false) {
+					else if (self.coinflips[index].ctWin == false) {
 						$('#coin').removeClass('animation1440');
 						$('#coin').addClass ('animation1440');
 					}
@@ -322,7 +323,7 @@ $(function () {
         console.log('got coinflip winner: ctWin=')
         console.log(app.coinflips[data.id].ctWin)
         console.log('for index ' + data.id)
-		if (flipIndexClicked == data.id) {
+		if (this.flipIndexClicked == data.id) {
 			app.flipCoin(data.id)
 		}
     })
