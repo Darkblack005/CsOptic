@@ -242,6 +242,21 @@ $(function () {
                 socket.emit('owed items request', {
                     tradelink: localStorage[this.user.id]
                 });
+            },
+            userHasFlip: function userHasFlip() {
+                var hasFlip = false
+                var sid64 = this.user.steamID64
+                for(var i = 0; i < this.coinflips.length; i++) {
+                    if(typeof this.coinflips[i] === 'undefined' || typeof this.coinflips[i] === 'null' ) {
+                        continue
+                    }
+
+                    if(this.coinflips[i].flipDetails.steamID64 == sid64 || this.coinflips[i].joinData.data.steamID64 == sid64) {
+                        hasFlip = true
+                    }
+                }
+
+                return hasFlip
             }
         }
     });
