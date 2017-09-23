@@ -143,6 +143,7 @@ $(function () {
             },
             flipCoin: function(index) {
                 const self = this
+				var ModalOpened = flipIndexClicked
                 console.log('flipCoin called')
                 if(typeof self.coinflips[index].ctWin !== 'null' && typeof self.coinflips[index].ctWin !== 'undefined') {
                     console.log('ctWin exists')
@@ -153,16 +154,20 @@ $(function () {
 							$('#coin').removeClass ('animation1440');
 							$('#coin').addClass ('animation1260');
 							setTimeout(function() {
-								$('#watchflipmodal').modal('hide'); 
-							}, 30000);
+								if (ModalOpened == flipIndexClicked) {
+									$('#watchflipmodal').modal('hide');
+								}
+							}, 29500);
 							}
 						else if (self.coinflips[index].ctWin == false){ 
 							$('#coin').removeClass ('animation1260');
 							$('#coin').removeClass ('animation1440');
 							$('#coin').addClass ('animation1440');
 							setTimeout(function() {
-								$('#watchflipmodal').modal('hide'); 
-							}, 30000);
+								if (ModalOpened == flipIndexClicked) {
+									$('#watchflipmodal').modal('hide');
+								}
+							}, 29500);
 						}
                         console.log('flipped coin');
                     }, 1000);
