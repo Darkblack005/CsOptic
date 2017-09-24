@@ -183,14 +183,14 @@ $(function () {
 					$('#coin').removeClass('animation1260');
 					setTimeout(function() {
 						$('#coin').addClass ('animation1260');
-					}, 2000);
+					}, 1000);
 				}
 				else if (self.coinflips[index].ctWin == false) {
 					$('#coin').removeClass('animation1260');
 					$('#coin').removeClass('animation1440');
 					setTimeout(function() {
 						$('#coin').addClass ('animation1440');
-					}, 2000);
+					}, 1000);
 				}
             },
             createFlip: function () {
