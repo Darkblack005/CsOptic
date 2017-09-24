@@ -88,7 +88,7 @@
 										<button class="btn btn-default watchbtn" style="outline:none;margin-right:15px;margin-left:27px;" data-toggle="modal" data-target="#watchflipmodal" v-on:click="clickWatchModal(index)">Watch</button>
 										<button class="btn btn-primary" style="width:77px;margin-right:-52px;" data-toggle="modal" data-target="#joinFlipModal" v-on:click="flipIndexClicked = index">Join</button>
 									</td>
-									<td v-else-if="userHasFlip == true" width="220px;">
+									<td v-else-if="userHasFlip == true || ! user" width="220px;">
 										<button class="btn btn-default watchbtn" style="outline:none;float:right;margin-right:7px;" data-toggle="modal" data-target="#watchflipmodal" v-on:click="clickWatchModal(index)">Watch</button>	
 									</td>
 									<td v-else width="220px;">
