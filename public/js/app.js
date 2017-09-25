@@ -152,7 +152,9 @@ $(function () {
 						if (self.coinflips[index].ctWin == true) {
 							$('#coin').removeClass ('animation1260');
 							$('#coin').removeClass ('animation1440');
-							$('#coin').addClass ('animation1260');
+							setTimeout(function() {
+								$('#coin').addClass ('animation1260');
+							}, 1000);
 							setTimeout(function() {
 								if (ModalOpened == flipIndexClicked) {
 									$('#watchflipmodal').modal('hide');
@@ -162,7 +164,9 @@ $(function () {
 						else if (self.coinflips[index].ctWin == false){ 
 							$('#coin').removeClass ('animation1260');
 							$('#coin').removeClass ('animation1440');
-							$('#coin').addClass ('animation1440');
+							setTimeout(function() {
+								$('#coin').addClass ('animation1440');
+							}, 1000);
 							setTimeout(function() {
 								if (ModalOpened == flipIndexClicked) {
 									$('#watchflipmodal').modal('hide');
