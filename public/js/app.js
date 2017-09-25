@@ -143,7 +143,7 @@ $(function () {
             },
             flipCoin: function(index) {
                 const self = this
-				var ModalOpened = this.flipIndexClicked
+				var ModalOpened = self.Coinflips[self.flipIndexClicked];
                 console.log('flipCoin called')
                 if(typeof self.coinflips[index].ctWin !== 'null' && typeof self.coinflips[index].ctWin !== 'undefined') {
                     console.log('ctWin exists')
