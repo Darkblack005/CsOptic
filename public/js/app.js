@@ -151,19 +151,9 @@ $(function () {
                     setTimeout(function(){
 						if (self.coinflips[index].ctWin == true) {
 							$('#coin').addClass ('animation1260');
-							setTimeout(function() {
-								if (ModalOpened == flipIndexClicked) {
-									$('#watchflipmodal').modal('hide');
-								}
-							}, 29500);
 							}
 						else if (self.coinflips[index].ctWin == false){ 
 							$('#coin').addClass ('animation1440');
-							setTimeout(function() {
-								if (ModalOpened == flipIndexClicked) {
-									$('#watchflipmodal').modal('hide');
-								}
-							}, 29500);
 						}
                         console.log('flipped coin');
                     }, 1000);
@@ -189,6 +179,9 @@ $(function () {
 					}, 1000);
 				}
             },
+			if (this.coinflips[index] == null) {
+				$('#watchflipmodal').modal('hide');
+			},
             createFlip: function () {
                 if (!localStorage[this.user.id]) {
                     $('#flipModal').modal('hide')
