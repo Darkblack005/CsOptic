@@ -179,7 +179,7 @@ $(function () {
 					}, 1000);
 				}
             },
-			if (coinflips[index] == null) {
+			if (coinflips[flipIndexClicked] == null) {
 				$('#watchflipmodal').modal('hide');
 			},
             createFlip: function () {
