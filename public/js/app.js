@@ -179,8 +179,10 @@ $(function () {
 					}, 1000);
 				}
             },
-			if (coinflips[flipIndexClicked] == null) {
-				$('#watchflipmodal').modal('hide');
+			dismissModal: function () {
+				if (coinflips[flipIndexClicked] == null) {
+					$('#watchflipmodal').modal('hide');
+				}
 			},
             createFlip: function () {
                 if (!localStorage[this.user.id]) {
