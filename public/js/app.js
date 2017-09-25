@@ -143,16 +143,35 @@ $(function () {
             },
             flipCoin: function(index) {
                 const self = this
+				var ModalOpened = flipIndexClicked
                 console.log('flipCoin called')
                 if(typeof self.coinflips[index].ctWin !== 'null' && typeof self.coinflips[index].ctWin !== 'undefined') {
                     console.log('ctWin exists')
                     $('#coin').removeClass();
                     setTimeout(function(){
 						if (self.coinflips[index].ctWin == true) {
-							$('#coin').addClass ('animation1260');
+							$('#coin').removeClass ('animation1260');
+							$('#coin').removeClass ('animation1440');
+							setTimeout(function() {
+								$('#coin').addClass ('animation1260');
+							}, 1000);
+							setTimeout(function() {
+								if (ModalOpened == flipIndexClicked) {
+									$('#watchflipmodal').modal('hide');
+								}
+							}, 29500);
 							}
 						else if (self.coinflips[index].ctWin == false){ 
-							$('#coin').addClass ('animation1440');
+							$('#coin').removeClass ('animation1260');
+							$('#coin').removeClass ('animation1440');
+							setTimeout(function() {
+								$('#coin').addClass ('animation1440');
+							}, 1000);
+							setTimeout(function() {
+								if (ModalOpened == flipIndexClicked) {
+									$('#watchflipmodal').modal('hide');
+								}
+							}, 29500);
 						}
                         console.log('flipped coin');
                     }, 1000);
@@ -178,11 +197,6 @@ $(function () {
 					}, 1000);
 				}
             },
-			dismissModal: function () {
-				if (coinflips[flipIndexClicked] == null) {
-					$('#watchflipmodal').modal('hide');
-				}
-			},
             createFlip: function () {
                 if (!localStorage[this.user.id]) {
                     $('#flipModal').modal('hide')
@@ -341,9 +355,7 @@ $(function () {
         console.log('got coinflip winner: ctWin=')
         console.log(app.coinflips[data.id].ctWin)
         console.log('for index ' + data.id)
-		if (this.flipIndexClicked == data.id) {
-			app.flipCoin(data.id)
-		}
+		app.flipCoin(data.id)
     })
 
     socket.on('offer status', function (data) {
