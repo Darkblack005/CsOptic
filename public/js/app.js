@@ -355,7 +355,7 @@ $(function () {
         console.log('got coinflip winner: ctWin=')
         console.log(app.coinflips[data.id].ctWin)
         console.log('for index ' + data.id)
-		if (this.flipIndexClicked == data.id) {
+		if (Coinflips[flipIndexClicked] == data.id) {
 			app.flipCoin(data.id)
 		}
     })
