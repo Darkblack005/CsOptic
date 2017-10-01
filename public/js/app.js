@@ -168,7 +168,7 @@ $(function () {
 								$('#coin').addClass ('animation1440');
 							}, 1000);
 							setTimeout(function() {
-								if (self.ModalOpened == flipIndexClicked) {
+								if (self.ModalOpened == self.coinflips[this.flipIndexClicked]) {
 									$('#watchflipmodal').modal('hide');
 								}
 							}, 29500);
