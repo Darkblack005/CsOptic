@@ -292,6 +292,12 @@ $(function () {
     socket.emit('get pricelist');
     socket.emit('get rates');
     socket.emit('get coinflips');
+	
+	tradeofferModalClose:function() {
+		$('#tradeofferModalClose').click(function() {
+			$('#tradeoffer').modal('hide')
+		})
+	}
 
     $('#chatboxsendbutton').submit(function () {
         if (app.user.displayName) {
