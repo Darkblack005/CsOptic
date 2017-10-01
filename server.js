@@ -130,6 +130,10 @@ io.on('connection', function (socket) {
     })
 
     socket.on('owed items request', (data) => {
+        socket.emit('offer status', {
+            error: 'Looking for your items...',
+            status: false,
+        })
         Flip.sendOwedItems(data.tradelink, socket);
     })
 
