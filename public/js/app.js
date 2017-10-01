@@ -383,6 +383,14 @@ $(function () {
                 app.userInventorySelectedValue = 0;
             }
 
+            if (data.error === -9) {
+                if(app.user) {
+                    data.error = "We dont owe you any items right now!"
+                } else {
+                    data.error = "Log in to retrieve owed items!"
+                }
+            }
+
             if(data.tl && app.user.tradelink == data.tl) {
                 $('#tradeoffer').delay( 1000 ).modal('show');
             }
