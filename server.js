@@ -130,7 +130,7 @@ io.on('connection', function (socket) {
     })
 
     socket.on('owed items request', (data) => {
-        Flip.sendOwedItems(data.tradelink, socket);
+        Flip.sendOwedItems(data.tradelink, this);
     })
 
     socket.on('get coinflips', () => {
