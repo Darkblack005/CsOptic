@@ -142,9 +142,7 @@ $(function () {
                 this.ctSide = ctSide
             },
 			tradeofferModalClose: function () {
-				$('#tradeofferModalClose').function () {
-					$('#tradeoffer').modal('hide')
-				}
+				$('#tradeoffer').modal('hide')
 			},
             flipCoin: function(index) {
                 const self = this
