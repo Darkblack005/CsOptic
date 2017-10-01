@@ -188,13 +188,17 @@ io.on('connection', function (socket) {
 
                     // Set timeout for 3 minutes or so for the joiner to trade over their items
                     setTimeout(() => {
+                        console.log('Setting timeout for 2 minutes to change flip ' + offerData.flipId + ' back to joinable')
                         // If the flip exists in that position and its hash is the same as it was 3 minutes ago and there is no joiner data
                         if(Flip.currentflips[offerData.flipId] && finalhash == Flip.currentflips[offerData.flipId].finalhash && !Flip.currentflips[offerData.flipId].joinData) {
                             Flip.changeFlipJoinableByFlipIndex(offerData.flipId, true, () => {
-                                console.log('User did not trade items after 3 minutes. Changing flip # ' + offerData.flipId + ' back to joinable')
+                                io.emit('flip update', {})
+                                console.log('User did not trade items after 2 minutes. Changing flip # ' + offerData.flipId + ' back to joinable')
                             })
+                        } else {
+                            console.log('Conditions werent met to change ' + offerData.flipId + ' back to joinable after 2 minutes')
                         }
-                    }, 180000)
+                    }, 120000)
                 })
                                                 
                 Trade.validateOffer(offerData, (err, success, userCount, userValue) => {
