@@ -163,7 +163,7 @@ $(function () {
 								if (self.ModalOpened == self.coinflips[this.flipIndexClicked]) {
 									$('#watchflipmodal').modal('hide');
 								}
-							}, 29500);
+							}, 30000);
 							}
 						else if (self.coinflips[index].ctWin == false){ 
 							$('#coin').removeClass ('animation1260');
@@ -175,7 +175,7 @@ $(function () {
 								if (self.ModalOpened == self.coinflips[this.flipIndexClicked]) {
 									$('#watchflipmodal').modal('hide');
 								}
-							}, 29500);
+							}, 30000);
 						}
                         console.log('flipped coin');
                     }, 1000);
