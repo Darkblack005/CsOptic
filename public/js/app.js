@@ -293,11 +293,11 @@ $(function () {
     socket.emit('get rates');
     socket.emit('get coinflips');
 	
-	tradeofferModalClose:function() {
+	tradeofferModalClose: function() {
 		$('#tradeofferModalClose').click(function() {
 			$('#tradeoffer').modal('hide')
 		})
-	}
+	};
 
     $('#chatboxsendbutton').submit(function () {
         if (app.user.displayName) {
