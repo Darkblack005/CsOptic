@@ -338,7 +338,7 @@
 				<div class="modal-content">
 					<div class="modal-body">
 						<h3>Trade link</h3>
-						<div class="alert alert-danger" v-if="invalidTradelink && user.tradelink !== '' ">
+						<div class="alert alert-danger" v-if="user.tradelink && user.tradelink.length > 0 && invalidTradelink">
 							<strong>Invalid tradelink!</strong>
 						</div>
 						<h4><a href="http://steamcommunity.com/id/me/tradeoffers/privacy#trade_offer_access_url" target="_blank">Where do I find this?</a></h4>
