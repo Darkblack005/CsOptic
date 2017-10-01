@@ -143,7 +143,7 @@ $(function () {
             },
             flipCoin: function(index) {
                 const self = this
-				var ModalOpened = self.Coinflips[this.flipIndexClicked];
+				var ModalOpened = self.coinflips[this.flipIndexClicked];
                 console.log('flipCoin called')
                 if(typeof self.coinflips[index].ctWin !== 'null' && typeof self.coinflips[index].ctWin !== 'undefined') {
                     console.log('ctWin exists')
@@ -168,7 +168,7 @@ $(function () {
 								$('#coin').addClass ('animation1440');
 							}, 1000);
 							setTimeout(function() {
-								if (self.ModalOpened == flipIndexClicked) {
+								if (self.ModalOpened == self.coinflips[this.flipIndexClicked]) {
 									$('#watchflipmodal').modal('hide');
 								}
 							}, 29500);
