@@ -1,19 +1,30 @@
 'use strict'
 
-const fs = require('fs');
 const config = require('./config');
 
-const options = {
-    cert: fs.readFileSync('/etc/letsencrypt/live/www.csoptic.com/fullchain.pem'),
-    key: fs.readFileSync('/etc/letsencrypt/live/www.csoptic.com/privkey.pem')
-};
+if(config.production) {
+    const fs = require('fs');
+    const options = {
+        cert: fs.readFileSync('/etc/letsencrypt/live/www.csoptic.com/fullchain.pem'),
+        key: fs.readFileSync('/etc/letsencrypt/live/www.csoptic.com/privkey.pem')
+    };
+}
 
-const https = require('https');
+var https, http, server, helmet
+
 const express = require('express');
 const app = express();
-var server = https.createServer(options, app);
+
+if(config.production) {
+    https = require('https');
+    helmet = require('helmet')
+    server = https.createServer(options, app);
+} else {
+    http = require('http');
+    server = http.createServer(app);
+}
+
 const io = require('socket.io').listen(server);
-var helmet = require('helmet')
 const cookieParser = require('cookie-parser')
 const passport = require('passport');
 const session = require('express-session');
@@ -34,9 +45,19 @@ passport.deserializeUser(function (obj, done) {
     done(null, obj)
 });
 
+var website, domain
+if(config.production) {
+    domain = 'csoptic.com'
+    website = 'https://www.' + domain
+} else {
+    domain = 'localhost'
+    website = 'http://' + domain
+}
+
+
 passport.use(new SteamStrategy({
-    returnURL: config.website + '/auth/steam/return',
-    realm: config.website,
+    returnURL: website + '/auth/steam/return',
+    realm: website,
     apiKey: config.steamApiKey
 },
     function (identifier, profile, done) {
@@ -55,12 +76,11 @@ passport.use(new SteamStrategy({
 
 const sessionMiddleware = session({
     secret: 'joeisanerd',
-    name: config.domain,
+    name: domain,
     resave: true,
     saveUninitialized: true,
 })
 
-var env = process.env.NODE_ENV || 'development';
 function forceSsl(req, res, next){
   if(req.secure){
     // OK, continue
@@ -71,12 +91,11 @@ function forceSsl(req, res, next){
   res.redirect('https://www.csoptic.com'); // express 4.x
 }
 
-//if (env === 'production')
-//{
-app.use(forceSsl);
-//}
+if (config.production) {
+    app.use(forceSsl);
+    app.use(helmet())
+}
 
-app.use(helmet())
 app.use(cookieParser())
 app.use(sessionMiddleware)
 app.use(passport.initialize())
@@ -443,5 +462,10 @@ io.on('connection', function (socket) {
     })
 });
 
-app.listen(80)
-server.listen(443);
+if (config.production) {
+    server.listen(443);
+} else {
+    server.listen(80, function(){
+    console.log('[!] Server listening on *:' + 80);
+    });
+}

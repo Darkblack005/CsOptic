@@ -1,6 +1,9 @@
 'use strict'
 
 module.exports = {
+    production: false,
+
+
     steamApiKey: '5724FDE13EAACD6BB0CD6238E984A341',    // Your Steam API key, get it here: https://steamcommunity.com/dev/apikey
     SteamApisKey: 'pCZft8PWNtnyOmST6_V-XEU8CxM',   // Your SteamApis.com key, get it here: https://steamapis.com
 
@@ -35,8 +38,6 @@ module.exports = {
         flipMinimumPercentageMultiplier: 0.1        // Minimum value the user can put in to join a flip i.e. $10 bet, the user can join by putting up $10-($10*flipMinimumPercentageMultiplier) == $9
     },
 
-    domain: 'csoptic.com',
-    website: 'https://www.csoptic.com',
     websitePort: 443,    // Website PORT, don't change it unless you're using a reverse proxy
     tradeMessage: 'Trade offer from CsOptic | If you did not request this offer or the offer looks invalid please decline.', // Quite obvious
     
