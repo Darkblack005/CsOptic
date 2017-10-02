@@ -387,6 +387,9 @@ $(function () {
                 } else {
                     data.error = "Log in to retrieve owed items!"
                 }
+
+                // Have update this
+                app.offerStatus = data;
             }
 
             if(data.tl && app.user.tradelink == data.tl) {
