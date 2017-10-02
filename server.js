@@ -1,10 +1,10 @@
 'use strict'
 
 const config = require('./config');
-
+var fs, options
 if(config.production) {
-    const fs = require('fs');
-    const options = {
+    fs = require('fs');
+    options = {
         cert: fs.readFileSync('/etc/letsencrypt/live/www.csoptic.com/fullchain.pem'),
         key: fs.readFileSync('/etc/letsencrypt/live/www.csoptic.com/privkey.pem')
     };
