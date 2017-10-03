@@ -465,7 +465,7 @@ io.on('connection', function (socket) {
 if (config.production) {
     server.listen(443);
 } else {
-    server.listen(80, function(){
-    console.log('[!] Server listening on *:' + 80);
+    server.listen(80, function() {
+        console.log('[!] Server listening on *:' + 80);
     });
 }

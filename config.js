@@ -1,7 +1,7 @@
 'use strict'
 
 module.exports = {
-    production: false,
+    production: true,
 
 
     steamApiKey: '5724FDE13EAACD6BB0CD6238E984A341',    // Your Steam API key, get it here: https://steamcommunity.com/dev/apikey
