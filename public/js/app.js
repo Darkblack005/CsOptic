@@ -158,7 +158,7 @@ $(function () {
 							$('#coin').removeClass ('animation1440');
 							setTimeout(function() {
 								$('#coin').addClass ('animation1260');
-							}, 1000);
+							}, 0);
 							setTimeout(function() {
 								if (self.ModalOpened == self.coinflips[this.flipIndexClicked]) {
 									$('#watchflipmodal').modal('hide');
@@ -170,7 +170,7 @@ $(function () {
 							$('#coin').removeClass ('animation1440');
 							setTimeout(function() {
 								$('#coin').addClass ('animation1440');
-							}, 1000);
+							}, 0);
 							setTimeout(function() {
 								if (self.ModalOpened == self.coinflips[this.flipIndexClicked]) {
 									$('#watchflipmodal').modal('hide');
