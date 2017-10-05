@@ -7,9 +7,6 @@ module.exports = {
     steamApiKey: '5724FDE13EAACD6BB0CD6238E984A341',    // Your Steam API key, get it here: https://steamcommunity.com/dev/apikey
     SteamApisKey: 'pCZft8PWNtnyOmST6_V-XEU8CxM',   // Your SteamApis.com key, get it here: https://steamapis.com
 
-    dbUser: '',    // MongoDB login
-    dbPassword: '', // MongoDB password
-
     bots: {
         bot_1: {
             siteName: 'Bot 1',  // Will be displayed under the "All bots" tab e.g. "Keys Only"
@@ -44,6 +41,16 @@ module.exports = {
     rates: {
         ignoreItemsBelow: 0.01, // Ignore items below this price (price * rate < ignoreItemsBelow) - shows (Too Low) for user
         commissionPercentage: 0.08 // The bot will keep 0-commission % value of whatever items it receives
+    },
+
+    dbOptions: {
+        /*
+          db: { native_parser: true },
+                server: { poolSize: 5 },
+                replset: { rs_name: 'myReplicaSetName' },
+                user: 'myUserName',
+                pass: 'myPassword'
+        */
     },
 
     flipDeleteTimeout: 30,    // After the flip finishes, how long to wait before deleting it (in seconds)
