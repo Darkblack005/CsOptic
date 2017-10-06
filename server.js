@@ -162,6 +162,7 @@ io.on('connection', function (socket) {
                 socket.lastMsgTime = Date.now()
                 io.emit('chat message', msg);
             } else {
+                socket.lastMsgTime = Date.now()
                 socket.emit('spam message', config.spamMessage);
             }
         }
