@@ -468,5 +468,8 @@ if (config.production) {
 } else {
     server.listen(80, function() {
         console.log('[!] Server listening on *:' + 80);
+        if(process.env.NODE_ENV === 'production') {
+            console.log('[!] NODE_ENV=production')
+        }
     });
 }
