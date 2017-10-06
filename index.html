@@ -142,6 +142,7 @@
 							<div class="col-xs-6">
 								<div class="well text-center inventorybutton">
 									Your inventory
+									<i class="fa fa-refresh" aria-hidden="true" v-on:click="reloadInventories"></i>
 								</div>
 								<div class="csgo-items high scrollbar" id="style-3" style="width:262px;">
 									<div v-if=" ! userInventory.error && userInventory.length && !invalidTradelink">
@@ -249,6 +250,7 @@
 							<div class="col-xs-6">
 								<div class="well text-center inventorybutton">
 									Your inventory
+									<i class="fa fa-refresh" aria-hidden="true" v-on:click="reloadInventories"></i>
 								</div>
 								<div class="csgo-items high scrollbar" id="style-3" style="width:262px;">
 									<div v-if=" ! userInventory.error && userInventory.length">
