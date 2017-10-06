@@ -464,7 +464,12 @@ io.on('connection', function (socket) {
 });
 
 if (config.production) {
-    server.listen(443);
+    server.listen(443, function() {
+        console.log('[!] Server listening on *:' + 443);
+        if(process.env.NODE_ENV === 'production') {
+            console.log('[!] NODE_ENV=production')
+        }
+    });
 } else {
     server.listen(80, function() {
         console.log('[!] Server listening on *:' + 80);
