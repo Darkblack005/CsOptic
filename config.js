@@ -55,5 +55,5 @@ module.exports = {
 
     flipDeleteTimeout: 30,    // After the flip finishes, how long to wait before deleting it (in seconds)
     spamMessage: "Please try not to spam",
-    spamTime: 1.5             // Time (in seconds) a user has to wait in between messages before the server considers it spamming
+    spamTime: 0.85             // Time (in seconds) a user has to wait in between messages before the server considers it spamming
 }
