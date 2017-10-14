@@ -26,6 +26,7 @@ if(config.production) {
 
 const io = require('socket.io').listen(server);
 const cookieParser = require('cookie-parser')
+var morgan = require('morgan')
 const passport = require('passport');
 const session = require('express-session');
 const sharedsession = require('express-socket.io-session');
@@ -80,6 +81,7 @@ const sessionMiddleware = session({
     resave: true,
     saveUninitialized: true,
 })
+app.use(morgan('combined'));
 
 function forceSsl(req, res, next){
   if(req.protocol == 'https' && req.secure){
