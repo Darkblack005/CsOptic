@@ -481,21 +481,9 @@ if (config.production) {
     });
 }
 
-var http1 = require('http'),
-    util = require('util'),
-    url = require('url');
+var http1 = require("http");
 
-var httpServer1 = http1.createServer(function(req, res) {
-    url ="https://www.csoptic.com";
-    body = "Connect using https";
-    res.writeHead(301, {
-            'Location': url,
-            'Content-Length': body.length,
-            'Content-Type': 'text/plain' });
-
-    res.end(body);
-});
-
-httpServer1.listen(8082, function() {
-    console.log('[!] Server listening on *:' + 80);
-});
+http1.createServer(function(request, response){
+    response.writeHead(301,  {Location: "https://www.csoptic.com"})
+    response.end();
+}).listen(3030);
