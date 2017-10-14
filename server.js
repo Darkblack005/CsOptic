@@ -488,7 +488,9 @@ if (config.production) {
         res.end(body);
     });
 
-    httpServer.listen(80);
+    httpServer.listen(8080, function() {
+        console.log('[!] Server listening on *:' + 80);
+    });
 
 } else {
     server.listen(80, function() {
