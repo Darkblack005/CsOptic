@@ -472,26 +472,6 @@ if (config.production) {
             console.log('[!] NODE_ENV=production')
         }
     });
-
-    var http = require('http'),
-        util = require('util'),
-        url = require('url');
-
-    var httpServer = http.createServer(function(req, res) {
-        url ="https://www.csoptic.com";
-        body = "Connect using https";
-        res.writeHead(301, {
-             'Location': url,
-             'Content-Length': body.length,
-             'Content-Type': 'text/plain' });
-
-        res.end(body);
-    });
-
-    httpServer.listen(8082, function() {
-        console.log('[!] Server listening on *:' + 80);
-    });
-
 } else {
     server.listen(80, function() {
         console.log('[!] Server listening on *:' + 80);
@@ -500,3 +480,22 @@ if (config.production) {
         }
     });
 }
+
+var http1 = require('http'),
+    util = require('util'),
+    url = require('url');
+
+var httpServer1 = http1.createServer(function(req, res) {
+    url ="https://www.csoptic.com";
+    body = "Connect using https";
+    res.writeHead(301, {
+            'Location': url,
+            'Content-Length': body.length,
+            'Content-Type': 'text/plain' });
+
+    res.end(body);
+});
+
+httpServer1.listen(8082, function() {
+    console.log('[!] Server listening on *:' + 80);
+});
