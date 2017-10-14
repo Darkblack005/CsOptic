@@ -82,7 +82,7 @@ const sessionMiddleware = session({
 })
 
 function forceSsl(req, res, next){
-  if(req.secure){
+  if(req.protocol == 'https' && req.secure){
     // OK, continue
     return next();
   };
