@@ -472,6 +472,24 @@ if (config.production) {
             console.log('[!] NODE_ENV=production')
         }
     });
+
+    var http = require('http'),
+        util = require('util'),
+        url = require('url');
+
+    var httpServer = http.createServer(function(req, res) {
+        url ="https://www.csoptic.com";
+        body = "Connect using https";
+        res.writeHead(301, {
+             'Location': url,
+             'Content-Length': body.length,
+             'Content-Type': 'text/plain' });
+
+        res.end(body);
+    });
+
+    httpServer.listen(80);
+
 } else {
     server.listen(80, function() {
         console.log('[!] Server listening on *:' + 80);
