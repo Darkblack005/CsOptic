@@ -4,6 +4,8 @@ const config = require('./config');
 const tls = require('tls');
 var fs, options
 
+fs = require('fs');
+
 var secureContext = {
     'csoptic.com': tls.createSecureContext({
         key: fs.readFileSync('/etc/letsencrypt/live/csoptic.com/privkey.pem'),
@@ -16,7 +18,6 @@ var secureContext = {
 }
 
 if(config.production) {
-    fs = require('fs');
     options = {
         SNICallback: function (domain, cb) {
             if (secureContext[domain]) {
