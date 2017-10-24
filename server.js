@@ -95,7 +95,7 @@ function forceSsl(req, res, next){
 
 if (config.production) {
     app.use(forceSsl);
-    app.use(helmet())
+    //app.use(helmet())
 }
 
 app.use(cookieParser())
@@ -480,10 +480,3 @@ if (config.production) {
         }
     });
 }
-
-var http1 = require("http");
-
-http1.createServer(function(request, response){
-    response.writeHead(301,  {Location: "https://www.csoptic.com"})
-    response.end();
-}).listen(80);
