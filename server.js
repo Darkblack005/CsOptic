@@ -1,12 +1,38 @@
 'use strict'
 
 const config = require('./config');
+const tls = require('tls');
 var fs, options
+
+var secureContext = {
+    'csoptic.com': tls.createSecureContext({
+        key: fs.readFileSync('/etc/letsencrypt/live/csoptic.com/privkey.pem'),
+        cert: fs.readFileSync('/etc/letsencrypt/live/csoptic.com/fullchain.pem')
+    }),
+    'www.csoptic.com': tls.createSecureContext({
+        key: fs.readFileSync('/etc/letsencrypt/live/www.csoptic.com/privkey.pem'),
+        cert: fs.readFileSync('/etc/letsencrypt/live/www.csoptic.com/fullchain.pem')
+    }),
+}
+
 if(config.production) {
     fs = require('fs');
     options = {
-        cert: fs.readFileSync('/etc/letsencrypt/live/www.csoptic.com/fullchain.pem'),
-        key: fs.readFileSync('/etc/letsencrypt/live/www.csoptic.com/privkey.pem')
+        SNICallback: function (domain, cb) {
+            if (secureContext[domain]) {
+                if (cb) {
+                    cb(null, secureContext[domain]);
+                } else {
+                    // compatibility for older versions of node
+                    return secureContext[domain]; 
+                }
+            } else {
+                throw new Error('No keys/certificates for domain requested');
+            }
+        },
+        // must list a default key and cert because required by tls.createServer()
+        key: fs.readFileSync('/etc/letsencrypt/live/www.csoptic.com/privkey.pem'), 
+        cert: fs.readFileSync('/etc/letsencrypt/live/www.csoptic.com/fullchain.pem')
     };
 }
 
@@ -95,7 +121,7 @@ function forceSsl(req, res, next){
 
 if (config.production) {
     app.use(forceSsl);
-    //app.use(helmet())
+    app.use(helmet())
 }
 
 app.use(cookieParser())
